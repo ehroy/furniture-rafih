@@ -7,12 +7,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable , HasRoles;
-
+    protected static function booted()
+    {
+        static::created(function (User $user) {
+            if ($user->roles->isEmpty()) {
+                $defaultRole = Role::where('name', 'admin')->first();
+                if ($defaultRole) {
+                    $user->assignRole($defaultRole);
+                }
+            }
+        });
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -22,9 +33,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
     ];
 
+   
     /**
      * The attributes that should be hidden for serialization.
      *

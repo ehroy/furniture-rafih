@@ -37,11 +37,11 @@ class UserResource extends Resource
                     ->password()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Select::make('role')
-                    ->label('User Role')
-                    ->options(Role::pluck('name', 'name')) // Ambil role dari database
-                    ->searchable()
-                    ->required(),
+                Forms\Components\Select::make('roles')
+                ->label('Roles')
+                ->relationship('roles', 'name')
+                ->preload()
+                ->options(Role::pluck('name', 'id')->toArray()),
             ]);
     }
 
