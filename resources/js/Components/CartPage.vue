@@ -1,0 +1,211 @@
+<template>
+    <!-- Container Utama -->
+    <div class="py-10 px-5 md:px-20 lg:px-64">
+        <div
+            class="w-full max-w-6xl bg-white p-6 overflow-auto max-h-[calc(100vh-120px)] md:pb-32 pb-48"
+        >
+            <h2 class="text-2xl font-bold text-gray-800 mb-5 border-b pb-6">
+                Keranjang Belanja
+            </h2>
+
+            <!-- Jika Keranjang Kosong -->
+            <div
+                v-if="cart.length === 0"
+                class="text-center py-10 text-gray-600"
+            >
+                <i class="mdi mdi-cart-off text-5xl"></i>
+                <p class="mt-3">Keranjang belanja kosong.</p>
+                <a
+                    href="/"
+                    class="mt-5 inline-block bg-amber-500 text-white px-5 py-2 rounded-lg"
+                >
+                    Kembali Belanja
+                </a>
+            </div>
+
+            <!-- Daftar Produk di Keranjang -->
+            <div v-else>
+                <div
+                    v-for="(item, index) in cart"
+                    :key="index"
+                    class="flex justify-between items-center border-b py-4"
+                >
+                    <div class="flex items-center space-x-4">
+                        <img
+                            :src="item.image"
+                            class="w-16 h-16 object-cover rounded-lg"
+                        />
+                        <div>
+                            <h3 class="font-bold text-gray-800">
+                                {{ item.name }}
+                            </h3>
+                            <p class="text-sm text-gray-500">
+                                Rp{{ formatRupiah(item.price) }}
+                            </p>
+                            <button
+                                @click="removeFromCart(index)"
+                                class="text-red-500 mt-2 text-sm hover:underline"
+                            >
+                                <i class="mdi mdi-trash-can-outline"></i> Hapus
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Kontrol Jumlah Produk -->
+                    <div class="flex items-center space-x-3">
+                        <button
+                            @click="decreaseQuantity(index)"
+                            class="p-1 bg-gray-200 rounded-full text-xl"
+                        >
+                            −
+                        </button>
+                        <span class="font-bold">{{ item.quantity }}</span>
+                        <button
+                            @click="increaseQuantity(index)"
+                            class="p-1 bg-gray-200 rounded-full text-xl"
+                        >
+                            +
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Total Harga -->
+                <div class="mt-5 text-right">
+                    <h3 class="text-lg font-bold text-gray-800">
+                        Total: Rp{{ formatRupiah(totalPrice) }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Form & Checkout Hanya Ditampilkan Jika Keranjang Tidak Kosong -->
+    <div
+        v-if="cart.length > 0"
+        class="fixed bottom-0 left-0 right-0 flex justify-center items-center px-4 pb-[env(safe-area-inset-bottom)] mb-16 md:mb-0 pt-4"
+    >
+        <div class="w-full max-w-6xl bg-white p-6">
+            <div class="mt-5">
+                <label class="block text-gray-700 font-medium mb-2"
+                    >Email:</label
+                >
+                <input
+                    v-model="email"
+                    type="email"
+                    placeholder="Masukkan email Anda"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-amber-300"
+                />
+                <p v-if="emailError" class="text-red-500 text-sm mt-1">
+                    Email harus diisi sebelum checkout.
+                </p>
+            </div>
+
+            <!-- Tombol Checkout -->
+            <button
+                @click="checkout"
+                class="w-full mt-5 bg-amber-500 text-white py-3 rounded-lg text-center font-bold hover:bg-amber-600"
+            >
+                Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- ✅ Toast Notification (POSISI TENGAH LAYAR) -->
+    <transition name="fade">
+        <div
+            v-if="showToast"
+            class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg text-center z-50"
+        >
+            ✅ Checkout berhasil! <br />
+            Tunggu admin menghubungi lewat email 😁😁
+        </div>
+    </transition>
+</template>
+
+<script setup>
+import { ref, onMounted, computed } from "vue";
+
+const cart = ref([]);
+const email = ref("");
+const emailError = ref(false);
+const showToast = ref(false);
+
+// Ambil data dari localStorage saat halaman dimuat
+onMounted(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+        cart.value = JSON.parse(savedCart);
+    }
+});
+
+// Format harga rupiah
+const formatRupiah = (value) => {
+    return value.toLocaleString("id-ID");
+};
+
+// Hapus produk dari keranjang
+const removeFromCart = (index) => {
+    cart.value.splice(index, 1);
+    saveCart();
+};
+
+// Tambah jumlah produk
+const increaseQuantity = (index) => {
+    cart.value[index].quantity += 1;
+    saveCart();
+};
+
+// Kurangi jumlah produk
+const decreaseQuantity = (index) => {
+    if (cart.value[index].quantity > 1) {
+        cart.value[index].quantity -= 1;
+    } else {
+        removeFromCart(index);
+    }
+    saveCart();
+};
+
+// Simpan kembali ke localStorage
+const saveCart = () => {
+    localStorage.setItem("cart", JSON.stringify(cart.value));
+};
+
+// Hitung total harga
+const totalPrice = computed(() =>
+    cart.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
+);
+
+// Simulasi Checkout
+const checkout = () => {
+    if (!email.value) {
+        emailError.value = true;
+        return;
+    }
+
+    emailError.value = false;
+    showToast.value = true; // Tampilkan toast
+
+    // Sembunyikan toast setelah 3 detik
+    setTimeout(() => {
+        showToast.value = false;
+    }, 3000);
+
+    // Kosongkan keranjang
+    localStorage.removeItem("cart");
+    cart.value = [];
+    email.value = "";
+};
+</script>
+
+<style>
+/* Animasi Fade */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+    transform: scale(0.9);
+}
+</style>

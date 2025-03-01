@@ -1,31 +1,61 @@
 <template>
-    <section class="bg-[#ffcc4c] py-10 px-5 md:py-20 md:px-64">
-      
-      <div class="border-b-2 border-gray-700 w-3/12">
-        <h1 class="mt-5 mb-10 text-3xl poppins-bold uppercase"><i class="mdi mdi-star-circle"></i> Rekomendasi Produk</h1>
-      </div>
-      <br><br>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-10">
-        <div class="rounded-lg " v-for="(product, index) in ProductsRecommended" :key="index">
-          <img class="w-full rounded-t-lg" :src="helpers.imageUrl(product.image)" :alt="product.name" />
-          <div class="flex flex-col gap-2 text-gray-600 bg-gray-100 p-5 rounded-b-lg hover:shadow-lg">
-            <Link :href="'/product/' + product.slug"><h4 class="font-bold hover:underline">{{ product.name }}</h4></Link>
-           
-            <div class="flex flex-col md:flex-row md:justify-between">
-              <b class="text-sm mt-2">{{ product.price == 0 ? 'Tanya Admin' : helpers.rupiah(product.price) }}</b>
-              <span class="text-sm mt-2"><i class="mdi mdi-tag"></i> {{ product.subcategory.name }}</span>
-            </div>
-            <a :href="helpers.WaButton(Global , '/product/'+product.slug)" class="bg-amber-500 px-8 py-2 rounded-full text-gray-600 font-bold text-center hover:bg-amber-600 hover:text-white uppercase text-xs md:text-lg" target="_blank"><i class="mdi mdi-whatsapp"></i> {{ Global.Settings.action_button_text }}</a>
-          </div>
+    <section class="bg-[#D4A373] py-10 px-5 md:py-20 md:px-64">
+        <div class="border-b-2 border-gray-700 w-3/12">
+            <h1 class="mt-5 mb-10 text-3xl poppins-bold uppercase">
+                <i class="mdi mdi-star-circle"></i> Rekomendasi Produk
+            </h1>
         </div>
-      </div>
-      <!-- <div class="flex justify-center" v-show="Filter==null">
+        <br /><br />
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-10">
+            <div
+                class="rounded-lg"
+                v-for="(product, index) in ProductsRecommended"
+                :key="index"
+            >
+                <img
+                    class="w-full rounded-t-lg"
+                    :src="helpers.imageUrl(product.image)"
+                    :alt="product.name"
+                />
+                <div
+                    class="flex flex-col gap-2 text-gray-600 bg-gray-100 p-3 rounded-b-lg hover:shadow-lg"
+                >
+                    <Link :href="'/product/' + product.slug"
+                        ><h4 class="font-bold hover:underline">
+                            {{ product.name }}
+                        </h4></Link
+                    >
+
+                    <div class="flex flex-col md:flex-row md:justify-between">
+                        <b class="text-sm mt-2">{{
+                            product.price == 0
+                                ? "Tanya Admin"
+                                : helpers.rupiah(product.price)
+                        }}</b>
+                        <span class="text-sm mt-2"
+                            ><i class="mdi mdi-tag"></i>
+                            {{ product.subcategory.name }}</span
+                        >
+                    </div>
+                    <a
+                        :href="
+                            helpers.WaButton(Global, '/product/' + product.slug)
+                        "
+                        class="bg-[#2E2E2E] px-8 py-2 rounded-full text-[#FAFAFA] font-bold text-center hover:bg-[#D4A373] hover:text-[#4A4A4A] uppercase text-lg md:text-lg"
+                        target="_blank"
+                        ><i class="mdi mdi-whatsapp"></i>
+                        {{ Global.Settings.action_button_text }}</a
+                    >
+                </div>
+            </div>
+        </div>
+        <!-- <div class="flex justify-center" v-show="Filter==null">
         <Link href="/products?filter=all" class="bg-white border-2 p-2 rounded-full text-gray-600  hover:border-gray-600 mt-10"><i class="mdi mdi-view-list"></i> Tampilkan Semua</Link>
         
       </div> -->
 
-      <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-10 gap-x-5 gap-y-10 md:gap-y-32">
+        <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-10 gap-x-5 gap-y-10 md:gap-y-32">
         
         <div class="flex flex-col items-center relative bg-gray-100 rounded-lg hover:outline outline-1 outline-gray-500 py-5 px-1" v-for="p in ProductsRecommended">
           <img class="w-32 sm:w-40 absolute -top-10" :src="helpers.imageUrl(p.image)" alt="" />
@@ -52,16 +82,20 @@
         </div>
         
       </div> -->
-<br><br>
-      <div class="flex justify-center">
-        <Link href="/products?filter=recommended" class="bg-white p-2 rounded-full text-center text-gray-600 hover:outline mt-10"><i class="mdi mdi-view-list"></i> Tampilkan Semua</Link>
-      </div>
+        <br /><br />
+        <div class="flex justify-center">
+            <Link
+                href="/products?filter=recommended"
+                class="bg-white p-2 rounded-full text-center text-gray-600 hover:outline mt-10"
+                ><i class="mdi mdi-view-list"></i> Tampilkan Semua</Link
+            >
+        </div>
     </section>
-  </template>
-  
-  <script setup>
-import { Link } from '@inertiajs/vue3';
-import {inject} from 'vue';
-const helpers = inject('helpers');
-defineProps({ProductsRecommended: Object , Global: Object})
+</template>
+
+<script setup>
+import { Link } from "@inertiajs/vue3";
+import { inject } from "vue";
+const helpers = inject("helpers");
+defineProps({ ProductsRecommended: Object, Global: Object });
 </script>

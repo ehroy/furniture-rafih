@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\JustOrangeController;
 use Illuminate\Support\Facades\Route;
-
+use Inertia\Inertia;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +17,7 @@ Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));
 })->name('login');
 
-Route::get('/', [JustOrangeController::class, 'index']);
+Route::get('/', [JustOrangeController::class, 'index'])->name('justorange-default');;
 Route::get('/p/{page}', [JustOrangeController::class, 'getPage'])->name('page');
 Route::get('/category', [JustOrangeController::class, 'getCategory'])->name('category');
 Route::get('/products', [JustOrangeController::class, 'getProducts'])->name('products');
@@ -25,3 +25,8 @@ Route::get('/product/{slug}', [JustOrangeController::class, 'detailProduct'])->n
 Route::get('/category/{id}', [JustOrangeController::class, 'getProductByCategory'])->name('products.category');
 Route::get('/linker', [JustOrangeController::class, 'linker']);
 Route::get('/rdr/{label}',[JustOrangeController::class , 'redirector']);
+Route::get('/cart', function () {
+    return Inertia::render('cart');
+});
+Route::get('/galery', [JustOrangeController::class, 'getGallery'])->name('galery');;
+
