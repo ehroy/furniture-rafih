@@ -9,7 +9,7 @@
             >
                 <!-- Judul -->
                 <div class="text-center mb-6">
-                    <h1 class="text-3xl font-bold text-gray-600 animate-pulse">
+                    <h1 class="text-3xl font-bold text-[#424242] animate-pulse">
                         IA PROJECT
                     </h1>
                 </div>
@@ -18,13 +18,13 @@
                 <input
                     type="text"
                     placeholder="Search..."
-                    class="w-full p-4 border text-black border-[#D4A373] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D4A373]"
+                    class="w-full p-4 border text-black border-[#212121] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#212121]"
                     v-model="query"
                 />
 
                 <!-- Tombol Search -->
                 <button
-                    class="w-full bg-[#D4A373] rounded-lg mt-3 text-gray-600 p-3 font-bold hover:bg-[#D4A373]"
+                    class="w-full bg-[#212121] rounded-lg mt-3 text-[#424242] p-3 font-bold hover:bg-[#212121]"
                     type="button"
                     @click="doSearch"
                 >
@@ -34,7 +34,7 @@
                 <!-- Tombol Close -->
                 <button
                     @click="toggleSearch"
-                    class="absolute top-3 right-3 text-gray-600 hover:text-red-500"
+                    class="absolute top-3 right-3 text-[#424242] hover:text-red-500"
                     aria-label="Close"
                 >
                     <i class="mdi mdi-close-circle-outline text-3xl"></i>
@@ -43,36 +43,42 @@
         </div>
         <header class="flex justify-between items-center px-4">
             <div class="flex items-center gap-2">
-                <img class="w-14" src="/logo.jpg" alt="IA Project" />
-                <span class="font-bold text-xl text-gray-700 poppins-bold"
+                <a
+                    class="w-14 bg-red-500 rounded-full h-14"
+                    src="/"
+                    alt="LOGO"
+                    href="/"
+                />
+                <span class="font-bold text-xl text-[#424242] poppins-bold"
                     >NAME FURNITURE</span
                 >
             </div>
 
             <nav class="flex-1 mx-10">
                 <ul
-                    class="flex justify-center gap-20 font-bold text-xl text-gray-500"
+                    class="flex justify-center gap-20 font-bold text-lg text-[#424242]"
                 >
-                    <li class="hover:text-[#D4A373]">
+                    <li class="hover:text-[#212121] hover:underline">
                         <Link href="/">Home</Link>
                     </li>
-                    <li class="hover:text-[#D4A373]">
+                    <li class="hover:text-[#212121] hover:underline">
                         <Link href="/products">Product</Link>
                     </li>
-                    <li class="relative hover:text-[#D4A373]">
+                    <li class="relative hover:text-[#212121]">
                         <button
                             id="dropdownButton"
                             @click="toggleDropdown"
                             type="button"
                             aria-expanded="true"
                             aria-haspopup="true"
+                            class="hover:underline"
                         >
                             CATEGORY
                             <i class="mdi mdi-chevron-down"></i>
                         </button>
                         <div
                             v-if="isOpen"
-                            class="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-[#D4A373] ring-1 ring-black ring-opacity-5"
+                            class="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-white ring-opacity-5"
                         >
                             <div
                                 class="py-1"
@@ -81,7 +87,7 @@
                                 aria-labelledby="options-menu"
                             >
                                 <Link
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#2E2E2E] hover:text-[#F5F5F5]"
+                                    class="block px-4 py-2 text-sm text-[#424242] hover:bg-[#424242] hover:text-[#F5F5F5]"
                                     role="menuitem"
                                     v-for="(cat, index) in Categories"
                                     :href="'/category/' + cat.id"
@@ -90,10 +96,10 @@
                             </div>
                         </div>
                     </li>
-                    <li class="hover:text-[#D4A373]">
+                    <li class="hover:text-[#212121] hover:underline">
                         <Link href="/linker">Contact Us</Link>
                     </li>
-                    <li class="hover:text-[#D4A373]">
+                    <li class="hover:text-[#212121] hover:underline">
                         <Link href="/galery">Gallery</Link>
                     </li>
                 </ul>
@@ -102,7 +108,7 @@
                 <!-- Tombol Cart -->
                 <a
                     href="/cart"
-                    class="relative flex items-center justify-center rounded-xl p-2 text-gray-700 transition"
+                    class="relative flex items-center justify-center rounded-xl p-2 text-[#424242] transition"
                     type="button"
                     role="button"
                     @click="toggleCart"
@@ -119,7 +125,7 @@
 
                 <!-- Tombol Search -->
                 <button
-                    class="flex items-center justify-center rounded-xl p-2 text-gray-700 transition"
+                    class="flex items-center justify-center rounded-xl p-2 text-[#424242] transition"
                     type="button"
                     role="button"
                     @click="toggleSearch"
@@ -133,7 +139,7 @@
     <div
         class="fixed bottom-0 left-0 right-0 bg-gray-100 p-3 mb-1 z-50 rounded-lg md:hidden"
     >
-        <nav class="flex justify-around items-center text-[#D4A373]">
+        <nav class="flex justify-around items-center text-[#212121]">
             <a href="/" class="flex flex-col items-center hover:text-black">
                 <i class="mdi mdi-home-outline"></i>
                 <span class="text-xs">Home</span>
@@ -162,7 +168,7 @@
                         >
                             <Link
                                 :href="`/category/${category.id}`"
-                                class="text-black hover:text-[#D4A373]"
+                                class="text-black hover:text-[#212121]"
                             >
                                 {{ category.name }}
                             </Link>
@@ -193,7 +199,12 @@
     >
         <!-- Logo & Nama Brand -->
         <div class="flex items-center space-x-2">
-            <img src="/logo.jpg" class="w-10 h-10 object-cover rounded-md" />
+            <img
+                src="/"
+                alt="LOGO"
+                href="/"
+                class="w-10 h-10 object-cover bg-red-500 rounded-full"
+            />
             <h1 class="text-xl font-bold text-gray-800">NAME FURNITURE</h1>
         </div>
 
@@ -203,7 +214,7 @@
             <div class="relative">
                 <a
                     href="/cart"
-                    class="flex items-center text-gray-700 hover:text-black"
+                    class="flex items-center text-[#424242] hover:text-black"
                 >
                     <i class="mdi mdi-cart-outline text-2xl"></i>
                     <span
@@ -217,7 +228,7 @@
 
             <!-- Search -->
             <button
-                class="flex items-center text-gray-700 hover:text-black"
+                class="flex items-center text-[#424242] hover:text-black"
                 type="button"
                 role="button"
                 @click="toggleSearch"
@@ -234,7 +245,7 @@
                     <!-- Judul -->
                     <div class="text-center mb-6">
                         <h1
-                            class="text-3xl font-bold text-gray-600 animate-pulse"
+                            class="text-3xl font-bold text-[#424242] animate-pulse"
                         >
                             IA PROJECT
                         </h1>
@@ -244,13 +255,13 @@
                     <input
                         type="text"
                         placeholder="Search..."
-                        class="w-full p-4 border text-black border-[#D4A373] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D4A373]"
+                        class="w-full p-4 border text-black border-[#212121] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#212121]"
                         v-model="query"
                     />
 
                     <!-- Tombol Search -->
                     <button
-                        class="w-full bg-[#D4A373] rounded-lg mt-3 text-gray-600 p-3 font-bold hover:bg-[#D4A373]"
+                        class="w-full bg-[#212121] rounded-lg mt-3 text-[#424242] p-3 font-bold hover:bg-[#212121]"
                         type="button"
                         @click="doSearch"
                     >
@@ -260,7 +271,7 @@
                     <!-- Tombol Close -->
                     <button
                         @click="toggleSearch"
-                        class="absolute top-3 right-3 text-gray-600 hover:text-red-500"
+                        class="absolute top-3 right-3 text-[#424242] hover:text-red-500"
                         aria-label="Close"
                     >
                         <i class="mdi mdi-close-circle-outline text-3xl"></i>

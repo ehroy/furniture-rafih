@@ -2,8 +2,27 @@
     <div>
         <JustHead :Global="Global" :title="product.name" />
         <Navbar :Categories="Categories" />
+        <!-- ADD NOTIFKASI MESSAGE -->
 
         <div class="container mx-auto mt-10">
+            <transition
+                enter-active-class="transform transition duration-500 ease-out"
+                enter-from-class="translate-y-10 opacity-0"
+                enter-to-class="translate-y-0 opacity-100"
+                leave-active-class="transform transition duration-500 ease-in"
+                leave-from-class="translate-y-0 opacity-100"
+                leave-to-class="translate-y-10 opacity-0"
+            >
+                <div
+                    v-if="showNotification"
+                    class="fixed top-[10%] left-1/2 -translate-x-1/2 bg-green-400 text-white px-6 py-3 rounded-lg flex items-center gap-3 z-[999]"
+                >
+                    <i class="mdi mdi-check-circle text-xl"></i>
+                    <span class="text-sm font-semibold">{{
+                        notificationMessage
+                    }}</span>
+                </div>
+            </transition>
             <br />
             <div class="border-b-2 border-black mt-12">
                 <nav class="flex items-center space-x-2 text-gray-700 py-4">
@@ -28,81 +47,177 @@
                         <img
                             :src="helpers.imageUrl(product.image)"
                             :alt="product.name"
-                            class="w-full rounded-lg transition-transform duration-500 ease-in-out transform hover:scale-105 hover:cursor-zoom-in"
+                            class="w-10/12 rounded-lg transition-transform duration-500 ease-in-out transform hover:scale-105 hover:cursor-zoom-in max-h-96 object-cover"
                         />
                         <br />
                         <hr />
-                        <div class="hidden md:block">
+                        <div
+                            class="grid grid-cols-3 text-xs md:text-xl gap-4 mt-8 border bg-[#e7f5fb] rounded-md"
+                        >
+                            <div class="flex items-center justify-center p-3">
+                                <div
+                                    class="h-10 w-10 flex items-center justify-center mr-4"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-8 w-8 text-gray-700"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                        />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">101% Original</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-center p-3">
+                                <div
+                                    class="h-10 w-10 flex items-center justify-center mr-4"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-8 w-8 text-gray-700"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Lowest Price</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-center p-3">
+                                <div
+                                    class="h-10 w-10 flex items-center justify-center mr-4"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-8 w-8 text-gray-700"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                                        />
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                                        />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Free Shipping</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden md:block text-[#2E2E2E]">
                             <h3 class="text-2xl poppins-bold mt-5 mb-3">
                                 <i class="mdi mdi-table-furniture"></i> Produk
                                 Serupa
                             </h3>
-                            <div
-                                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mb-10 mt-5"
-                            >
+                            <div class="grid grid-cols-2 gap-1">
                                 <div
-                                    class="rounded-lg"
-                                    v-for="(relatedProduct, index) in Products"
+                                    class="hover:border border-gray-300 p-2 text-white hover:text-[#2E2E2E]"
+                                    v-for="(product, index) in Products"
                                     :key="index"
                                 >
+                                    <!-- Gambar Produk -->
                                     <img
-                                        class="w-full rounded-t-lg"
-                                        :src="
-                                            helpers.imageUrl(
-                                                relatedProduct.image
-                                            )
-                                        "
-                                        :alt="relatedProduct.name"
+                                        class="w-full h-48 md:h-80 object-cover rounded-sm"
+                                        :src="helpers.imageUrl(product.image)"
+                                        :alt="product.name"
                                     />
-                                    <div
-                                        class="flex flex-col gap-2 text-gray-600 bg-[#FFCC4C] p-5 rounded-b-lg hover:shadow-lg"
-                                    >
-                                        <Link
-                                            :href="
-                                                '/product/' +
-                                                relatedProduct.slug
-                                            "
-                                        >
-                                            <h4
-                                                class="font-bold hover:underline"
-                                            >
-                                                {{ relatedProduct.name }}
-                                            </h4>
-                                        </Link>
 
+                                    <!-- Detail Produk -->
+                                    <div class="flex flex-col gap-2">
+                                        <!-- Harga & Kategori -->
                                         <div
-                                            class="flex flex-col md:flex-row md:justify-between"
+                                            class="flex flex-col md:flex-row md:justify-between items-center text-sm"
                                         >
-                                            <b class="text-sm mt-2">{{
-                                                relatedProduct.price == 0
-                                                    ? "Tanya Admin"
-                                                    : helpers.rupiah(
-                                                          relatedProduct.price
-                                                      )
-                                            }}</b>
-                                            <span class="text-sm mt-2"
-                                                ><i class="mdi mdi-tag"></i>
-                                                {{
-                                                    relatedProduct.subcategory
-                                                        .name
-                                                }}</span
+                                            <Link
+                                                :href="
+                                                    '/product/' + product.slug
+                                                "
                                             >
+                                                <h4
+                                                    class="font-normal text-lg hover:underline text-[#2E2E2E]"
+                                                >
+                                                    {{ product.name }}
+                                                </h4>
+                                            </Link>
+                                            <!-- <span class="mt-2 flex items-center gap-1">
+                                <i class="mdi mdi-tag text-lg"></i>
+                                {{ product.subcategory.name }}
+                            </span> -->
                                         </div>
-                                        <a
-                                            class="bg-amber-500 px-8 py-2 rounded-lg text-white font-bold text-center hover:bg-amber-700 uppercase"
-                                            :href="
-                                                helpers.WaButton(
-                                                    Global,
-                                                    '/product/' +
-                                                        relatedProduct.slug
-                                                )
-                                            "
-                                            ><i class="mdi mdi-whatsapp"></i>
-                                            {{
-                                                Global.Settings
-                                                    .action_button_text
-                                            }}</a
+                                        <div class="flex flex-col-reverse">
+                                            <div
+                                                class="flex justify-start gap-2"
+                                            >
+                                                <i
+                                                    class="mdi mdi-star text-xl text-yellow-300"
+                                                ></i>
+                                                <i
+                                                    class="mdi mdi-star text-xl text-yellow-300"
+                                                ></i>
+                                                <i
+                                                    class="mdi mdi-star text-xl text-yellow-300"
+                                                ></i>
+                                                <i
+                                                    class="mdi mdi-star text-xl text-yellow-300"
+                                                ></i>
+                                                <i
+                                                    class="mdi mdi-star text-xl text-gray-300"
+                                                ></i>
+                                            </div>
+                                        </div>
+                                        <button
+                                            @click="addToCart(product)"
+                                            class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
                                         >
+                                            ADD TO CART
+                                        </button>
+                                        <!-- ADD NOTIFKASI MESSAGE -->
+                                        <transition
+                                            enter-active-class="transform transition duration-500 ease-out"
+                                            enter-from-class="translate-y-10 opacity-0"
+                                            enter-to-class="translate-y-0 opacity-100"
+                                            leave-active-class="transform transition duration-500 ease-in"
+                                            leave-from-class="translate-y-0 opacity-100"
+                                            leave-to-class="translate-y-10 opacity-0"
+                                        >
+                                            <div
+                                                v-if="showNotification"
+                                                class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-400 text-white px-6 py-3 rounded-lg flex items-center gap-3"
+                                            >
+                                                <i
+                                                    class="mdi mdi-check-circle text-xl"
+                                                ></i>
+                                                <span
+                                                    class="text-sm font-semibold"
+                                                    >{{
+                                                        notificationMessage
+                                                    }}</span
+                                                >
+                                            </div>
+                                        </transition>
                                     </div>
                                 </div>
                             </div>
@@ -115,27 +230,15 @@
                     >
                         <i class="mdi mdi-cart-heart"></i> {{ product.name }}
                     </h1>
-                    <div
-                        class="flex flex-col md:flex-row justify-between items-center mt-4"
-                    >
-                        <span
-                            class="text-sm md:text-xl font-semibold border-2 p-2 rounded-full border-amber-400 mb-2"
-                            >{{
-                                product.price == 0
-                                    ? "Tanya Admin"
-                                    : helpers.rupiah(product.price)
-                            }}</span
-                        >
-                        <span
-                            class="text-md text-gray-500 border-2 p-2 rounded-full border-amber-400 mb-2"
-                            ><i class="mdi mdi-tag"></i>
-                            {{ product.subcategory.name }}</span
-                        >
-                        <span
-                            class="text-sm text-gray-500 border-2 p-2 rounded-full border-amber-400 mb-2"
-                            ><i class="mdi mdi-eye-outline"></i>
-                            {{ product.views }}x dilihat</span
-                        >
+                    <div class="flex flex-col-reverse">
+                        <div class="flex justify-start gap-2 text-center">
+                            <i class="mdi mdi-star text-xl text-yellow-300"></i>
+                            <i class="mdi mdi-star text-xl text-yellow-300"></i>
+                            <i class="mdi mdi-star text-xl text-yellow-300"></i>
+                            <i class="mdi mdi-star text-xl text-yellow-300"></i>
+                            <i class="mdi mdi-star text-xl text-gray-300"></i>
+                            <p class="font-bold">(10)</p>
+                        </div>
                     </div>
                     <div class="mt-4">
                         <label class="block text-gray-700 font-bold mb-2"
@@ -156,39 +259,155 @@
                             ></button>
                         </div>
                     </div>
-                    <a
-                        class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-full block w-full mt-4 uppercase text-center"
-                        :href="
-                            helpers.WaButton(Global, '/product/' + product.slug)
-                        "
-                        target="_blank"
-                    >
-                        <i class="mdi mdi-whatsapp"></i>
-                        {{ Global.Settings.action_button_text }}
-                    </a>
-                    <button
-                        v-if="product.price > 0"
-                        @click="addToCart(product)"
-                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full block w-full mt-4 uppercase text-center"
-                    >
-                        <i class="mdi mdi-cart"></i> Tambahkan ke Keranjang
-                    </button>
-                    <div
-                        class="text-gray-600 text-center md:text-left px-4 mt-5"
-                    >
+
+                    <!-- Quantity Selector -->
+                    <div class="flex items-center mb-6 mt-4 gap-2">
                         <button
-                            @click="showContent = !showContent"
-                            class="bg-amber-500 text-white px-4 py-2 rounded-lg font-semibold"
+                            class="w-10 h-10 border border-gray-300 rounded-l flex items-center justify-center hover:bg-gray-100"
+                            @click="decrementQuantity"
                         >
-                            {{ showContent ? "Sembunyikan" : "Tampilkan" }}
-                            Deskripsi
+                            <span class="text-xl">−</span>
                         </button>
-                        <div
-                            v-show="showContent"
-                            class="prose lg:prose-xl mt-3"
-                            v-html="product.content"
-                        ></div>
+                        <input
+                            type="text"
+                            v-model="quantity"
+                            class="w-12 h-10 border-t border-b border-gray-300 text-center outline-none"
+                        />
+                        <button
+                            class="w-10 h-10 border border-gray-300 rounded-r flex items-center justify-center hover:bg-gray-100"
+                            @click="incrementQuantity"
+                        >
+                            <span class="text-xl">+</span>
+                        </button>
+                        <button
+                            @click="addToCart(product)"
+                            class="w-full bg-black text-white font-medium py-3 hover:bg-gray-800 transition-colors"
+                        >
+                            ADD TO CART
+                        </button>
                     </div>
+
+                    <!-- Action Buttons -->
+                    <div class="space-y-3">
+                        <button
+                            class="w-full bg-gray-800 text-white font-medium py-3 rounded hover:bg-gray-700 transition-colors uppercase"
+                            :href="
+                                helpers.WaButton(
+                                    Global,
+                                    '/product/' + product.slug
+                                )
+                            "
+                            target="_blank"
+                        >
+                            <i class="mdi mdi-whatsapp"></i>
+                            {{ Global.Settings.action_button_text }}
+                        </button>
+
+                        <!-- Additional Options -->
+                        <div class="flex flex-row gap-4 mt-4 text-center">
+                            <span class="text-sm text-gray-500 b p-2 mb-2"
+                                ><i class="mdi mdi-eye-outline p-2"></i>
+
+                                <strong>
+                                    {{ product.views }} x dilihat
+                                </strong></span
+                            >
+                            <span
+                                class="flex flex-row text-center text-sm text-gray-500 p-2 mb-2"
+                                ><svg
+                                    class="base-svg-icon base-checkbox-alt-svg"
+                                    fill="currentColor"
+                                    version="1.1"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <title>Check Mark</title>
+                                    <path
+                                        d="M13.739 3.061l-5.5-3c-0.075-0.041-0.157-0.061-0.239-0.061s-0.165 0.020-0.239 0.061l-5.5 3c-0.161 0.088-0.261 0.256-0.261 0.439v4c0 2.2 0.567 3.978 1.735 5.437 0.912 1.14 2.159 2.068 4.042 3.010 0.070 0.035 0.147 0.053 0.224 0.053s0.153-0.018 0.224-0.053c1.883-0.942 3.13-1.87 4.042-3.010 1.167-1.459 1.735-3.238 1.735-5.437l0-4c0-0.183-0.1-0.351-0.261-0.439zM6.5 11.296l-2.796-2.796 0.796-0.795 2 2 5-5 0.796 0.795-5.795 5.795z"
+                                    ></path>
+                                    p
+                                </svg>
+                                Estimated Delivery : Up to 4 business days
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-2 border border-spacing-1 text-justify">
+                        <div class="border-b">
+                            <nav class="flex space-x-4" aria-label="Tabs">
+                                <button
+                                    v-for="(tab, index) in tabs"
+                                    :key="index"
+                                    @click="showContent = !showContent"
+                                    :class="[
+                                        activeTab === index
+                                            ? 'border-b-2 border-black'
+                                            : '',
+                                        'px-4 py-2 text-gray-600 hover:text-black',
+                                    ]"
+                                >
+                                    {{ tab.name }}
+                                </button>
+                            </nav>
+                        </div>
+
+                        <div class="p-4">
+                            <div v-if="activeTab === 0">
+                                <h2 class="text-lg font-semibold">
+                                    About this item
+                                </h2>
+                                <div
+                                    v-show="showContent"
+                                    v-html="product.content"
+                                ></div>
+                                <!-- <div class="border mt-4 p-4">
+                                    <h3 class="text-md font-semibold">
+                                        MATERIAL
+                                    </h3>
+                                    <table
+                                        class="w-full text-left mt-2 border-t"
+                                    >
+                                        <tbody>
+                                            <tr>
+                                                <td class="py-1 font-medium">
+                                                    Back frame
+                                                </td>
+                                                <td class="py-1">
+                                                    Particleboard, Plywood,
+                                                    Polyurethane foam 20
+                                                    kg/cu.m., Fibreboard, Solid
+                                                    wood
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-1 font-medium">
+                                                    Seat frame
+                                                </td>
+                                                <td class="py-1">
+                                                    100% polypropylene,
+                                                    Polyurethane foam 35
+                                                    kg/cu.m., Solid wood,
+                                                    Polyester/recycled fibre
+                                                    wadding
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> -->
+                            </div>
+                            <!-- <div v-if="activeTab === 1">
+                                Additional information content...
+                            </div>
+                            <div v-if="activeTab === 2">Reviews content...</div>
+                            <div v-if="activeTab === 3">
+                                Shipping & Return content...
+                            </div> -->
+                        </div>
+                    </div>
+
+                    <!-- Trust Badges Section -->
+
                     <div class="block md:hidden">
                         <h3 class="text-2xl poppins-bold mt-5 mb-3">
                             <i class="mdi mdi-table-furniture"></i> Produk
@@ -198,7 +417,7 @@
                             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mb-10 mt-5"
                         >
                             <div
-                                class="rounded-lg"
+                                class="rounded-lg hover:border"
                                 v-for="(product, index) in Products"
                                 :key="index"
                             >
@@ -208,40 +427,49 @@
                                     :alt="product.name"
                                 />
                                 <div
-                                    class="flex flex-col gap-2 text-gray-600 bg-[#FFCC4C] p-5 rounded-b-lg hover:shadow-lg"
+                                    class="flex flex-col md:flex-row md:justify-between items-center text-sm"
                                 >
                                     <Link :href="'/product/' + product.slug">
-                                        <h4 class="font-bold hover:underline">
+                                        <h4
+                                            class="font-normal text-lg hover:underline"
+                                        >
                                             {{ product.name }}
                                         </h4>
                                     </Link>
-
-                                    <div
-                                        class="flex flex-col md:flex-row md:justify-between"
-                                    >
-                                        <b class="text-sm mt-2">{{
-                                            product.price == 0
-                                                ? "Tanya Admin"
-                                                : helpers.rupiah(product.price)
-                                        }}</b>
-                                        <span class="text-sm mt-2"
-                                            ><i class="mdi mdi-tag"></i>
-                                            {{ product.subcategory.name }}</span
-                                        >
+                                    <!-- <span class="mt-2 flex items-center gap-1">
+                                <i class="mdi mdi-tag text-lg"></i>
+                                {{ product.subcategory.name }}
+                            </span> -->
+                                </div>
+                                <div class="flex flex-col-reverse">
+                                    <div class="flex justify-start gap-2">
+                                        <i
+                                            class="mdi mdi-star text-xl text-yellow-300"
+                                        ></i>
+                                        <i
+                                            class="mdi mdi-star text-xl text-yellow-300"
+                                        ></i>
+                                        <i
+                                            class="mdi mdi-star text-xl text-yellow-300"
+                                        ></i>
+                                        <i
+                                            class="mdi mdi-star text-xl text-yellow-300"
+                                        ></i>
+                                        <i
+                                            class="mdi mdi-star text-xl text-gray-300"
+                                        ></i>
                                     </div>
-                                    <a
-                                        class="bg-amber-500 px-8 py-2 rounded-lg text-white font-bold text-center hover:bg-amber-700 uppercase"
-                                        :href="
-                                            helpers.WaButton(
-                                                Global,
-                                                '/product/' + product.slug
-                                            )
-                                        "
-                                        ><i class="mdi mdi-whatsapp"></i>
-                                        {{
-                                            Global.Settings.action_button_text
-                                        }}</a
+                                </div>
+                                <div
+                                    class="flex items-center justify-center gap-2 md:gap-4 text-white w-full mb-4 mt-12"
+                                >
+                                    <!-- ADD TO CART -->
+                                    <button
+                                        @click="addToCart(product)"
+                                        class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline hover:text-[#2E2E2E] transition mdi mdi-cart-plus hover:bg-gray-100"
                                     >
+                                        ADD TO CART
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -250,24 +478,35 @@
             </div>
         </div>
     </div>
+    <Footer :Global="Global" :Socmed="Socmed" />
 </template>
 
 <script setup>
 import Navbar from "../../Components/Navbar.vue";
 import { Link } from "@inertiajs/vue3";
 import { inject, ref } from "vue";
+import Footer from "../../Components/Footer.vue";
 import JustHead from "../../Components/JustHead.vue";
 const showContent = ref(false);
 const helpers = inject("helpers");
 const cart = ref(JSON.parse(localStorage.getItem("cart")) || []);
 const selectedColor = ref(null);
+const quantity = ref(1);
+const showNotification = ref(false);
+const notificationMessage = ref(null);
 defineProps({
     product: Object,
     Products: Object,
     Category: Object,
     Categories: Object,
     Global: Object,
+    Socmed: Object,
+    Pages: Object,
 });
+const tabs = ref([{ name: "Description" }]);
+
+const activeTab = ref(0);
+
 const dummyColors = ref([
     "bg-red-500",
     "bg-blue-500",
@@ -275,6 +514,15 @@ const dummyColors = ref([
     "bg-yellow-500",
     "bg-purple-500",
 ]);
+const incrementQuantity = () => {
+    quantity.value++;
+};
+
+const decrementQuantity = () => {
+    if (quantity.value > 1) {
+        quantity.value--;
+    }
+};
 const selectColor = (color) => {
     selectedColor.value = color;
     console.log("Warna dipilih:", selectedColor.value);
@@ -286,10 +534,19 @@ const addToCart = (product) => {
         alert("Silakan pilih warna terlebih dahulu!");
         return;
     }
-    cart.value.push({ ...product, selectedColor: dummyColors.value });
+    cart.value.push({
+        ...product,
+        selectedColor: dummyColors.value,
+        quantity: quantity.value,
+    });
     localStorage.setItem("cart", JSON.stringify(cart.value));
-    alert(
-        `Produk ${product.name} dengan warna ${selectedColor.value} telah ditambahkan ke keranjang!`
-    );
+
+    showNotification.value = true;
+    notificationMessage.value = `Produk ${product.name} dengan warna ${selectedColor.value} telah ditambahkan ke keranjang!`;
+
+    // Sembunyikan notifikasi setelah 3 detik
+    setTimeout(() => {
+        showNotification.value = false;
+    }, 3000);
 };
 </script>

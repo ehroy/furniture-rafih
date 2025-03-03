@@ -103,87 +103,88 @@
                 </div>
             </div>
 
-            <div
-                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mb-10"
-            >
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
                 <div
-                    class="border border-gray-100 p-1 rounded-lg"
+                    class="hover:border border-gray-300 p-2 text-white hover:text-[#2E2E2E]"
                     v-for="(product, index) in Products"
                     :key="index"
                 >
                     <!-- Gambar Produk -->
                     <img
-                        class="w-full h-48 object-cover rounded-t-lg"
+                        class="w-full h-48 md:h-80 object-cover rounded-sm"
                         :src="helpers.imageUrl(product.image)"
                         :alt="product.name"
                     />
 
                     <!-- Detail Produk -->
-                    <div
-                        class="flex flex-col gap-2 text-[#2E2E2E] p-5 rounded-b-lg hover:shadow-lg bg-gray-50"
-                    >
-                        <Link :href="'/product/' + product.slug">
-                            <h4 class="font-bold text-lg hover:underline">
-                                {{ product.name }}
-                            </h4>
-                        </Link>
-
+                    <div class="flex flex-col gap-2">
                         <!-- Harga & Kategori -->
                         <div
                             class="flex flex-col md:flex-row md:justify-between items-center text-sm"
                         >
-                            <b class="mt-2">
-                                {{
-                                    product.price == 0
-                                        ? "Tanya Admin"
-                                        : helpers.rupiah(product.price)
-                                }}
-                            </b>
-                            <span class="mt-2 flex items-center gap-1">
+                            <Link :href="'/product/' + product.slug">
+                                <h4
+                                    class="font-normal text-lg hover:underline text-[#2E2E2E]"
+                                >
+                                    {{ product.name }}
+                                </h4>
+                            </Link>
+                            <!-- <span class="mt-2 flex items-center gap-1">
                                 <i class="mdi mdi-tag text-lg"></i>
                                 {{ product.subcategory.name }}
-                            </span>
+                            </span> -->
                         </div>
-
-                        <!-- Tombol WhatsApp & Tambah ke Keranjang -->
-                        <div class="grid grid-cols-2 gap-3 mt-3">
-                            <!-- Tombol WhatsApp -->
-                            <div
-                                class="border border-spacing-1 rounded-md hover:bg-[#D4A373]"
-                            >
-                                <a
-                                    :href="
-                                        helpers.WaButton(
-                                            Global,
-                                            '/product/' + product.slug
-                                        )
-                                    "
-                                    class="w-full py-3 rounded-full text-[#2E2E2E] font-bold text-center flex items-center justify-center gap-2 text-sm md:text-base"
-                                >
-                                    <i class="mdi mdi-whatsapp text-xl"></i>
-                                </a>
-                            </div>
-
-                            <!-- Tombol Tambah ke Keranjang -->
-                            <div
-                                class="border border-spacing-1 rounded-md hover:bg-[#D4A373]"
-                            >
-                                <button
-                                    @click="addToCart(product)"
-                                    class="w-full p-3 rounded-full text-[#2E2E2E] font-bold text-center flex items-center justify-center gap-2 text-sm md:text-base"
-                                    target="_blank"
-                                >
-                                    <i class="mdi mdi-cart-plus text-xl"></i>
-                                </button>
+                        <div class="flex flex-col-reverse">
+                            <div class="flex justify-start gap-2">
+                                <i
+                                    class="mdi mdi-star text-xl text-yellow-300"
+                                ></i>
+                                <i
+                                    class="mdi mdi-star text-xl text-yellow-300"
+                                ></i>
+                                <i
+                                    class="mdi mdi-star text-xl text-yellow-300"
+                                ></i>
+                                <i
+                                    class="mdi mdi-star text-xl text-yellow-300"
+                                ></i>
+                                <i
+                                    class="mdi mdi-star text-xl text-gray-300"
+                                ></i>
                             </div>
                         </div>
+                        <button
+                            @click="addToCart(product)"
+                            class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
+                        >
+                            ADD TO CART
+                        </button>
+                        <!-- ADD NOTIFKASI MESSAGE -->
+                        <transition
+                            enter-active-class="transform transition duration-500 ease-out"
+                            enter-from-class="translate-y-10 opacity-0"
+                            enter-to-class="translate-y-0 opacity-100"
+                            leave-active-class="transform transition duration-500 ease-in"
+                            leave-from-class="translate-y-0 opacity-100"
+                            leave-to-class="translate-y-10 opacity-0"
+                        >
+                            <div
+                                v-if="showNotification"
+                                class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-400 text-white px-6 py-3 rounded-lg flex items-center gap-3"
+                            >
+                                <i class="mdi mdi-check-circle text-xl"></i>
+                                <span class="text-sm font-semibold">{{
+                                    notificationMessage
+                                }}</span>
+                            </div>
+                        </transition>
                     </div>
                 </div>
             </div>
             <div class="flex justify-center" v-show="Filter == null">
                 <Link
                     href="/products?filter=all"
-                    class="bg-white border-2 p-2 rounded-full text-[#2E2E2E] hover:border-[#2E2E2E] mt-10"
+                    class="bg-white border-2 p-2 rounded-full text-[#2E2E2E] hover:border-[#2E2E2E]"
                     ><i class="mdi mdi-view-list"></i> Tampilkan Semua</Link
                 >
             </div>
@@ -193,8 +194,9 @@
 </template>
 
 <script setup>
+import { ref, onMounted, watch, inject } from "vue";
 import { Link } from "@inertiajs/vue3";
-import { ref, onMounted, onBeforeUnmount, watch, inject } from "vue";
+
 const helpers = inject("helpers");
 
 defineProps({
@@ -206,7 +208,11 @@ defineProps({
     Global: Object,
     FilterQuery: String,
 });
+
 const cart = ref([]);
+const showNotification = ref(false);
+const notificationMessage = ref("");
+
 const addToCart = (product) => {
     const existingProduct = cart.value.find((item) => item.id === product.id);
 
@@ -217,7 +223,15 @@ const addToCart = (product) => {
     }
 
     saveCart();
-    alert("Produk ditambahkan ke keranjang!");
+
+    // Set pesan notifikasi
+    notificationMessage.value = `${product.name} ditambahkan ke keranjang!`;
+    showNotification.value = true;
+
+    // Sembunyikan notifikasi setelah 3 detik
+    setTimeout(() => {
+        showNotification.value = false;
+    }, 3000);
 };
 
 // Simpan ke localStorage setiap ada perubahan pada `cart`

@@ -48,7 +48,12 @@ class JustOrangeController extends Controller
                 $data['Products'] = Product::where('recomended' , true)->with('subcategory')->orderBy('id','desc')->get();
             }
         }
-        $data['Gallery'] =  Product::orderBy('id', 'desc')->limit(30)->with('subcategory')->get();
+        $data['Gallery'] = Product::selectRaw('MIN(id) as id, sub_category_id, MIN(image) as image')
+        ->whereNotNull('image') // Pastikan hanya mengambil produk dengan gambar
+        ->groupBy('sub_category_id') // Ambil satu produk per subkategori
+        ->with(['subcategory.category']) // Ambil data kategori dari subkategori
+        ->orderBy('id', 'desc')->limit(12)
+        ->get();
         $data['SubCategories'] = $sub;
         $data['Categories'] = Category::all();
         $data['ActiveCat'] = $cat;
@@ -65,9 +70,15 @@ class JustOrangeController extends Controller
     {
         $data['Global'] = $this->Global;
         $data['Categories'] = Category::all();
-        $data['Gallery'] =  Product::orderBy('id', 'desc')->limit(15)->with('subcategory')->get();
-        $data['Pages'] = Post::where('active',true)->get();
+        $data['Gallery'] = Product::selectRaw('MIN(id) as id, sub_category_id, MIN(image) as image')
+        ->whereNotNull('image') // Pastikan hanya mengambil produk dengan gambar
+        ->groupBy('sub_category_id') // Ambil satu produk per subkategori
+        ->with(['subcategory.category']) // Ambil data kategori dari subkategori
+        ->orderBy('id', 'desc')->limit(12)
+        ->get();
+        $data['Pages'] = Post::where('active', true)->get();
         $data['Socmed'] = SocialMedia::all();
+        // dd($data);
         return Inertia::render('galery', $data);
     }
     public function getPage(Request $request)
@@ -122,6 +133,8 @@ class JustOrangeController extends Controller
         $data['Categories'] = Category::all();
         $data['ActiveCat'] = $cat;
         $data['Filter'] = $filter;
+        $data['Socmed'] = SocialMedia::all();
+        $data['Pages'] = Post::where('active',true)->get();
         $data['Global'] = $this->Global;
 
 
@@ -135,7 +148,8 @@ class JustOrangeController extends Controller
         }
         $data['product'] = Product::where('slug', $request->slug)->with('subcategory')->first();
         $data['Products'] = Product::where('sub_category_id', $data['product']->sub_category_id)->orderBy('views', 'desc')->with('subcategory')->limit(4)->get();
-
+        $data['Socmed'] = SocialMedia::all();
+        $data['Pages'] = Post::where('active',true)->get();
         $data['Category'] = Category::find($data['product']->subcategory->category_id);
         $data['Categories'] = Category::all();
         $data['Global'] = $this->Global;
@@ -158,6 +172,8 @@ class JustOrangeController extends Controller
         $data['SubCategories'] = SubCategory::where('category_id' , $category->id)->get();
         $data['ActiveCat'] = $subGet;
         $data['Category'] = $category;
+        $data['Socmed'] = SocialMedia::all();
+        $data['Pages'] = Post::where('active',true)->get();
         $data['subCategory'] = ($subCat==null) ? SubCategory::all() : SubCategory::find($subGet);
         $data['Global'] = $this->Global;
 

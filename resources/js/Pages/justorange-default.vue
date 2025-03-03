@@ -115,7 +115,7 @@
                 <div class="mt-5">
                     <a
                         href="/products"
-                        class="bg-[#2E2E2E] p-3 rounded text-[#F5F5F5] hover:bg-[#D4A373] hover:text-[#4A4A4A] inline-block"
+                        class="bg-[#2E2E2E] p-3 rounded text-[#F5F5F5] hover:bg-[#424141] inline-block"
                     >
                         Belanja sekarang!
                     </a>

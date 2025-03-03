@@ -13,9 +13,11 @@
             :FilterQuery="FilterQuery"
         />
     </div>
+    <Footer :Global="Global" :Socmed="Socmed" :Pages="Pages" />
 </template>
 
 <script setup>
+import Footer from "../../Components/Footer.vue";
 import Navbar from "../../Components/Navbar.vue";
 import CategoryPage from "../../Components/CategoryPage.vue";
 import ProductPage from "../../Components/ProductPage.vue";
@@ -29,6 +31,8 @@ defineProps({
     Filter: String,
     Global: Object,
     FilterQuery: String,
+    Socmed: Object,
+    Pages: Object,
 });
 const HeadTitle = "Produk Kami";
 const Action = "kategori";

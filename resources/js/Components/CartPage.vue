@@ -17,7 +17,7 @@
                 <p class="mt-3">Keranjang belanja kosong.</p>
                 <a
                     href="/"
-                    class="mt-5 inline-block bg-amber-500 text-white px-5 py-2 rounded-lg"
+                    class="mt-5 inline-block bg-[#424242] text-white px-5 py-2 rounded-lg"
                 >
                     Kembali Belanja
                 </a>
@@ -32,8 +32,9 @@
                 >
                     <div class="flex items-center space-x-4">
                         <img
-                            :src="item.image"
-                            class="w-16 h-16 object-cover rounded-lg"
+                            :src="helpers.imageUrl(item.image)"
+                            :alt="item.name"
+                            class="w-14 h-14 object-cover rounded-sm"
                         />
                         <div>
                             <h3 class="font-bold text-gray-800">
@@ -103,7 +104,7 @@
             <!-- Tombol Checkout -->
             <button
                 @click="checkout"
-                class="w-full mt-5 bg-amber-500 text-white py-3 rounded-lg text-center font-bold hover:bg-amber-600"
+                class="w-full mt-5 bg-[#424242] text-white py-3 rounded-lg text-center font-bold"
             >
                 Checkout
             </button>
@@ -123,8 +124,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, inject } from "vue";
 
+const helpers = inject("helpers");
 const cart = ref([]);
 const email = ref("");
 const emailError = ref(false);

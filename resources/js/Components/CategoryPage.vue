@@ -18,7 +18,7 @@
                                 :href="'?cat=' + cat.id"
                                 :class="
                                     ActiveCat == cat.id
-                                        ? 'inline-block p-4 border-2 border-transparent  bg-[#D4A373]'
+                                        ? 'inline-block p-4 border-2 border-transparent  bg-[#2E2E2E] text-gray-100'
                                         : 'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#2E2E2E] hover:border-gray-300 dark:hover:text-gray-300'
                                 "
                                 preserve-scroll
@@ -35,7 +35,7 @@
                 preserver-scroll
             >
                 <select
-                    class="w-5/6 bg-transparent text-[#2E2E2E] border-0 border-b-2 border-b-[#D4A373] hover:border-b-600"
+                    class="w-5/6 bg-transparent text-[#2E2E2E] border-0 border-b-2 border-b-[#2E2E2E] hover:border-b-600"
                     v-model="catModel"
                 >
                     <option value="">
@@ -69,7 +69,7 @@
                         class="flex flex-col items-center hover:sepia cursor-pointer"
                     >
                         <img
-                            class="mb-3 w-20 md:w-48"
+                            class="mb-3 w-20 md:w-48 rounded-full"
                             :src="helpers.imageUrl(sub.image)"
                             :alt="sub.name"
                         />
