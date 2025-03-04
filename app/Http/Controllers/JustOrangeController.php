@@ -55,7 +55,7 @@ class JustOrangeController extends Controller
         ->orderBy('id', 'desc')->limit(12)
         ->get();
         $data['SubCategories'] = $sub;
-        $data['Categories'] = Category::all();
+        $data['Categories'] = Category::with('products')->get();
         $data['ActiveCat'] = $cat;
         $data['Filter'] = $filter;
         $data['Global'] = $this->Global;
@@ -69,7 +69,7 @@ class JustOrangeController extends Controller
     public function getGallery(Request $request)
     {
         $data['Global'] = $this->Global;
-        $data['Categories'] = Category::all();
+        $data['Categories'] = Category::with('products')->get();
         $data['Gallery'] = Product::selectRaw('MIN(id) as id, sub_category_id, MIN(image) as image')
         ->whereNotNull('image') // Pastikan hanya mengambil produk dengan gambar
         ->groupBy('sub_category_id') // Ambil satu produk per subkategori

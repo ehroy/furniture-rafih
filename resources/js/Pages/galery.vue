@@ -1,7 +1,7 @@
 <template>
     <JustHead :Global="Global" />
     <Navbar :Categories="Categories" />
-    <GaleryPage :Gallery="Gallery" />
+    <GaleryPage :Gallery="Gallery" :Categories="Categories" />
     <Footer :Global="Global" :Socmed="Socmed" :Pages="Pages" />
 </template>
 <script setup>

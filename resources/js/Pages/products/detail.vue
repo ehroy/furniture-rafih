@@ -44,23 +44,27 @@
             <div class="flex flex-col md:flex-row mt-10">
                 <div class="md:w-1/2">
                     <div class="p-5">
-                        <img
-                            :src="helpers.imageUrl(product.image)"
-                            :alt="product.name"
-                            class="w-10/12 rounded-lg transition-transform duration-500 ease-in-out transform hover:scale-105 hover:cursor-zoom-in max-h-96 object-cover"
-                        />
-                        <br />
-                        <hr />
+                        <div class="flex flex-col md:flex-row items-center">
+                            <img
+                                :src="helpers.imageUrl(product.image)"
+                                :alt="product.name"
+                                class="w-full rounded-lg transition-transform duration-500 ease-in-out transform hover:scale-105 hover:cursor-zoom-in max-h-96 object-cover"
+                            />
+
+                            <br />
+                            <hr />
+                        </div>
                         <div
                             class="grid grid-cols-3 text-xs md:text-xl gap-4 mt-8 border bg-[#e7f5fb] rounded-md"
                         >
-                            <div class="flex items-center justify-center p-3">
+                            <div class="flex items-center space-x-3 p-3">
+                                <!-- Ikon -->
                                 <div
-                                    class="h-10 w-10 flex items-center justify-center mr-4"
+                                    class="flex items-center justify-center w-12 h-12 rounded-full"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        class="h-8 w-8 text-gray-700"
+                                        class="w-8 h-8 text-gray-700"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -73,10 +77,13 @@
                                         />
                                     </svg>
                                 </div>
-                                <div>
-                                    <p class="font-medium">101% Original</p>
-                                </div>
+
+                                <!-- Teks -->
+                                <p class="text-lg font-semibold text-gray-800">
+                                    101% Original
+                                </p>
                             </div>
+
                             <div class="flex items-center justify-center p-3">
                                 <div
                                     class="h-10 w-10 flex items-center justify-center mr-4"
@@ -195,29 +202,6 @@
                                             ADD TO CART
                                         </button>
                                         <!-- ADD NOTIFKASI MESSAGE -->
-                                        <transition
-                                            enter-active-class="transform transition duration-500 ease-out"
-                                            enter-from-class="translate-y-10 opacity-0"
-                                            enter-to-class="translate-y-0 opacity-100"
-                                            leave-active-class="transform transition duration-500 ease-in"
-                                            leave-from-class="translate-y-0 opacity-100"
-                                            leave-to-class="translate-y-10 opacity-0"
-                                        >
-                                            <div
-                                                v-if="showNotification"
-                                                class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-400 text-white px-6 py-3 rounded-lg flex items-center gap-3"
-                                            >
-                                                <i
-                                                    class="mdi mdi-check-circle text-xl"
-                                                ></i>
-                                                <span
-                                                    class="text-sm font-semibold"
-                                                    >{{
-                                                        notificationMessage
-                                                    }}</span
-                                                >
-                                            </div>
-                                        </transition>
                                     </div>
                                 </div>
                             </div>
@@ -414,10 +398,10 @@
                             Serupa
                         </h3>
                         <div
-                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mb-10 mt-5"
+                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mb-10 mt-5 mx-10"
                         >
                             <div
-                                class="rounded-lg hover:border"
+                                class="rounded-lg hover:border p-2"
                                 v-for="(product, index) in Products"
                                 :key="index"
                             >
@@ -436,10 +420,6 @@
                                             {{ product.name }}
                                         </h4>
                                     </Link>
-                                    <!-- <span class="mt-2 flex items-center gap-1">
-                                <i class="mdi mdi-tag text-lg"></i>
-                                {{ product.subcategory.name }}
-                            </span> -->
                                 </div>
                                 <div class="flex flex-col-reverse">
                                     <div class="flex justify-start gap-2">
@@ -466,7 +446,7 @@
                                     <!-- ADD TO CART -->
                                     <button
                                         @click="addToCart(product)"
-                                        class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline hover:text-[#2E2E2E] transition mdi mdi-cart-plus hover:bg-gray-100"
+                                        class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semibold hover:underline hover:text-[#2E2E2E] transition mdi mdi-cart-plus hover:bg-gray-100"
                                     >
                                         ADD TO CART
                                     </button>
@@ -494,7 +474,7 @@ const selectedColor = ref(null);
 const quantity = ref(1);
 const showNotification = ref(false);
 const notificationMessage = ref(null);
-defineProps({
+const props = defineProps({
     product: Object,
     Products: Object,
     Category: Object,
@@ -503,6 +483,7 @@ defineProps({
     Socmed: Object,
     Pages: Object,
 });
+const selectedImage = ref(props.product.image);
 const tabs = ref([{ name: "Description" }]);
 
 const activeTab = ref(0);

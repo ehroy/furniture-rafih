@@ -4,7 +4,7 @@
             class="flex flex-col items-center bg-accent pt-20 pb-56 relative"
         >
             <h2
-                class="text-8xl text-gray-500 text-shadow-custom text-center mb-10 poppins-bold"
+                class="text-7xl text-gray-500 text-shadow-custom text-center mb-10 poppins-bold"
             >
                 Testimoni
             </h2>
