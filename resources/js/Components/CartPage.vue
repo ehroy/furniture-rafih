@@ -40,9 +40,7 @@
                             <h3 class="font-bold text-gray-800">
                                 {{ item.name }}
                             </h3>
-                            <p class="text-sm text-gray-500">
-                                Rp{{ formatRupiah(item.price) }}
-                            </p>
+
                             <button
                                 @click="removeFromCart(index)"
                                 class="text-red-500 mt-2 text-sm hover:underline"
@@ -71,11 +69,6 @@
                 </div>
 
                 <!-- Total Harga -->
-                <div class="mt-5 text-right">
-                    <h3 class="text-lg font-bold text-gray-800">
-                        Total: Rp{{ formatRupiah(totalPrice) }}
-                    </h3>
-                </div>
             </div>
         </div>
     </div>
