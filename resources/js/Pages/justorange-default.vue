@@ -43,12 +43,12 @@
                 </p>
 
                 <div class="mt-5">
-                    <a
+                    <Link
                         href="/products"
                         class="bg-[#2E2E2E] p-3 rounded text-[#F5F5F5] hover:bg-[#424141] inline-block"
                     >
                         Belanja sekarang!
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@ import JustHead from "../Components/JustHead.vue";
 import { Link } from "@inertiajs/vue3";
 import { inject, ref } from "vue";
 const helpers = inject("helpers");
-defineProps({
+const props = defineProps({
     Gallery: Object,
     ProductsRecommended: Object,
     Products: Object,
@@ -108,6 +108,12 @@ defineProps({
     Pages: Object,
     FilterQuery: String,
 });
+if (props.Products[0]?.variants?.length > 0) {
+    console.log("Variants tersedia:", props.Products[0].variants.length);
+} else {
+    console.log("Tidak ada variants.");
+}
+
 const HeadTitle = "Produk Kami";
 const Action = "all";
 </script>

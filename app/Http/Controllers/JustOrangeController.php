@@ -31,21 +31,21 @@ class JustOrangeController extends Controller
         $filter = empty($request->get('filter')) ? null : $request->get('filter');
 
         if ($filter == null) {
-            $data['Products'] = ($subGet == null) ? Product::orderBy('id', 'desc')->limit(8)->with('subcategory')->get() : Product::where('sub_category_id', (int)$subGet)->orderBy('id', 'desc')->limit(8)->with('subcategory')->get();
+            $data['Products'] = ($subGet == null) ? Product::orderBy('id', 'desc')->limit(8)->with(['subcategory','variants.wood','variants.color','variants'])->get() : Product::where('sub_category_id', (int)$subGet)->orderBy('id', 'desc')->limit(8)->with(['subcategory','variants.wood','variants.color','variants'])->get();
         } else {
             if ($filter == 'all') {
-                $data['Products'] = Product::with('subcategory')->get();
+                $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->get();
             } elseif ($filter == 'new') {
-                $data['Products'] = Product::with('subcategory')->orderBy('id', 'desc')->get();
+                $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->orderBy('id', 'desc')->get();
             } elseif ($filter == 'populer') {
-                $data['Products'] = Product::with('subcategory')->orderBy('views', 'desc')->get();
+                $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->orderBy('views', 'desc')->get();
             } elseif ($filter == 'asc_harga') {
-                $data['Products'] = Product::with('subcategory')->orderBy('price', 'asc')->get();
+                $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->orderBy('price', 'asc')->get();
             } elseif ($filter == 'desc_harga') {
-                $data['Products'] = Product::with('subcategory')->orderBy('price', 'desc')->get();
+                $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->orderBy('price', 'desc')->get();
             }else if($filter == 'recommended')
             {
-                $data['Products'] = Product::where('recomended' , true)->with('subcategory')->orderBy('id','desc')->get();
+                $data['Products'] = Product::where('recomended' , true)->with->with(['subcategory','variants.wood','variants.color','variants'])->orderBy('id','desc')->get();
             }
         }
         $data['Gallery'] = Product::selectRaw('MIN(id) as id, sub_category_id, MIN(image) as image')
@@ -59,7 +59,7 @@ class JustOrangeController extends Controller
         $data['ActiveCat'] = $cat;
         $data['Filter'] = $filter;
         $data['Global'] = $this->Global;
-        $data['ProductsRecommended'] = Product::where('recomended',true)->limit(10)->with('subcategory')->get();
+        $data['ProductsRecommended'] = Product::where('recomended',true)->limit(10)->with(['subcategory','variants.wood','variants.color','variants'])->get();
         $data['Testimonials'] = Testimonial::where('active',true)->limit(6)->get();
         $data['Socmed'] = SocialMedia::all();
         $data['Pages'] = Post::where('active',true)->get();
@@ -104,27 +104,27 @@ class JustOrangeController extends Controller
         $filter = empty($request->get('filter')) ? null : $request->get('filter');
 
         if ($filter == null) {
-            $data['Products'] = Product::with('subcategory')->limit(12)->get();
+            $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->limit(12)->get();
         } else {
             if ($filter == 'all') {
-                $data['Products'] = Product::with('subcategory')->get();
+                $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->get();
             } elseif ($filter == 'new') {
-                $data['Products'] = Product::with('subcategory')->orderBy('id', 'desc')->get();
+                $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->orderBy('id', 'desc')->get();
             } elseif ($filter == 'populer') {
-                $data['Products'] = Product::with('subcategory')->orderBy('views', 'desc')->get();
+                $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->orderBy('views', 'desc')->get();
             } elseif ($filter == 'asc_harga') {
-                $data['Products'] = Product::with('subcategory')->orderBy('price', 'asc')->get();
+                $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->orderBy('price', 'asc')->get();
             } elseif ($filter == 'desc_harga') {
-                $data['Products'] = Product::with('subcategory')->orderBy('price', 'desc')->get();
+                $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->orderBy('price', 'desc')->get();
             }else if($filter == 'recommended')
             {
-                $data['Products'] = Product::where('recomended' , true)->with('subcategory')->orderBy('id','desc')->get();
+                $data['Products'] = Product::where('recomended' , true)->with(['subcategory','variants.wood','variants.color','variants'])->orderBy('id','desc')->get();
             }else if($filter == 'search')
             {
                 $query = $request->get('q');
                 $data['Products'] =  Product::where('name', 'like', '%' . $query . '%')
                 ->orWhere('content', 'like', '%' . $query . '%')
-                ->with('subcategory')
+                ->with(['subcategory','variants.wood','variants.color','variants'])
                 ->get();
                 $data['FilterQuery'] = $query;
             }
@@ -146,8 +146,8 @@ class JustOrangeController extends Controller
         if(!$request->slug){
             return Inertia::location(url('/'));
         }
-        $data['product'] = Product::where('slug', $request->slug)->with('subcategory')->first();
-        $data['Products'] = Product::where('sub_category_id', $data['product']->sub_category_id)->orderBy('views', 'desc')->with('subcategory')->limit(4)->get();
+        $data['product'] = Product::where('slug', $request->slug)->with(['subcategory','variants.wood','variants.color','variants'])->first();
+        $data['Products'] = Product::where('sub_category_id', $data['product']->sub_category_id)->orderBy('views', 'desc')->with(['subcategory','variants.wood','variants.color','variants'])->limit(4)->get();
         $data['Socmed'] = SocialMedia::all();
         $data['Pages'] = Post::where('active',true)->get();
         $data['Category'] = Category::find($data['product']->subcategory->category_id);
@@ -167,7 +167,7 @@ class JustOrangeController extends Controller
         $category = Category::find($request->id);
         $subCat = SubCategory::where('category_id' , $category->id);
         $subGet = empty($request->get('sub')) ? null : $request->get('sub');
-        $data['Products'] = ($subGet == null) ? Product::where('sub_category_id',$subCat->first()->id)->orderBy('id', 'desc')->with('subcategory')->get() : Product::where('sub_category_id', (int)$subGet)->orderBy('id', 'desc')->with('subcategory')->get();
+        $data['Products'] = ($subGet == null) ? Product::where('sub_category_id',$subCat->first()->id)->orderBy('id', 'desc')->with(['subcategory','variants.wood','variants.color','variants'])->get() : Product::where('sub_category_id', (int)$subGet)->orderBy('id', 'desc')->with(['subcategory','variants.wood','variants.color','variants'])->get();
         $data['Categories'] = Category::all();
         $data['SubCategories'] = SubCategory::where('category_id' , $category->id)->get();
         $data['ActiveCat'] = $subGet;

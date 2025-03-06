@@ -10,7 +10,7 @@
                 <!-- Judul -->
                 <div class="text-center mb-6">
                     <h1 class="text-3xl font-bold text-[#424242] animate-pulse">
-                        IA PROJECT
+                        WOOD CLASSIC
                     </h1>
                 </div>
 
@@ -43,12 +43,13 @@
         </div>
         <header class="flex justify-between items-center px-4">
             <div class="flex items-center gap-2">
-                <a
-                    class="w-14 bg-red-500 rounded-full h-14"
-                    src="/"
-                    alt="LOGO"
-                    href="/"
-                />
+                <a href="/">
+                    <img
+                        src="/logo.jpg"
+                        alt="LOGO"
+                        class="w-10 h-10 object-cover"
+                    />
+                </a>
                 <span class="font-bold text-xl text-[#424242] poppins-bold"
                     >NAME FURNITURE</span
                 >
@@ -200,10 +201,10 @@
         <!-- Logo & Nama Brand -->
         <div class="flex items-center space-x-2">
             <img
-                src="/"
+                src="/logo.jpg"
                 alt="LOGO"
                 href="/"
-                class="w-10 h-10 object-cover bg-red-500 rounded-full"
+                class="w-10 h-10 object-cover"
             />
             <h1 class="text-xl font-bold text-gray-800">NAME FURNITURE</h1>
         </div>

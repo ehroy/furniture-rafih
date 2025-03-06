@@ -70,27 +70,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-            <div
-                v-for="(item, index) in Gallery"
-                :key="item.id"
-                class="relative w-full rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
-            >
-                <img
-                    :src="item.image"
-                    class="w-full h-64 object-cover rounded-lg"
-                    alt="Furniture Image"
-                />
-                <div
-                    class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 hover:opacity-100 flex items-end p-4 transition-opacity duration-300"
-                >
-                    <span class="text-white text-lg font-medium">
-                        {{ item.subcategory.name }}
-                    </span>
-                </div>
-            </div>
-        </div> -->
     </div>
     <section class="bg-gray-50 py-16 px-4">
         <div class="max-w-5xl mx-auto text-center">

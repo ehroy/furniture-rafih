@@ -155,12 +155,26 @@
                                 ></i>
                             </div>
                         </div>
-                        <button
-                            @click="addToCart(product)"
-                            class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
-                        >
-                            ADD TO CART
-                        </button>
+
+                        <template v-if="product.variants.length > 1">
+                            <!-- Jika produk memiliki lebih dari 1 variant, gunakan Link ke halaman detail -->
+                            <Link
+                                :href="'/product/' + product.slug"
+                                class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
+                            >
+                                DETAILS
+                            </Link>
+                        </template>
+                        <template v-else>
+                            <!-- Jika hanya 1 variant, tetap gunakan button untuk addToCart -->
+                            <button
+                                @click="addToCart(product)"
+                                class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
+                            >
+                                ADD TO CART
+                            </button>
+                        </template>
+
                         <transition
                             enter-active-class="transform transition duration-500 ease-out"
                             enter-from-class="translate-y-10 opacity-0"

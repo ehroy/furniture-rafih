@@ -230,16 +230,16 @@
                         >
                         <div class="flex space-x-2">
                             <button
-                                v-for="(color, index) in dummyColors"
+                                v-for="(color, index) in product.variants"
                                 :key="index"
                                 :class="[
                                     'w-8 h-8 rounded-full border-2',
-                                    color,
-                                    selectedColor === color
+                                    color.color.code_palete,
+                                    selectedColor === color.color.name
                                         ? 'border-black'
                                         : '',
                                 ]"
-                                @click="selectColor(color)"
+                                @click="selectColor(color.color.name)"
                             ></button>
                         </div>
                     </div>
@@ -483,7 +483,7 @@ const props = defineProps({
     Socmed: Object,
     Pages: Object,
 });
-const selectedImage = ref(props.product.image);
+
 const tabs = ref([{ name: "Description" }]);
 
 const activeTab = ref(0);
@@ -510,20 +510,34 @@ const selectColor = (color) => {
 };
 
 const addToCart = (product) => {
-    console.log(selectedColor);
     if (!selectedColor.value) {
         alert("Silakan pilih warna terlebih dahulu!");
         return;
     }
+
+    // Temukan variant yang dipilih berdasarkan warna
+    const selectedVariant = product.variants.find(
+        (variant) => variant.color && variant.color.name === selectedColor.value
+    );
+
+    if (!selectedVariant) {
+        alert("Warna tidak ditemukan!");
+        return;
+    }
+
     cart.value.push({
         ...product,
-        selectedColor: dummyColors.value,
+        selectedColor: {
+            code_palete: selectedVariant.color.code_palete,
+            name: selectedVariant.color.name,
+        },
         quantity: quantity.value,
     });
+
     localStorage.setItem("cart", JSON.stringify(cart.value));
 
     showNotification.value = true;
-    notificationMessage.value = `Produk ${product.name} dengan warna ${selectedColor.value} telah ditambahkan ke keranjang!`;
+    notificationMessage.value = `Produk ${product.name} dengan warna ${selectedVariant.color.name}  telah ditambahkan ke keranjang!`;
 
     // Sembunyikan notifikasi setelah 3 detik
     setTimeout(() => {

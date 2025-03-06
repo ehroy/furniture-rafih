@@ -17,6 +17,8 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Actions\Action;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ProductImport;
+use App\Models\Color;
+use App\Models\Wood;
 
 class ProductResource extends Resource
 {
@@ -54,7 +56,31 @@ class ProductResource extends Resource
                 Forms\Components\Toggle::make('active')
                     ->required(),
                 Forms\Components\Toggle::make('recomended')->label('is Recommended?')->required(),
-                
+                Forms\Components\Repeater::make('variants')
+                ->relationship('variants')
+                ->schema([
+                    Forms\Components\Select::make('wood_id')
+                        ->label('Jenis Kayu')
+                        ->options(Wood::pluck('name', 'id'))
+                        ->required(),
+            
+                    Forms\Components\Select::make('color_id')
+                        ->label('Warna')
+                        ->options(Color::pluck('name', 'id'))
+                        ->required(),
+            
+                    Forms\Components\TextInput::make('price')
+                        ->label('Harga')
+                        ->numeric()
+                        ->prefix('Rp')
+                        ->required(),
+            
+                    Forms\Components\TextInput::make('stock')
+                        ->label('Stok')
+                        ->numeric()
+                        ->required(),
+                ])
+                ->columnSpanFull(1)            
             ]);
     }
     
@@ -69,7 +95,7 @@ class ProductResource extends Resource
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('price')
-                    ->money()
+                    ->money('IDR')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('views')
                     ->numeric()
