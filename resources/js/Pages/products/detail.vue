@@ -490,13 +490,6 @@ const tabs = ref([{ name: "Description" }]);
 
 const activeTab = ref(0);
 
-const dummyColors = ref([
-    "bg-red-500",
-    "bg-blue-500",
-    "bg-green-500",
-    "bg-yellow-500",
-    "bg-purple-500",
-]);
 const incrementQuantity = () => {
     quantity.value++;
 };

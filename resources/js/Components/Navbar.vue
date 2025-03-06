@@ -144,7 +144,7 @@
             class="relative flex items-center justify-between rounded-lg px-6 py-2 w-[90%] md:hidden text-[#424242]"
         >
             <!-- Menu Kiri -->
-            <div class="flex gap-14">
+            <div class="flex gap-6">
                 <a
                     href="/products"
                     class="flex flex-col items-center hover:text-black"
@@ -190,7 +190,7 @@
             </div>
 
             <!-- Menu Kanan -->
-            <div class="flex gap-14">
+            <div class="flex gap-6">
                 <a
                     href="/linker"
                     class="flex flex-col items-center hover:text-black"

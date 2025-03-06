@@ -55,5 +55,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductCategory::class);
         $this->call(Testimoni::class);
         $this->call(ProductRecommend::class);
+        $this->call(VariantSeeder::class);
     }
 }
