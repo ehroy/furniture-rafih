@@ -138,61 +138,75 @@
     </div>
 
     <div
-        class="fixed bottom-0 left-0 right-0 bg-gray-100 p-3 mb-1 z-50 rounded-lg md:hidden"
+        class="fixed bottom-1 left-0 right-0 z-50 bg-white flex justify-center w-full rounded-lg"
     >
-        <nav class="flex justify-around items-center text-[#212121]">
-            <a href="/" class="flex flex-col items-center hover:text-black">
-                <i class="mdi mdi-home-outline"></i>
-                <span class="text-xs">Home</span>
-            </a>
-            <a
-                href="/products"
-                class="flex flex-col items-center hover:text-black"
-            >
-                <i class="mdi mdi-cube-outline"></i>
-                <span class="text-xs">Product</span>
-            </a>
-            <div class="relative" @click="toggleDropdown">
-                <a class="flex flex-col items-center hover:text-black">
-                    <i class="mdi mdi-tag-multiple"></i>
-                    <span class="text-xs">Category</span>
-                </a>
-                <div
-                    v-if="isOpen"
-                    class="absolute bottom-12 w-screen bg-white rounded-lg"
+        <div
+            class="relative flex items-center justify-between rounded-lg px-6 py-2 w-[90%] md:hidden text-[#424242]"
+        >
+            <!-- Menu Kiri -->
+            <div class="flex gap-14">
+                <a
+                    href="/products"
+                    class="flex flex-col items-center hover:text-black"
                 >
-                    <ul class="flex flex-col justify-center p-3">
-                        <li
-                            v-for="(category, index) in Categories"
-                            :key="index"
-                            class="py-1"
-                        >
-                            <Link
-                                :href="`/category/${category.id}`"
-                                class="text-black hover:text-[#212121]"
+                    <i class="mdi mdi-cube-outline text-xl"></i>
+                    <span class="text-xs">Product</span>
+                </a>
+                <div class="relative" @click="toggleDropdown">
+                    <a class="flex flex-col items-center hover:text-black">
+                        <i class="mdi mdi-tag-multiple text-xl"></i>
+                        <span class="text-xs">Category</span>
+                    </a>
+                    <div
+                        v-if="isOpen"
+                        class="absolute bottom-12 w-40 bg-white rounded-lg shadow-md"
+                    >
+                        <ul class="flex flex-col p-3">
+                            <li
+                                v-for="(category, index) in Categories"
+                                :key="index"
+                                class="py-1"
                             >
-                                {{ category.name }}
-                            </Link>
-                        </li>
-                    </ul>
+                                <Link
+                                    :href="`/category/${category.id}`"
+                                    class="text-black hover:text-[#212121]"
+                                >
+                                    {{ category.name }}
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <a
-                href="/linker"
-                class="flex flex-col items-center hover:text-black"
-            >
-                <i class="mdi mdi-phone-outline"></i>
-                <span class="text-xs">Contact Us</span>
-            </a>
-            <a
-                href="/galery"
-                class="flex flex-col items-center hover:text-black"
-            >
-                <i class="mdi mdi-image"></i>
-                <span class="text-xs">Gallery</span>
-            </a>
-        </nav>
+            <!-- Tombol Home (Oracle Style) -->
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
+                <a
+                    href="/"
+                    class="bg-gradient-to-r bg-[#565656] text-gray-100 p-4 rounded-full shadow-lg hover:scale-110 transition duration-300 border-2 border-gray-100"
+                >
+                    <i class="mdi mdi-home-outline text-2xl"></i>
+                </a>
+            </div>
+
+            <!-- Menu Kanan -->
+            <div class="flex gap-14">
+                <a
+                    href="/linker"
+                    class="flex flex-col items-center hover:text-black"
+                >
+                    <i class="mdi mdi-phone-outline text-xl"></i>
+                    <span class="text-xs">Contact</span>
+                </a>
+                <a
+                    href="/galery"
+                    class="flex flex-col items-center hover:text-black"
+                >
+                    <i class="mdi mdi-image text-xl"></i>
+                    <span class="text-xs">Gallery</span>
+                </a>
+            </div>
+        </div>
     </div>
 
     <div

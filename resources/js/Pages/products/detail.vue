@@ -24,7 +24,7 @@
                 </div>
             </transition>
             <br />
-            <div class="border-b-2 border-black mt-12">
+            <div class="border-b-2 border-black mt-12 m-5">
                 <nav class="flex items-center space-x-2 text-gray-700 py-4">
                     <Link href="/" class="hover:text-gray-900"
                         ><i class="mdi mdi-home"></i> Home</Link
