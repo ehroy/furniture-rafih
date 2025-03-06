@@ -81,7 +81,7 @@
                 tinggi. Konsultasi dengan desainer kami untuk mendapatkan
                 pengalaman yang personal.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-4">
                 <a
                     href="/products"
                     class="bg-gray-900 text-white px-8 py-3 rounded-md font-medium hover:bg-gray-800 transition"

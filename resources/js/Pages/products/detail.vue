@@ -232,14 +232,16 @@
                             <button
                                 v-for="(color, index) in product.variants"
                                 :key="index"
-                                :class="[
-                                    'w-8 h-8 rounded-full border-2',
-                                    color.color.code_palete,
+                                class="w-8 h-8 rounded-full border-2"
+                                :style="{
+                                    backgroundColor: color.color.code_palete,
+                                }"
+                                @click="selectColor(color.color.name)"
+                                :class="
                                     selectedColor === color.color.name
                                         ? 'border-black'
-                                        : '',
-                                ]"
-                                @click="selectColor(color.color.name)"
+                                        : ''
+                                "
                             ></button>
                         </div>
                     </div>

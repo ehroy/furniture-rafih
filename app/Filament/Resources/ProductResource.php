@@ -59,28 +59,35 @@ class ProductResource extends Resource
                 Forms\Components\Repeater::make('variants')
                 ->relationship('variants')
                 ->schema([
-                    Forms\Components\Select::make('wood_id')
-                        ->label('Jenis Kayu')
-                        ->options(Wood::pluck('name', 'id'))
-                        ->required(),
-            
-                    Forms\Components\Select::make('color_id')
-                        ->label('Warna')
-                        ->options(Color::pluck('name', 'id'))
-                        ->required(),
-            
-                    Forms\Components\TextInput::make('price')
-                        ->label('Harga')
-                        ->numeric()
-                        ->prefix('Rp')
-                        ->required(),
-            
-                    Forms\Components\TextInput::make('stock')
-                        ->label('Stok')
-                        ->numeric()
-                        ->required(),
+                    Forms\Components\Grid::make(6) // Grid dengan 6 kolom agar lebih rapat
+                        ->schema([
+                            Forms\Components\Select::make('wood_id')
+                                ->label('Kayu')
+                                ->options(Wood::pluck('name', 'id'))
+                                ->required()
+                                ->columnSpan(2), // 2 dari 6 kolom
+                            
+                            Forms\Components\Select::make('color_id')
+                                ->label('Warna')
+                                ->options(Color::pluck('name', 'id'))
+                                ->required()
+                                ->columnSpan(2),
+
+                            Forms\Components\TextInput::make('price')
+                                ->label('Harga')
+                                ->numeric()
+                                ->prefix('Rp')
+                                ->required()
+                                ->columnSpan(1), // Hanya 1 kolom supaya lebih ramping
+
+                            Forms\Components\TextInput::make('stock')
+                                ->label('Stok')
+                                ->numeric()
+                                ->required()
+                                ->columnSpan(1), // Hanya 1 kolom juga
+                        ])
                 ])
-                ->columnSpanFull(1)            
+                ->columnSpanFull()          
             ]);
     }
     

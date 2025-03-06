@@ -49,7 +49,26 @@
                             </button>
                         </div>
                     </div>
+                    <div class="text-sm">
+                        <p
+                            class="flex flex-row bg-center text-center items-center"
+                        >
+                            Warna :
 
+                            <a
+                                :style="{
+                                    backgroundColor:
+                                        item.selectedColor.code_palete,
+                                }"
+                                class="w-4 h-4 rounded-full border-2 mt-1 inline-block"
+                            ></a>
+                        </p>
+
+                        <p>
+                            Jenis Kayu:
+                            {{ item.selectedColor.name || "Tidak ada" }}
+                        </p>
+                    </div>
                     <!-- Kontrol Jumlah Produk -->
                     <div class="flex items-center space-x-3">
                         <button
@@ -66,6 +85,8 @@
                             +
                         </button>
                     </div>
+
+                    <!-- Tampilkan Warna dan Jenis Kayu -->
                 </div>
 
                 <!-- Total Harga -->

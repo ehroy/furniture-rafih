@@ -45,9 +45,9 @@
             <div class="flex items-center gap-2">
                 <a href="/">
                     <img
-                        src="/logo.jpg"
+                        src="/white-horse.png"
                         alt="LOGO"
-                        class="w-10 h-10 object-cover"
+                        class="w-10 h-10 object-cover rounded-full"
                     />
                 </a>
                 <span class="font-bold text-xl text-[#424242] poppins-bold"
@@ -189,7 +189,7 @@
                 href="/galery"
                 class="flex flex-col items-center hover:text-black"
             >
-                <i class="mdi mdi-information-outline"></i>
+                <i class="mdi mdi-image"></i>
                 <span class="text-xs">Gallery</span>
             </a>
         </nav>
@@ -201,10 +201,10 @@
         <!-- Logo & Nama Brand -->
         <div class="flex items-center space-x-2">
             <img
-                src="/logo.jpg"
+                src="/white-horse.png"
                 alt="LOGO"
                 href="/"
-                class="w-10 h-10 object-cover"
+                class="w-10 h-10 object-cover rounded-full"
             />
             <h1 class="text-xl font-bold text-gray-800">NAME FURNITURE</h1>
         </div>
