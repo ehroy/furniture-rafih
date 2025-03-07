@@ -82,12 +82,12 @@
                 pengalaman yang personal.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-4">
-                <a
+                <Link
                     href="/products"
                     class="bg-gray-900 text-white px-8 py-3 rounded-md font-medium hover:bg-gray-800 transition"
                 >
                     Katalog Lengkap
-                </a>
+                </Link>
                 <button
                     class="bg-white border border-gray-300 text-gray-700 px-8 py-3 rounded-md font-medium hover:bg-gray-50 transition"
                 >
@@ -95,10 +95,13 @@
                 </button>
             </div>
         </div>
+        <Popup :Global="Global" :Products="Products" />
     </section>
 </template>
 
 <script setup>
+import Popup from "./Popup.vue";
+import { Link } from "@inertiajs/vue3";
 import { inject } from "vue";
 const helpers = inject("helpers");
 defineProps({

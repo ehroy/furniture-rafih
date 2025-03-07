@@ -203,31 +203,6 @@
                     ><i class="mdi mdi-view-list"></i> Tampilkan Semua</Link
                 >
             </div>
-            <transition
-                enter-active-class="transition-opacity duration-500"
-                enter-from-class="opacity-0 translate-y-5"
-                enter-to-class="opacity-100 translate-y-0"
-                leave-active-class="transition-opacity duration-500"
-                leave-from-class="opacity-100 translate-y-0"
-                leave-to-class="opacity-0 translate-y-5"
-            >
-                <div
-                    v-if="showOrderPopup"
-                    class="fixed bottom-5 left-5 bg-white border border-gray-300 p-2 shadow-lg rounded-lg flex items-center gap-3 px-10"
-                >
-                    <img
-                        class="w-12 h-12 object-cover rounded-sm"
-                        :src="helpers.imageUrl(randomProduct.image)"
-                        :alt="randomProduct.name"
-                    />
-                    <div>
-                        <p class="text-sm font-bold">
-                            {{ randomProduct.name }}
-                        </p>
-                        <p class="text-xs text-gray-500">Baru saja dibeli!</p>
-                    </div>
-                </div>
-            </transition>
         </section>
     </div>
 </template>
@@ -251,31 +226,7 @@ const props = defineProps({
 const cart = ref([]);
 const showNotification = ref(false);
 const notificationMessage = ref("");
-const showOrderPopup = ref(null);
-const randomProduct = ref({});
-const startOrderPopup = () => {
-    const showRandomPopup = () => {
-        if (props.Products.length > 0) {
-            const randomIndex = Math.floor(
-                Math.random() * props.Products.length
-            );
-            randomProduct.value = props.Products[randomIndex]; // Pilih produk acak
-            showOrderPopup.value = true;
 
-            setTimeout(() => {
-                showOrderPopup.value = false;
-            }, 3000);
-        }
-
-        // Atur waktu acak antara 1 - 12 jam (dalam milidetik)
-        const randomTime =
-            Math.floor(Math.random() * (12 - 1 + 1) + 1) * 60 * 60 * 1000;
-
-        setTimeout(showRandomPopup, randomTime); // Panggil ulang dengan waktu acak
-    };
-
-    showRandomPopup(); // Jalankan pertama kali
-};
 const addToCart = (product) => {
     const existingProduct = cart.value.find((item) => item.id === product.id);
 
@@ -302,7 +253,6 @@ onMounted(() => {
     if (savedCart) {
         cart.value = JSON.parse(savedCart);
     }
-    startOrderPopup();
 });
 
 watch(cart, saveCart, { deep: true });

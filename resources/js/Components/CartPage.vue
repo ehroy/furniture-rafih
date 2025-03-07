@@ -15,12 +15,12 @@
             >
                 <i class="mdi mdi-cart-off text-5xl"></i>
                 <p class="mt-3">Keranjang belanja kosong.</p>
-                <a
+                <Link
                     href="/"
                     class="mt-5 inline-block bg-[#424242] text-white px-5 py-2 rounded-lg"
                 >
                     Kembali Belanja
-                </a>
+                </Link>
             </div>
 
             <!-- Daftar Produk di Keranjang -->
@@ -49,19 +49,20 @@
                             </button>
                         </div>
                     </div>
-                    <div class="text-sm">
+                    <div v-if="item.selectedColor" class="text-sm">
                         <p
                             class="flex flex-row bg-center text-center items-center"
                         >
                             Warna :
 
-                            <a
+                            <Link
                                 :style="{
                                     backgroundColor:
-                                        item.selectedColor.code_palete,
+                                        item.selectedColor.code_palete ||
+                                        'Tidak ada',
                                 }"
                                 class="w-4 h-4 rounded-full border-2 mt-1 inline-block"
-                            ></a>
+                            ></Link>
                         </p>
 
                         <p>
@@ -138,8 +139,8 @@
 </template>
 
 <script setup>
+import { Link } from "@inertiajs/vue3";
 import { ref, onMounted, computed, inject } from "vue";
-
 const helpers = inject("helpers");
 const cart = ref([]);
 const email = ref("");

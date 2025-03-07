@@ -107,7 +107,7 @@
             </nav>
             <div class="flex items-center space-x-3">
                 <!-- Tombol Cart -->
-                <a
+                <Link
                     href="/cart"
                     class="relative flex items-center justify-center rounded-xl p-2 text-[#424242] transition"
                     type="button"
@@ -122,7 +122,7 @@
                     >
                         {{ cart.length }}
                     </span>
-                </a>
+                </Link>
 
                 <!-- Tombol Search -->
                 <button
@@ -141,7 +141,7 @@
         class="fixed bottom-1 left-0 right-0 z-50 bg-white flex justify-center w-full rounded-lg"
     >
         <div
-            class="relative flex items-center justify-between rounded-lg px-6 py-2 w-[90%] md:hidden text-[#424242]"
+            class="relative flex items-center justify-between rounded-lg px-6 py-2 w-full md:hidden text-[#424242]"
         >
             <!-- Menu Kiri -->
             <div class="flex gap-6">
@@ -181,30 +181,30 @@
 
             <!-- Tombol Home (Oracle Style) -->
             <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
-                <a
+                <Link
                     href="/"
                     class="bg-gradient-to-r bg-[#565656] text-gray-100 p-4 rounded-full shadow-lg hover:scale-110 transition duration-300 border-2 border-gray-100"
                 >
-                    <i class="mdi mdi-home-outline text-2xl"></i>
-                </a>
+                    <i class="mdi mdi-home-outline text-xl"></i>
+                </Link>
             </div>
 
             <!-- Menu Kanan -->
             <div class="flex gap-6">
-                <a
+                <Link
                     href="/linker"
                     class="flex flex-col items-center hover:text-black"
                 >
                     <i class="mdi mdi-phone-outline text-xl"></i>
                     <span class="text-xs">Contact</span>
-                </a>
-                <a
+                </Link>
+                <Link
                     href="/galery"
                     class="flex flex-col items-center hover:text-black"
                 >
                     <i class="mdi mdi-image text-xl"></i>
                     <span class="text-xs">Gallery</span>
-                </a>
+                </Link>
             </div>
         </div>
     </div>
@@ -227,7 +227,7 @@
         <div class="flex items-center space-x-4">
             <!-- Cart -->
             <div class="relative">
-                <a
+                <Link
                     href="/cart"
                     class="flex items-center text-[#424242] hover:text-black"
                 >
@@ -238,7 +238,7 @@
                     >
                         {{ cart.length }}
                     </span>
-                </a>
+                </Link>
             </div>
 
             <!-- Search -->

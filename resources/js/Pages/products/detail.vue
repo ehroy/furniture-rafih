@@ -461,9 +461,11 @@
         </div>
     </div>
     <Footer :Global="Global" :Socmed="Socmed" />
+    <Popup :Global="Global" :Products="Products" />
 </template>
 
 <script setup>
+import Popup from "../../Components/Popup.vue";
 import Navbar from "../../Components/Navbar.vue";
 import { Link } from "@inertiajs/vue3";
 import { inject, ref } from "vue";
@@ -509,8 +511,6 @@ const addToCart = (product) => {
         alert("Silakan pilih warna terlebih dahulu!");
         return;
     }
-
-    // Temukan variant yang dipilih berdasarkan warna
     const selectedVariant = product.variants.find(
         (variant) => variant.color && variant.color.name === selectedColor.value
     );
@@ -533,8 +533,6 @@ const addToCart = (product) => {
 
     showNotification.value = true;
     notificationMessage.value = `Produk ${product.name} dengan warna ${selectedVariant.color.name}  telah ditambahkan ke keranjang!`;
-
-    // Sembunyikan notifikasi setelah 3 detik
     setTimeout(() => {
         showNotification.value = false;
     }, 3000);

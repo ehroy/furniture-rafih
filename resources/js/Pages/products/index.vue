@@ -14,9 +14,11 @@
         />
     </div>
     <Footer :Global="Global" :Socmed="Socmed" :Pages="Pages" />
+    <Popup :Global="Global" :Products="Products" />
 </template>
 
 <script setup>
+import Popup from "../../Components/Popup.vue";
 import Footer from "../../Components/Footer.vue";
 import Navbar from "../../Components/Navbar.vue";
 import CategoryPage from "../../Components/CategoryPage.vue";
