@@ -144,7 +144,7 @@
             class="relative flex items-center justify-between rounded-lg px-6 py-2 w-full md:hidden text-[#424242]"
         >
             <!-- Menu Kiri -->
-            <div class="flex gap-6">
+            <div class="flex gap-1">
                 <a
                     href="/products"
                     class="flex flex-col items-center hover:text-black"
