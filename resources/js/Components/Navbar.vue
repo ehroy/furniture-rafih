@@ -45,14 +45,16 @@
             <div class="flex items-center gap-2">
                 <a href="/">
                     <img
-                        src="/white-horse.png"
+                        src="/logofix.png"
                         alt="LOGO"
                         class="w-10 h-10 object-cover rounded-full"
                     />
                 </a>
-                <span class="font-bold text-xl text-[#424242] poppins-bold"
-                    >NAME FURNITURE</span
+                <span
+                    class="font-bold text-xl text-[#424242] poppins-bold inline"
                 >
+                    TERATAI <span class="text-red-600">FURNITURE</span>
+                </span>
             </div>
 
             <nav class="flex-1 mx-10">
@@ -215,12 +217,14 @@
         <!-- Logo & Nama Brand -->
         <div class="flex items-center space-x-2">
             <img
-                src="/white-horse.png"
+                src="/logofix.png"
                 alt="LOGO"
                 href="/"
                 class="w-10 h-10 object-cover rounded-full"
             />
-            <h1 class="text-xl font-bold text-gray-800">NAME FURNITURE</h1>
+            <span class="font-bold text-l text-[#424242] poppins-bold inline">
+                TERATAI <span class="text-red-600">FURNITURE</span>
+            </span>
         </div>
 
         <!-- Cart & Search -->
