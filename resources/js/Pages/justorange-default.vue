@@ -15,8 +15,8 @@
 
             <!-- Teks di atas background -->
             <div class="relative z-10 text-center text-white px-5">
-                <h1 class="text-5xl md:text-8xl font-bold animate-pulse">
-                    NAME FURNITURE
+                <h1 class="text-5xl md:text-6xl font-bold animate-pulse">
+                    TERATAI FURNITURE
                 </h1>
                 <p class="text-lg md:text-xl mt-4 w-full md:w-3/4 mx-auto">
                     Kami menghadirkan desain interior minimalis dengan sentuhan
