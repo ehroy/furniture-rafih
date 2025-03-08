@@ -55,7 +55,7 @@
                             <hr />
                         </div>
                         <div
-                            class="grid grid-cols-3 text-xs md:text-xl gap-4 mt-8 border bg-[#e7f5fb] rounded-md"
+                            class="grid grid-cols-3 text-x md:text-lg gap-4 mt-8 border bg-[#e7f5fb] rounded-md"
                         >
                             <div class="flex items-center space-x-3 p-3">
                                 <!-- Ikon -->
@@ -142,7 +142,9 @@
                             <div class="grid grid-cols-2 gap-1">
                                 <div
                                     class="hover:border border-gray-300 p-2 text-white hover:text-[#2E2E2E]"
-                                    v-for="(product, index) in Products"
+                                    v-for="(product, index) in Products.filter(
+                                        (product) => product.variants.length > 0
+                                    )"
                                     :key="index"
                                 >
                                     <!-- Gambar Produk -->
@@ -169,10 +171,6 @@
                                                     {{ product.name }}
                                                 </h4>
                                             </Link>
-                                            <!-- <span class="mt-2 flex items-center gap-1">
-                                <i class="mdi mdi-tag text-lg"></i>
-                                {{ product.subcategory.name }}
-                            </span> -->
                                         </div>
                                         <div class="flex flex-col-reverse">
                                             <div
@@ -195,13 +193,28 @@
                                                 ></i>
                                             </div>
                                         </div>
-                                        <button
-                                            @click="addToCart(product)"
-                                            class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
+                                        <template
+                                            v-if="product.variants.length > 1"
                                         >
-                                            ADD TO CART
-                                        </button>
-                                        <!-- ADD NOTIFKASI MESSAGE -->
+                                            <!-- Jika produk memiliki lebih dari 1 variant, gunakan Link ke halaman detail -->
+                                            <Link
+                                                :href="
+                                                    '/product/' + product.slug
+                                                "
+                                                class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
+                                            >
+                                                DETAILS
+                                            </Link>
+                                        </template>
+                                        <template v-else>
+                                            <!-- Jika hanya 1 variant, tetap gunakan button untuk addToCart -->
+                                            <button
+                                                @click="addToCart(product)"
+                                                class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
+                                            >
+                                                ADD TO CART
+                                            </button>
+                                        </template>
                                     </div>
                                 </div>
                             </div>
@@ -219,30 +232,53 @@
                             <i class="mdi mdi-star text-xl text-yellow-300"></i>
                             <i class="mdi mdi-star text-xl text-yellow-300"></i>
                             <i class="mdi mdi-star text-xl text-yellow-300"></i>
-                            <i class="mdi mdi-star text-xl text-yellow-300"></i>
+                            <i class="mdi mdi-star text-xl text-gray-300"></i>
                             <i class="mdi mdi-star text-xl text-gray-300"></i>
                             <p class="font-bold">(10)</p>
                         </div>
                     </div>
-                    <div class="mt-4">
+                    <div v-if="product.variants" class="mt-4">
+                        <!-- PILIH WARNA -->
                         <label class="block text-gray-700 font-bold mb-2"
                             >Pilih Warna:</label
                         >
                         <div class="flex space-x-2">
                             <button
-                                v-for="(color, index) in product.variants"
+                                v-for="(group, index) in uniqueColors"
                                 :key="index"
-                                class="w-8 h-8 rounded-full border-2"
-                                :style="{
-                                    backgroundColor: color.color.code_palete,
-                                }"
-                                @click="selectColor(color.color.name)"
-                                :class="
-                                    selectedColor === color.color.name
+                                class="w-8 h-8 rounded-full border-2 bg-blue-500"
+                                :class="[
+                                    group.color.code_palete,
+                                    selectedColor === group.color.name
                                         ? 'border-black'
-                                        : ''
-                                "
+                                        : '',
+                                ]"
+                                @click="selectColor(group.color.name)"
                             ></button>
+                        </div>
+
+                        <!-- PILIH KAYU -->
+                        <div v-if="selectedColor" class="mt-4">
+                            <label class="block text-gray-700 font-bold mb-2"
+                                >Pilih Kayu:</label
+                            >
+                            <div class="flex space-x-2">
+                                <button
+                                    v-for="(wood, index) in uniqueColors.find(
+                                        (c) => c.color.name === selectedColor
+                                    )?.woods"
+                                    :key="index"
+                                    class="px-4 py-2 border rounded"
+                                    @click="selectedWood = wood.name"
+                                    :class="
+                                        selectedWood === wood.name
+                                            ? 'bg-gray-300 '
+                                            : ''
+                                    "
+                                >
+                                    {{ wood.name }}
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -404,7 +440,9 @@
                         >
                             <div
                                 class="rounded-lg hover:border p-2"
-                                v-for="(product, index) in Products"
+                                v-for="(product, index) in Products.filter(
+                                    (product) => product.variants.length > 0
+                                )"
                                 :key="index"
                             >
                                 <img
@@ -442,17 +480,24 @@
                                         ></i>
                                     </div>
                                 </div>
-                                <div
-                                    class="flex items-center justify-center gap-2 md:gap-4 text-white w-full mb-4 mt-12"
-                                >
-                                    <!-- ADD TO CART -->
+                                <template v-if="product.variants.length > 1">
+                                    <!-- Jika produk memiliki lebih dari 1 variant, gunakan Link ke halaman detail -->
+                                    <Link
+                                        :href="'/product/' + product.slug"
+                                        class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
+                                    >
+                                        DETAILS
+                                    </Link>
+                                </template>
+                                <template v-else>
+                                    <!-- Jika hanya 1 variant, tetap gunakan button untuk addToCart -->
                                     <button
                                         @click="addToCart(product)"
-                                        class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semibold hover:underline hover:text-[#2E2E2E] transition mdi mdi-cart-plus hover:bg-gray-100"
+                                        class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
                                     >
                                         ADD TO CART
                                     </button>
-                                </div>
+                                </template>
                             </div>
                         </div>
                     </div>
@@ -468,16 +513,18 @@
 import Popup from "../../Components/Popup.vue";
 import Navbar from "../../Components/Navbar.vue";
 import { Link } from "@inertiajs/vue3";
-import { inject, ref } from "vue";
+import { inject, ref, computed } from "vue";
 import Footer from "../../Components/Footer.vue";
 import JustHead from "../../Components/JustHead.vue";
 const showContent = ref(false);
 const helpers = inject("helpers");
 const cart = ref(JSON.parse(localStorage.getItem("cart")) || []);
 const selectedColor = ref(null);
+const selectedWood = ref(null);
 const quantity = ref(1);
 const showNotification = ref(false);
 const notificationMessage = ref(null);
+
 const props = defineProps({
     product: Object,
     Products: Object,
@@ -487,6 +534,7 @@ const props = defineProps({
     Socmed: Object,
     Pages: Object,
 });
+// console.log(props.product);
 
 const tabs = ref([{ name: "Description" }]);
 
@@ -503,6 +551,7 @@ const decrementQuantity = () => {
 };
 const selectColor = (color) => {
     selectedColor.value = color;
+    selectedWood.value = null; // Reset pilihan kayu saat warna berubah
     console.log("Warna dipilih:", selectedColor.value);
 };
 
@@ -513,6 +562,9 @@ const addToCart = (product) => {
     }
     const selectedVariant = product.variants.find(
         (variant) => variant.color && variant.color.name === selectedColor.value
+    );
+    const selectedVariantWoods = product.variants.find(
+        (variant) => variant.wood && variant.wood.name === selectedWood.value
     );
 
     if (!selectedVariant) {
@@ -526,6 +578,9 @@ const addToCart = (product) => {
             code_palete: selectedVariant.color.code_palete,
             name: selectedVariant.color.name,
         },
+        selectedWoods: {
+            name: selectedVariantWoods.wood.name,
+        },
         quantity: quantity.value,
     });
 
@@ -537,4 +592,17 @@ const addToCart = (product) => {
         showNotification.value = false;
     }, 3000);
 };
+const uniqueColors = computed(() => {
+    const grouped = {};
+    props.product.variants.forEach((variant) => {
+        if (!grouped[variant.color.id]) {
+            grouped[variant.color.id] = {
+                color: variant.color,
+                woods: [],
+            };
+        }
+        grouped[variant.color.id].woods.push(variant.wood);
+    });
+    return Object.values(grouped);
+});
 </script>

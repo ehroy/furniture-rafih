@@ -101,10 +101,13 @@
                     >
                 </div>
             </div>
+
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
                 <div
                     class="hover:border border-gray-300 p-2 text-white hover:text-[#2E2E2E] relative"
-                    v-for="(product, index) in Products"
+                    v-for="(product, index) in Products.filter(
+                        (product) => product.variants.length > 0
+                    )"
                     :key="index"
                 >
                     <!-- Label HOT SALE -->

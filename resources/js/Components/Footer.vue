@@ -4,7 +4,7 @@
             class="flex flex-col border-t-2 bg-[#424242] text-gray-50 to-transparent"
         >
             <div
-                class="flex justify-between gap-10 py-20 px-64 bg-primary bg-[url('@/assets/images/dots.png')] bg-cover"
+                class="flex justify-between gap-10 py-20 px-64 bg-primary bg-[url('/assets/images/dots.png')] bg-cover"
             >
                 <nav>
                     <h5 class="font-bold text-2xl mb-8">Produk Kami</h5>
@@ -38,13 +38,13 @@
                 <nav>
                     <h5 class="font-bold text-2xl mb-8">SOCIAL MEDIA</h5>
                     <div class="flex gap-5 mb-3">
-                        <a
+                        <Link
                             target="_blank"
                             :class="classNames[sos.type]"
                             v-for="(sos, index) in Socmed"
                             :href="sos.link"
                             ><i :class="icons[sos.type]"></i>
-                        </a>
+                        </Link>
                     </div>
                     <p class="text-lg max-w-sm">
                         Jangan ragu untuk berkonsultasi dan tanya kami! Kami

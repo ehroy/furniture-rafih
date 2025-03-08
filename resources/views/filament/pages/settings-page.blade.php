@@ -1,4 +1,4 @@
-<x-filament::page>
+<x-filament::page class="">
     <form wire:submit.prevent="submit">
         {{ $this->form }}
 

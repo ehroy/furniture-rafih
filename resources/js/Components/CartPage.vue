@@ -55,19 +55,19 @@
                         >
                             Warna :
 
-                            <Link
-                                :style="{
-                                    backgroundColor:
-                                        item.selectedColor.code_palete ||
-                                        'Tidak ada',
-                                }"
-                                class="w-4 h-4 rounded-full border-2 mt-1 inline-block"
-                            ></Link>
+                            <p 
+                            :class="
+                                item.selectedColor
+                                    ? item.selectedColor.code_palete
+                                    : 'bg-gray-200'
+                            "
+                                class="w-4 h-4 rounded-full border-2 mt-1 inline-block mx-2"
+                            ></p>
                         </p>
 
                         <p>
                             Jenis Kayu:
-                            {{ item.selectedColor.name || "Tidak ada" }}
+                            {{ item.selectedWoods.name || "Tidak ada" }}
                         </p>
                     </div>
                     <!-- Kontrol Jumlah Produk -->
