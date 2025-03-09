@@ -246,7 +246,7 @@
                             <button
                                 v-for="(group, index) in uniqueColors"
                                 :key="index"
-                                class="w-8 h-8 rounded-full border-2 bg-blue-500"
+                                class="w-8 h-8 rounded-full border-2"
                                 :class="[
                                     group.color.code_palete,
                                     selectedColor === group.color.name
@@ -436,7 +436,7 @@
                             Serupa
                         </h3>
                         <div
-                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mb-10 mt-5 mx-10"
+                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mb-10 mt-5 mx-10 text-center"
                         >
                             <div
                                 class="rounded-lg hover:border p-2"
@@ -482,21 +482,25 @@
                                 </div>
                                 <template v-if="product.variants.length > 1">
                                     <!-- Jika produk memiliki lebih dari 1 variant, gunakan Link ke halaman detail -->
-                                    <Link
-                                        :href="'/product/' + product.slug"
-                                        class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
-                                    >
-                                        DETAILS
-                                    </Link>
+                                    <div class="m-4 p-4 hover:bg-gray-100">
+                                        <Link
+                                            :href="'/product/' + product.slug"
+                                            class="flex-1 p-2 md:p-3 text-center md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus"
+                                        >
+                                            DETAILS
+                                        </Link>
+                                    </div>
                                 </template>
                                 <template v-else>
                                     <!-- Jika hanya 1 variant, tetap gunakan button untuk addToCart -->
-                                    <button
-                                        @click="addToCart(product)"
-                                        class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
-                                    >
-                                        ADD TO CART
-                                    </button>
+                                    <div class="m-4 p-4 hover:bg-gray-100">
+                                        <button
+                                            @click="addToCart(product)"
+                                            class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline transition mdi mdi-cart-plus hover:bg-gray-100"
+                                        >
+                                            ADD TO CART
+                                        </button>
+                                    </div>
                                 </template>
                             </div>
                         </div>
@@ -603,6 +607,7 @@ const uniqueColors = computed(() => {
         }
         grouped[variant.color.id].woods.push(variant.wood);
     });
+    console.log(grouped);
     return Object.values(grouped);
 });
 </script>

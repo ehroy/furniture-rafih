@@ -52,8 +52,8 @@
 import { inject, onMounted, ref } from "vue";
 
 const props = defineProps({
-    Products: Object,
     Global: Object,
+    Products: Array, // Perbaikan tipe data
 });
 
 const helpers = inject("helpers");
@@ -62,42 +62,41 @@ const randomProduct = ref({});
 
 const startOrderPopup = () => {
     const showRandomPopup = () => {
-        if (props.Products.length > 0) {
-            const lastPopupTime = localStorage.getItem("lastPopupTime");
-            const now = Date.now();
+        const data = props.Products || [];
+        if (data.length === 0) return; // Pastikan produk ada
 
-            // Jika belum pernah muncul atau sudah lebih dari X jam, maka tampilkan
-            const minWaitTime = 1 * 60 * 60 * 1000; // 1 jam
-            const maxWaitTime = 12 * 60 * 60 * 1000; // 12 jam
+        const lastPopupTime = localStorage.getItem("lastPopupTime");
+        const now = Date.now();
+        const minWaitTime = 1 * 60 * 60 * 1000; // 1 jam
+        const maxWaitTime = 12 * 60 * 60 * 1000; // 12 jam
 
-            if (!lastPopupTime || now - lastPopupTime > minWaitTime) {
-                const randomIndex = Math.floor(
-                    Math.random() * props.Products.length
-                );
-                randomProduct.value = props.Products[randomIndex]; // Pilih produk acak
-                showOrderPopup.value = true;
+        if (!lastPopupTime || now - lastPopupTime > minWaitTime) {
+            const randomIndex = Math.floor(Math.random() * data.length);
+            randomProduct.value = data[randomIndex];
+            showOrderPopup.value = true;
 
-                setTimeout(() => {
-                    showOrderPopup.value = false;
-                }, 3000);
+            setTimeout(() => {
+                showOrderPopup.value = false;
+            }, 3000);
 
-                // Simpan waktu terakhir muncul ke localStorage
-                localStorage.setItem("lastPopupTime", now);
-            }
+            localStorage.setItem("lastPopupTime", now);
+        }
 
-            // Atur waktu acak untuk popup berikutnya
-            const randomTime = Math.floor(
-                Math.random() * (maxWaitTime - minWaitTime) + minWaitTime
-            );
+        const randomTime = Math.floor(
+            Math.random() * (maxWaitTime - minWaitTime) + minWaitTime
+        );
 
-            setTimeout(showRandomPopup, randomTime); // Panggil ulang dengan waktu acak
+        if (data.length > 0) {
+            setTimeout(showRandomPopup, randomTime); // Pastikan tetap berjalan jika produk ada
         }
     };
 
-    showRandomPopup(); // Jalankan pertama kali
+    showRandomPopup();
 };
 
 onMounted(() => {
-    startOrderPopup();
+    if (props.Products?.length > 0) {
+        startOrderPopup();
+    }
 });
 </script>

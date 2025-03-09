@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Color;
+use App\Models\ProductVariant;
+use App\Models\Wood;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +18,8 @@ class ProductCategory extends Seeder
      */
     public function run()
     {
+        $allWoods = Wood::all();
+        $allColors = Color::all();
         $furniture = [
             "Living Room" => [
                 "Seating" => [
@@ -162,7 +167,8 @@ class ProductCategory extends Seeder
                 ]
             ]
         ];
-
+        $woods = Wood::all();
+        $colors = Color::all();
         foreach ($furniture as $category => $subcategories) {
             $makeCategory = new \App\Models\Category();
             $makeCategory->name = $category;
@@ -204,6 +210,18 @@ class ProductCategory extends Seeder
                 Sed molestie tempus feugiat. Vivamus et orci non ligula posuere tincidunt. Suspendisse dapibus finibus sodales. Aenean tincidunt quam enim, vel suscipit eros efficitur varius. Cras faucibus urna et libero condimentum lacinia. Duis malesuada risus lectus, eu ultricies lorem dignissim a. Suspendisse gravida ante suscipit est euismod sagittis.';
 
                 $product->save();
+                foreach ($woods as $wood) {
+                    foreach ($colors as $color) {
+                        $statusvariant = ProductVariant::create([
+                            'product_id' => $product->id,
+                            'wood_id' => $wood->id,
+                            'color_id' => $color->id,
+                            'price' => rand(500000, 5000000), // Harga random
+                            'stock' => rand(1, 50) // Stok random
+                        ]);
+                        echo "[{$statusvariant}] .................................. OK \n";
+                    }
+                }
                 }
             }
           

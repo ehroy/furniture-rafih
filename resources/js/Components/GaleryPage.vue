@@ -108,6 +108,7 @@ defineProps({
     Categories: Object,
     Gallery: Object,
     Global: Object,
+    Products: Object,
 });
 </script>
 

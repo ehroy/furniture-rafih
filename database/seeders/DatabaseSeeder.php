@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Color;
+use App\Models\Wood;
 use Database\Seeders\ProductRecommend;
 use Database\Seeders\Testimoni;
 use Illuminate\Database\Seeder;
@@ -51,10 +54,20 @@ class DatabaseSeeder extends Seeder
                 );
            }
         }
-
+        $this->call(VariantSeeder::class);
         $this->call(ProductCategory::class);
         $this->call(Testimoni::class);
         $this->call(ProductRecommend::class);
-        $this->call(VariantSeeder::class);
+        $this->call(ShieldSeeder::class);
+        \App\Models\User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456789'), // Ganti dengan password yang diinginkan
+        ])->assignRole('super_admin');
+        
+       
+
+        
     }
 }

@@ -36,8 +36,8 @@
             </div>
         </div>
         <div class="text-center px-5 py-5">
-            <b>&copy; NAME FURNITURE</b> |
-            <i class="italic">Bawu Batealit, Jepara, Jawa Tengah</i>
+            <b>&copy; TERATAI FURNITURE</b> |
+            <i class="italic">Langon tahunan, Jepara, Jawa Tengah</i>
         </div>
 
         <CategoryPage
@@ -58,6 +58,7 @@
             :Gallery="Gallery"
             :Global="Global"
             :Categories="Categories"
+            :Products="Products"
         />
         <Testimonial :Testimonials="Testimonials" />
         <Footer :Global="Global" :Socmed="Socmed" :Pages="Pages" />
@@ -71,7 +72,6 @@ import Navbar from "../Components/Navbar.vue";
 import CategoryPage from "../Components/CategoryPage.vue";
 import Testimonial from "../Components/Testimonial.vue";
 import ProductPage from "../Components/ProductPage.vue";
-import RecommendedPage from "../Components/RecommendedPage.vue";
 import GaleryPage from "../Components/GaleryPage.vue";
 import Footer from "../Components/Footer.vue";
 import JustHead from "../Components/JustHead.vue";

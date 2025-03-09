@@ -20,11 +20,11 @@ class VariantSeeder extends Seeder
 
         // Data untuk tabel color
         $colors = [
-            ['name' => 'Merah', 'code_palete' => '#FF0000'],
-            ['name' => 'Biru', 'code_palete' => '#0000FF'],
-            ['name' => 'Hijau', 'code_palete' => '#008000'],
-            ['name' => 'Kuning', 'code_palete' => '#FFFF00'],
-            ['name' => 'Hitam', 'code_palete' => '#000000'],
+            ['name' => 'Merah', 'code_palete' => 'bg-[#FF0000]'],
+            ['name' => 'Biru', 'code_palete' => 'bg-[#0000FF]'],
+            ['name' => 'Hijau', 'code_palete' => 'bg-[#008000]'],
+            ['name' => 'Kuning', 'code_palete' => 'bg-[#FFFF00]'],
+            ['name' => 'Hitam', 'code_palete' => 'bg-[#000000]'],
         ];
 
         // Insert data ke database
