@@ -58,6 +58,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductCategory::class);
         $this->call(Testimoni::class);
         $this->call(ProductRecommend::class);
+        $this->call(OrderSeeder::class);
+
         // $this->call(ShieldSeeder::class);
         // \App\Models\User::factory()->create([
         //     'name' => 'admin',

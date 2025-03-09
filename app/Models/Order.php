@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\OrderItem; // ✅ Tambahkan namespace yang benar
 
 class Order extends Model
 {
@@ -19,6 +20,7 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
     protected $casts = [
         'confirmed_at' => 'datetime',
         'processed_at' => 'datetime',

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class OrderItem extends Model
 {
     use HasFactory;
-    protected $fillable = ['order_id', 'product_name', 'quantity', 'price'];
 
-    public function order()
+    protected $fillable = ['order_id', 'product_id', 'quantity', 'price'];
+
+    public function product()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Product::class);
     }
 }

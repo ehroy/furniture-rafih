@@ -1,9 +1,9 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
@@ -40,14 +40,16 @@ class OrderSeeder extends Seeder
             ]);
 
             $totalPrice = 0;
-            foreach (range(1, rand(1, 5)) as $itemIndex) {
-                $price = $faker->numberBetween(50000, 200000);
+            $products = Product::inRandomOrder()->limit(rand(1, 5))->get(); // Ambil produk acak dari database
+
+            foreach ($products as $product) {
+                $price = $product->price; // Gunakan harga dari produk
                 $quantity = $faker->numberBetween(1, 3);
                 $totalPrice += $price * $quantity;
 
                 OrderItem::create([
                     'order_id' => $order->id,
-                    'product_name' => $faker->word,
+                    'product_id' => $product->id, // Simpan product_id, bukan nama produk acak
                     'quantity' => $quantity,
                     'price' => $price,
                 ]);
