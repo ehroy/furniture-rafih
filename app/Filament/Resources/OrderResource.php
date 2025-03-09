@@ -14,6 +14,7 @@ class OrderResource extends Resource
     
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart'; // Icon di sidebar
     protected static ?string $navigationGroup = 'E-Commerce'; // Bisa disesuaikan
+    
 
     public static function form(Forms\Form $form): Forms\Form
     {
@@ -46,6 +47,14 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('status')->sortable(),
                 Tables\Columns\TextColumn::make('total_price')->sortable(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime(),
+
+                // Menampilkan daftar produk dalam satu kolom
+                Tables\Columns\TextColumn::make('items.product.name')
+                    ->label('Products')
+                    ->formatStateUsing(fn ($record) => $record->items->pluck('product.name')->join(', '))
+                    ->sortable()
+                    ->searchable(),
+                
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
@@ -65,6 +74,7 @@ class OrderResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
+
 
     public static function getRelations(): array
     {

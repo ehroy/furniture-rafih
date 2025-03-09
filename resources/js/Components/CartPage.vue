@@ -106,7 +106,7 @@
                     >Email:</label
                 >
                 <input
-                    v-model="email"
+                    v-model="form.email"
                     type="email"
                     placeholder="Masukkan email Anda"
                     class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-amber-300"
@@ -139,8 +139,9 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
-import { ref, onMounted, computed, inject } from "vue";
+import { Link, useForm } from "@inertiajs/vue3";
+import { ref, onMounted, computed, inject, watch } from "vue";
+
 const helpers = inject("helpers");
 const cart = ref([]);
 const email = ref("");
@@ -155,21 +156,25 @@ onMounted(() => {
     }
 });
 
-// Format harga rupiah
+// Simpan kembali ke localStorage secara otomatis saat cart berubah
+watch(cart, (newCart) => {
+    localStorage.setItem("cart", JSON.stringify(newCart));
+}, { deep: true });
+
+// Format harga rupiah dengan keamanan nilai
 const formatRupiah = (value) => {
+    if (!value) return "0";
     return value.toLocaleString("id-ID");
 };
 
 // Hapus produk dari keranjang
 const removeFromCart = (index) => {
     cart.value.splice(index, 1);
-    saveCart();
 };
 
 // Tambah jumlah produk
 const increaseQuantity = (index) => {
     cart.value[index].quantity += 1;
-    saveCart();
 };
 
 // Kurangi jumlah produk
@@ -179,41 +184,55 @@ const decreaseQuantity = (index) => {
     } else {
         removeFromCart(index);
     }
-    saveCart();
-};
-
-// Simpan kembali ke localStorage
-const saveCart = () => {
-    localStorage.setItem("cart", JSON.stringify(cart.value));
 };
 
 // Hitung total harga
 const totalPrice = computed(() =>
-    cart.value.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    cart.value.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0)
 );
 
-// Simulasi Checkout
+// Validasi email menggunakan regex
+const isValidEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+};
+
+// Gunakan useForm dari Inertia.js
+const form = useForm({
+    email: "",
+    cart: [],
+});
+
+// Simulasi Checkout & Kirim ke Controller
 const checkout = () => {
-    if (!email.value) {
+    if (!form.email || !isValidEmail(form.email)) {
         emailError.value = true;
         return;
     }
 
     emailError.value = false;
-    showToast.value = true; // Tampilkan toast
 
-    // Sembunyikan toast setelah 3 detik
-    setTimeout(() => {
-        showToast.value = false;
-    }, 3000);
+    // Kirim data ke Laravel controller
+    form.cart = cart.value;
+    form.post("/cart", {
+        onSuccess: () => {
+            showToast.value = true; // Tampilkan toast
 
-    // Kosongkan keranjang
-    localStorage.removeItem("cart");
-    cart.value = [];
-    email.value = "";
+            setTimeout(() => {
+                showToast.value = false;
+            }, 3000);
+
+            // Kosongkan keranjang setelah berhasil checkout
+            localStorage.removeItem("cart");
+            cart.value = [];
+            form.email = "";
+        },
+        onError: (errors) => {
+            console.error("Checkout failed:", errors);
+        },
+    });
 };
 </script>
-
 <style>
 /* Animasi Fade */
 .fade-enter-active,

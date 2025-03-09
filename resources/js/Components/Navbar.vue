@@ -43,13 +43,13 @@
         </div>
         <header class="flex justify-between items-center px-4">
             <div class="flex items-center gap-2">
-                <a href="/">
+                <Link href="/">
                     <img
                         src="/logofix.png"
                         alt="teratai furniture"
                         class="w-10 h-10 object-cover rounded-full"
                     />
-                </a>
+                </Link>
                 <span
                     class="font-bold text-xl text-[#424242] poppins-bold inline"
                 >
@@ -147,18 +147,18 @@
         >
             <!-- Menu Kiri -->
             <div class="flex gap-6">
-                <a
+                <Link
                     href="/products"
                     class="flex flex-col items-center hover:text-black"
                 >
                     <i class="mdi mdi-cube-outline text-xl"></i>
                     <span class="text-xs">Product</span>
-                </a>
+                </Link>
                 <div class="relative" @click="toggleDropdown">
-                    <a class="flex flex-col items-center hover:text-black">
+                    <button class="flex flex-col items-center hover:text-black">
                         <i class="mdi mdi-tag-multiple text-xl"></i>
                         <span class="text-xs">Category</span>
-                    </a>
+                    </button>
                     <div
                         v-if="isOpen"
                         class="absolute bottom-12 w-40 bg-white rounded-lg shadow-md"
@@ -219,7 +219,6 @@
             <img
                 src="/logofix.png"
                 alt="teratai furniture"
-                href="/"
                 class="w-10 h-10 object-cover rounded-full"
             />
             <span class="font-bold text-l text-[#424242] poppins-bold inline">

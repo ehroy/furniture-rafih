@@ -64,12 +64,14 @@ class ProductResource extends Resource
                             Forms\Components\Select::make('wood_id')
                                 ->label('Kayu')
                                 ->options(Wood::pluck('name', 'id'))
+                                ->default(fn ($record) => $record?->wood_id)
                                 ->required()
                                 ->columnSpan(2), // 2 dari 6 kolom
                             
                             Forms\Components\Select::make('color_id')
                                 ->label('Warna')
                                 ->options(Color::pluck('name', 'id'))
+                                ->default(fn ($record) => $record?->color_id)
                                 ->required()
                                 ->columnSpan(2),
 

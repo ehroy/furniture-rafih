@@ -12,6 +12,8 @@ use App\Models\SubCategory;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Helpers\SettingsHelper;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\RedirectResponse;
 
 class JustOrangeController extends Controller
@@ -187,6 +189,46 @@ class JustOrangeController extends Controller
             return Inertia::location(url('/'));
         }
     }
+    public function checkout(Request $request)
+    {
+        // dd($request);
+        $request->validate([
+            'email' => 'required|email',
+            'cart' => 'required|array',
+            'cart.*.name' => 'required|string',
+            'cart.*.price' => 'required|numeric',
+            'cart.*.quantity' => 'required|integer|min:1',
+            'cart.*.selectedColor.name' => 'nullable|string',
+            'cart.*.selectedWoods.name' => 'nullable|string',
+        ]);
+
+        // Simpan data order
+        $order = Order::create([
+            'order_number' => 'ORD-' . strtoupper(uniqid()),
+            'buyer_email' => $request->email,
+            'total_price' => collect($request->cart)->sum(fn($item) => $item['price'] * $item['quantity']),
+            'shipping_address' => "jln cuy",
+        ]);
+
+        // Simpan item order
+        foreach ($request->cart as $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $item['id'],
+                'quantity' => $item['quantity'],
+                'price' => $item['price']
+            ]);
+        }
+        return redirect()->route('cart.success', ['order_id' => $order->id]);
+
+    }
+    public function checkoutSuccess($order_number)
+    {
+        $data['order'] = Order::with('items.product')->where('order_number', $order_number)->firstOrFail();
+        $data['Global'] = $this->Global;
+        return Inertia::render('CheckoutSuccess', $data);
+    }
+
 
     public function linker()
     {

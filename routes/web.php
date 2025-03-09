@@ -28,5 +28,7 @@ Route::get('/rdr/{label}',[JustOrangeController::class , 'redirector']);
 Route::get('/cart', function () {
     return Inertia::render('cart');
 });
+Route::post('/cart', [JustOrangeController::class, 'checkout']);
+Route::get('/cart/success/{order_number}', [JustOrangeController::class, 'checkoutSuccess'])->name('cart.success');
 Route::get('/galery', [JustOrangeController::class, 'getGallery'])->name('galery');;
 

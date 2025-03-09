@@ -59,6 +59,7 @@ class AppServiceProvider extends ServiceProvider
         }
         
         Filament::registerNavigationGroups([
+            'E-Commerce',
             'Product & Category',
             'Product Variants',
             'General Settings',

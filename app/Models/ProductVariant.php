@@ -24,12 +24,12 @@ class ProductVariant extends Model
     {
         return $this->belongsTo(Color::class);
     }
-    protected $hidden = [
-        'id',
-        'product_id',
-        'wood_id',
-        'color_id',
-        'updated_at',
-        'created_at'
-    ];
+    // protected $hidden = [
+    //     'id',
+    //     'product_id',
+    //     'wood_id',
+    //     'color_id',
+    //     'updated_at',
+    //     'created_at'
+    // ];
 }
