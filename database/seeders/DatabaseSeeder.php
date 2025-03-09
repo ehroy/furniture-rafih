@@ -58,13 +58,13 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductCategory::class);
         $this->call(Testimoni::class);
         $this->call(ProductRecommend::class);
-        $this->call(ShieldSeeder::class);
-        \App\Models\User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('123456789'), // Ganti dengan password yang diinginkan
-        ])->assignRole('super_admin');
+        // $this->call(ShieldSeeder::class);
+        // \App\Models\User::factory()->create([
+        //     'name' => 'admin',
+        //     'email' => 'admin@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => bcrypt('123456789'), // Ganti dengan password yang diinginkan
+        // ])->assignRole('super_admin');
         
        
 

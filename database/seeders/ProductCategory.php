@@ -197,7 +197,7 @@ class ProductCategory extends Seeder
                 $product->slug = Str::slug($product);
                 $product->price = rand(0,5000000);
                 $product->views = rand(0,100);
-                $product->recomended = false;
+                $product->recomended = true;
                 $product->active = true;
                 $product->content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus eros non lobortis aliquet. Suspendisse ullamcorper commodo luctus. Vestibulum quis est nec felis fringilla pellentesque. Nullam blandit urna nec diam semper aliquam. Nunc nec tortor sit amet mi interdum porta non ut dui. Proin nibh turpis, pellentesque elementum est in, pellentesque ultrices ipsum. Proin porta aliquam enim, vitae venenatis mauris pretium eu. Phasellus nec libero feugiat, posuere diam vel, ornare tellus. Praesent eget nisl libero. Duis non elit gravida, viverra tellus non, commodo libero. In risus sapien, pharetra sit amet cursus sed, molestie quis metus. Morbi congue odio odio, quis dapibus risus dignissim in. Quisque vel dui at lorem blandit venenatis a et leo. Phasellus sed lacinia eros, sit amet porta dui.
 
