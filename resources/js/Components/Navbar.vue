@@ -46,7 +46,7 @@
                 <a href="/">
                     <img
                         src="/logofix.png"
-                        alt="LOGO"
+                        alt="teratai furniture"
                         class="w-10 h-10 object-cover rounded-full"
                     />
                 </a>
@@ -146,7 +146,7 @@
             class="relative flex items-center justify-between rounded-lg px-6 py-2 w-full md:hidden text-[#424242]"
         >
             <!-- Menu Kiri -->
-            <div class="flex gap-1">
+            <div class="flex gap-6">
                 <a
                     href="/products"
                     class="flex flex-col items-center hover:text-black"
@@ -218,7 +218,7 @@
         <div class="flex items-center space-x-2">
             <img
                 src="/logofix.png"
-                alt="LOGO"
+                alt="teratai furniture"
                 href="/"
                 class="w-10 h-10 object-cover rounded-full"
             />
