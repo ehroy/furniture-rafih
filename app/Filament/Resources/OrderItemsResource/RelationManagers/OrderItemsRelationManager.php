@@ -8,33 +8,35 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Models\OrderItem;
+use App\Models\Product;
 
 class OrderItemsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'items'; // Sesuaikan dengan relasi di Order.php
-
-    public function form(Forms\Form $form): Forms\Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('product_id')
-                    ->required(),
-                Forms\Components\TextInput::make('quantity')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('price')
-                    ->required()
-                    ->numeric(),
-            ]);
-    }
+    protected static string $relationship = 'items'; // Pastikan ini sesuai dengan relasi di Order.php
 
     public function table(Tables\Table $table): Tables\Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('product_id')->label('Product ID'),
-                Tables\Columns\TextColumn::make('quantity')->label('Quantity'),
-                Tables\Columns\TextColumn::make('price')->label('Price'),
+                // Menampilkan nama produk, bukan ID
+                Tables\Columns\TextColumn::make('product.name')
+                    ->label('Product Name')
+                    ->sortable()
+                    ->searchable(),
+
+                // Menampilkan gambar produk
+                Tables\Columns\ImageColumn::make('product.image')
+                    ->label('Product Image')
+                    ->circular(), // Bisa dihapus jika ingin bentuk biasa
+
+                Tables\Columns\TextColumn::make('quantity')
+                    ->label('Quantity')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('price')
+                    ->label('Price')
+                    ->money('IDR') // Sesuaikan dengan mata uang
+                    ->sortable(),
             ])
             ->filters([
                 //
