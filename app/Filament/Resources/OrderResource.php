@@ -4,9 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
 use App\Models\Order;
+use Carbon\Carbon;
 use Filament\Resources\Resource;
 use Filament\Forms;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 
 class OrderResource extends Resource
 {
@@ -65,6 +67,22 @@ class OrderResource extends Resource
                         'completed' => 'Completed',
                         'cancelled' => 'Cancelled',
                     ]),
+                SelectFilter::make('Waktu')
+                    ->options([
+                        'today' => 'Hari Ini',
+                        '7days' => '7 Hari Terakhir',
+                        '30days' => '30 Hari Terakhir',
+                    ])
+                    ->query(function ($query, $data) {
+                        if ($data === 'today') {
+                            return $query->whereDate('created_at', Carbon::today());
+                        } elseif ($data === '7days') {
+                            return $query->whereBetween('created_at', [Carbon::now()->subDays(7), Carbon::now()]);
+                        } elseif ($data === '30days') {
+                            return $query->whereBetween('created_at', [Carbon::now()->subDays(30), Carbon::now()]);
+                        }
+                        return $query;
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

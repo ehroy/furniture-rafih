@@ -4,7 +4,7 @@
             class="flex flex-col border-t-2 bg-[#424242] text-gray-50 to-transparent"
         >
             <div
-                class="flex justify-between gap-10 py-20 px-64 bg-primary bg-[url('/assets/images/dots.png')] bg-cover"
+                class="flex justify-between gap-10 py-20 px-64 bg-primary bg-[url('/public/assets/images/dots.png')] bg-cover"
             >
                 <nav>
                     <h5 class="font-bold text-2xl mb-8">Produk Kami</h5>

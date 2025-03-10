@@ -26,7 +26,7 @@
                     class="flex items-center bg-gray-100 rounded-lg p-4 shadow-sm"
                 >
                     <img
-                        :src="item.product.image_url"
+                        :src="item.product.image"
                         alt="Produk"
                         class="w-20 h-20 object-cover rounded-lg border border-gray-300"
                     />

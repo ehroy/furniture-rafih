@@ -262,7 +262,7 @@
                             <label class="block text-gray-700 font-bold mb-2"
                                 >Pilih Kayu:</label
                             >
-                            <div class="flex space-x-2">
+                            <div class="flex space-x-2 w-full overflow-auto">
                                 <button
                                     v-for="(wood, index) in uniqueColors.find(
                                         (c) => c.color.name === selectedColor
@@ -383,40 +383,6 @@
                                     v-show="showContent"
                                     v-html="product.content"
                                 ></div>
-                                <!-- <div class="border mt-4 p-4">
-                                    <h3 class="text-md font-semibold">
-                                        MATERIAL
-                                    </h3>
-                                    <table
-                                        class="w-full text-left mt-2 border-t"
-                                    >
-                                        <tbody>
-                                            <tr>
-                                                <td class="py-1 font-medium">
-                                                    Back frame
-                                                </td>
-                                                <td class="py-1">
-                                                    Particleboard, Plywood,
-                                                    Polyurethane foam 20
-                                                    kg/cu.m., Fibreboard, Solid
-                                                    wood
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="py-1 font-medium">
-                                                    Seat frame
-                                                </td>
-                                                <td class="py-1">
-                                                    100% polypropylene,
-                                                    Polyurethane foam 35
-                                                    kg/cu.m., Solid wood,
-                                                    Polyester/recycled fibre
-                                                    wadding
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> -->
                             </div>
                             <!-- <div v-if="activeTab === 1">
                                 Additional information content...

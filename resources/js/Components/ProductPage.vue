@@ -158,8 +158,7 @@
                                 ></i>
                             </div>
                         </div>
-
-                        <template v-if="product.variants.length > 1">
+                        <template v-if="product.variants.length > 0">
                             <!-- Jika produk memiliki lebih dari 1 variant, gunakan Link ke halaman detail -->
                             <Link
                                 :href="'/product/' + product.slug"

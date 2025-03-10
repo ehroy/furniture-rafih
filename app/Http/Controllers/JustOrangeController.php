@@ -219,7 +219,7 @@ class JustOrangeController extends Controller
                 'price' => $item['price']
             ]);
         }
-        return redirect()->route('cart.success', ['order_id' => $order->id]);
+        return redirect()->route('cart.success', ['order_number' => $order->order_number]);
 
     }
     public function checkoutSuccess($order_number)

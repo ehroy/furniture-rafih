@@ -2,7 +2,6 @@
     <div>
         <JustHead :Global="Global" :title="'Produk Kami'" />
         <Navbar :Categories="Categories" />
-        <br /><br /><br />
         <ProductPage
             :Products="Products"
             :HeadTitle="HeadTitle"
