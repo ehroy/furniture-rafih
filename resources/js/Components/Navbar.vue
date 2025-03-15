@@ -45,7 +45,7 @@
             <div class="flex items-center gap-2">
                 <Link aria-label="Icons" href="/">
                     <img
-                        src="/logofix.png"
+                        src="/logofix.webp"
                         alt="teratai furniture"
                         class="w-10 h-10 object-cover rounded-full"
                     />
@@ -228,7 +228,7 @@
         <!-- Logo & Nama Brand -->
         <div class="flex items-center space-x-2">
             <img
-                src="/logofix.png"
+                src="/logofix.webp"
                 alt="teratai furniture"
                 class="w-10 h-10 object-cover rounded-full"
             />
