@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     @php $setting = \App\Helpers\SettingsHelper::getSettings(); @endphp
     <meta charset="utf-8" />
