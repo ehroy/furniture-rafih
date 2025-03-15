@@ -28,7 +28,7 @@
                 </nav>
 
                 <nav>
-                    <h5 class="font-bold text-2xl mb-8">HALAMAN</h5>
+                    <h1 class="font-bold text-2xl mb-8">HALAMAN</h1>
                     <ul class="flex flex-col gap-3">
                         <li><Link href="/about-us">Tentang Kami</Link></li>
                         <li><Link href="/linker">Hubungi Kami</Link></li>
@@ -36,7 +36,7 @@
                 </nav>
 
                 <nav>
-                    <h5 class="font-bold text-2xl mb-8">SOCIAL MEDIA</h5>
+                    <h1 class="font-bold text-2xl mb-8">SOCIAL MEDIA</h1>
                     <div class="flex gap-5 mb-3">
                         <Link
                             v-for="(sos, index) in Socmed"
