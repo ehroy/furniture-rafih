@@ -59,9 +59,9 @@
                         <div
                             class="p-4 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0"
                         >
-                            <h3 class="text-white font-medium text-lg">
+                            <h2 class="text-white font-medium text-lg">
                                 {{ image.products[0].name }}
-                            </h3>
+                            </h2>
                             <p class="text-white text-sm opacity-80">
                                 {{ image.description }}
                             </p>

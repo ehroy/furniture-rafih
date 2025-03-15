@@ -1,6 +1,7 @@
 <template>
     <div class="fixed right-4 z-50 bottom-20">
         <a
+            aria-label="whatsapp"
             :href="helpers.WaButton(Global, '/')"
             target="_blank"
             class="flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition"

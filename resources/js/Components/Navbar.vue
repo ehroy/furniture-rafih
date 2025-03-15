@@ -43,7 +43,7 @@
         </div>
         <header class="flex justify-between items-center px-4">
             <div class="flex items-center gap-2">
-                <Link href="/">
+                <Link aria-label="Icons" href="/">
                     <img
                         src="/logofix.png"
                         alt="teratai furniture"
@@ -62,10 +62,12 @@
                     class="flex justify-center gap-20 font-bold text-lg text-[#424242]"
                 >
                     <li class="hover:text-[#212121] hover:underline">
-                        <Link href="/">Home</Link>
+                        <Link aria-label="Home" href="/">Home</Link>
                     </li>
                     <li class="hover:text-[#212121] hover:underline">
-                        <Link href="/products">Product</Link>
+                        <Link aria-label="Product" href="/products"
+                            >Product</Link
+                        >
                     </li>
                     <li class="relative hover:text-[#212121]">
                         <button
@@ -90,6 +92,7 @@
                                 aria-labelledby="options-menu"
                             >
                                 <Link
+                                    aria-label="Category"
                                     class="block px-4 py-2 text-sm text-[#424242] hover:bg-[#424242] hover:text-[#F5F5F5]"
                                     role="menuitem"
                                     v-for="(cat, index) in Categories"
@@ -100,16 +103,19 @@
                         </div>
                     </li>
                     <li class="hover:text-[#212121] hover:underline">
-                        <Link href="/linker">Contact Us</Link>
+                        <Link aria-label="Contact Us" href="/linker"
+                            >Contact Us</Link
+                        >
                     </li>
                     <li class="hover:text-[#212121] hover:underline">
-                        <Link href="/galery">Gallery</Link>
+                        <Link aria-label="Galery" href="/galery">Gallery</Link>
                     </li>
                 </ul>
             </nav>
             <div class="flex items-center space-x-3">
                 <!-- Tombol Cart -->
                 <Link
+                    aria-label="Cart"
                     href="/cart"
                     class="relative flex items-center justify-center rounded-xl p-2 text-[#424242] transition"
                     type="button"
@@ -148,6 +154,7 @@
             <!-- Menu Kiri -->
             <div class="flex gap-6">
                 <Link
+                    aria-label="Product"
                     href="/products"
                     class="flex flex-col items-center hover:text-black"
                 >
@@ -184,6 +191,7 @@
             <!-- Tombol Home (Oracle Style) -->
             <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
                 <Link
+                    aria-label="Home"
                     href="/"
                     class="bg-gradient-to-r bg-[#565656] text-gray-100 p-4 rounded-full shadow-lg hover:scale-110 transition duration-300 border-2 border-gray-100"
                 >
@@ -194,6 +202,7 @@
             <!-- Menu Kanan -->
             <div class="flex gap-6">
                 <Link
+                    aria-label="Linker"
                     href="/linker"
                     class="flex flex-col items-center hover:text-black"
                 >
@@ -201,6 +210,7 @@
                     <span class="text-xs">Contact</span>
                 </Link>
                 <Link
+                    aria-label="Galery"
                     href="/galery"
                     class="flex flex-col items-center hover:text-black"
                 >
@@ -231,6 +241,7 @@
             <!-- Cart -->
             <div class="relative">
                 <Link
+                    aria-label="Cart"
                     href="/cart"
                     class="flex items-center text-[#424242] hover:text-black"
                 >
@@ -247,6 +258,7 @@
             <!-- Search -->
             <button
                 class="flex items-center text-[#424242] hover:text-black"
+                aria-label="Search"
                 type="button"
                 role="button"
                 @click="toggleSearch"
@@ -265,7 +277,7 @@
                         <h1
                             class="text-3xl font-bold text-[#424242] animate-pulse"
                         >
-                            IA PROJECT
+                            TERATAI FURNITURE
                         </h1>
                     </div>
 
@@ -279,6 +291,7 @@
 
                     <!-- Tombol Search -->
                     <button
+                        aria-label="Search"
                         class="w-full bg-[#212121] rounded-lg mt-3 text-[#424242] p-3 font-bold hover:bg-[#212121]"
                         type="button"
                         @click="doSearch"

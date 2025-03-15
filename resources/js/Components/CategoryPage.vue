@@ -35,6 +35,7 @@
                 preserver-scroll
             >
                 <select
+                    aria-label="Select categori"
                     class="w-5/6 bg-transparent text-[#2E2E2E] border-0 border-b-2 border-b-[#2E2E2E] hover:border-b-600"
                     v-model="catModel"
                 >
@@ -55,7 +56,6 @@
                     </option>
                 </select>
             </div>
-
             <div
                 class="flex flex-wrap justify-center gap-2 md:items-center md:gap-10"
             >
@@ -71,9 +71,9 @@
                         <img
                             class="mb-3 w-20 md:w-48 rounded-full"
                             :src="helpers.imageUrl(sub.image)"
-                            :alt="sub.name"
+                            alt=""
                         />
-                        <h4 class="text-sm md:text-3xl">{{ sub.name }}</h4>
+                        <h1 class="text-sm md:text-3xl">{{ sub.name }}</h1>
                     </div>
                 </Link>
             </div>
