@@ -259,11 +259,17 @@
                                     ),
                                 }"
                                 @click="selectColor(group.color.name)"
-                            ></button>
+                            >
+                                <div>
+                                    <p class="mt-8 text-xs font-semibold">
+                                        {{ group.color.name }}
+                                    </p>
+                                </div>
+                            </button>
                         </div>
 
                         <!-- PILIH KAYU -->
-                        <div v-if="selectedColor" class="mt-4">
+                        <div v-if="selectedColor" class="mt-6">
                             <label class="block text-gray-700 font-bold mb-2"
                                 >Pilih Kayu:</label
                             >
@@ -288,7 +294,7 @@
                     </div>
 
                     <!-- Quantity Selector -->
-                    <div class="flex items-center mb-6 mt-4 gap-2">
+                    <div class="flex items-center mb-6 mt-6 gap-2">
                         <button
                             class="w-10 h-10 border border-gray-300 rounded-l flex items-center justify-center hover:bg-gray-100"
                             @click="decrementQuantity"
