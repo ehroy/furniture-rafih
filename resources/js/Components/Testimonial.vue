@@ -60,7 +60,7 @@
                 </div>
             </div>
             <div class="flex w-full absolute bottom-0">
-                <img src="/assets/images/bg-testimonials.png" alt="" />
+                <img src="/assets/images/bg-testimonials.webp" alt="" />
             </div>
         </section>
     </div>

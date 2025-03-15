@@ -1,7 +1,7 @@
 <template>
     <section class="relative w-full h-screen">
         <img
-            style="background-image: url('/assets/images/image_galery.jpeg')"
+            style="background-image: url('/assets/images/image_galery.webp')"
             alt="Furniture Showcase"
             class="absolute inset-0 w-full h-full object-cover"
         />
