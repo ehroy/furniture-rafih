@@ -104,7 +104,6 @@
                                 ></i>
                             </div>
                         </div>
-<<<<<<< HEAD
                         <div
                             class="flex items-center justify-center gap-2 md:gap-4 text-white w-full mb-4 mt-12"
                         >
@@ -129,27 +128,6 @@
                                 </button>
                             </template>
                         </div>
-=======
-
-                        <template v-if="product.variants.length > 0">
-                            <!-- Jika produk memiliki lebih dari 1 variant, gunakan Link ke halaman detail -->
-                            <Link
-                                :href="'/product/' + product.slug"
-                                class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline hover:text-[#2E2E2E] transition mdi mdi-cart-plus hover:bg-gray-100"
-                            >
-                                DETAILS
-                            </Link>
-                        </template>
-                        <template v-else>
-                            <!-- Jika hanya 1 variant, tetap gunakan button untuk addToCart -->
-                            <button
-                                @click="addToCart(product)"
-                                class="flex-1 p-2 md:p-3 text-center text-xs md:text-base font-semiboldhover:underline hover:text-[#2E2E2E] transition mdi mdi-cart-plus hover:bg-gray-100"
-                            >
-                                ADD TO CART
-                            </button>
-                        </template>
->>>>>>> 26e4a6b2261341edae63291fb127087f401d9aaf
                         <!-- ADD NOTIFKASI MESSAGE -->
                         <transition
                             enter-active-class="transform transition duration-500 ease-out"
