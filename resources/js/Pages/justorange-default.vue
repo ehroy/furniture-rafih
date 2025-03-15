@@ -7,7 +7,7 @@
             <!-- Background Image -->
             <img 
                 class="absolute inset-0 w-full h-full object-cover"
-                src="/assets/images/home.jpg"
+                src="/assets/images/home.webp"
                 alt="Hero background"
                 loading="lazy"
                 >
