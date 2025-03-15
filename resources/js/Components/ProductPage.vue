@@ -114,7 +114,7 @@
 
                     <div
                         v-if="product.recomended === 1"
-                        class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full m-1"
+                        class="absolute top-2 left-2 bg-red-700 text-white text-xs font-bold px-2 py-1 rounded-full m-1"
                     >
                         🔥 hot sale
                     </div>
@@ -132,11 +132,11 @@
                             class="flex flex-col md:flex-row md:justify-between items-center text-sm"
                         >
                             <Link :href="'/product/' + product.slug">
-                                <h4
+                                <h1
                                     class="font-normal text-lg hover:underline text-[#2E2E2E]"
                                 >
                                     {{ product.name }}
-                                </h4>
+                                </h1>
                             </Link>
                         </div>
                         <div class="flex flex-col-reverse">
