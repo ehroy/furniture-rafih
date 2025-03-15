@@ -134,6 +134,7 @@
 
                 <!-- Tombol Search -->
                 <button
+                    aria-label="Search"
                     class="flex items-center justify-center rounded-xl p-2 text-[#424242] transition"
                     type="button"
                     role="button"

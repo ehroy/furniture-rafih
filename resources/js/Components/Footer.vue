@@ -39,11 +39,14 @@
                     <h5 class="font-bold text-2xl mb-8">SOCIAL MEDIA</h5>
                     <div class="flex gap-5 mb-3">
                         <Link
-                            target="_blank"
-                            :class="classNames[sos.type]"
                             v-for="(sos, index) in Socmed"
+                            :key="index"
                             :href="sos.link"
-                            ><i :class="icons[sos.type]"></i>
+                            :target="'_blank'"
+                            :class="classNames[sos.type]"
+                            :aria-label="`Kunjungi ${sos.type}`"
+                        >
+                            <i :class="icons[sos.type]"></i>
                         </Link>
                     </div>
                     <p class="text-lg max-w-sm">
