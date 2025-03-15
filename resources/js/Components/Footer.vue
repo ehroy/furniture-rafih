@@ -7,7 +7,7 @@
                 class="flex justify-between gap-10 py-20 px-64 bg-primary bg-[url('/public/assets/images/dots.png')] bg-cover"
             >
                 <nav>
-                    <h5 class="font-bold text-2xl mb-8">Produk Kami</h5>
+                    <h1 class="font-bold text-2xl mb-8">Produk Kami</h1>
                     <ul class="flex flex-col gap-3">
                         <li>
                             <Link href="/products?filter=all"

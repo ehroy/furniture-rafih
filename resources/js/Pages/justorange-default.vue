@@ -5,13 +5,15 @@
 
         <div class="relative w-full h-screen flex justify-center items-center">
             <!-- Background Image -->
-            <div
-                class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style="background-image: url('/assets/images/home.jpg')"
-            >
+            <img 
+                class="absolute inset-0 w-full h-full object-cover"
+                src="/assets/images/home.jpg"
+                alt="Hero background"
+                loading="lazy"
+                >
                 <!-- Overlay -->
                 <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-            </div>
+            </img>
 
             <!-- Teks di atas background -->
             <div class="relative z-10 text-center text-white px-5">
