@@ -41,7 +41,7 @@
                 >
                     <option value="">
                         {{
-                            ActiveCat
+                            ActiveCat == null
                                 ? "Pilih Kategori"
                                 : Categories.find(
                                       (cat) => cat.name === ActiveCat
