@@ -4,7 +4,7 @@
             <!-- desktop -->
             <div class="hidden md:block">
                 <div
-                    class="flex justify-center items-center text-sm font-medium text-center text-[#2E2E2E] dark:text[#D4A373] dark:border-[#2E2E2E]"
+                    class="flex justify-center items-center text-md font-medium text-center text-[#2E2E2E] dark:text[#D4A373] dark:border-[#2E2E2E]"
                 >
                     <ul
                         class="flex flex-wrap -mb-px border-b-2 border-gray-300"
@@ -43,8 +43,9 @@
                         {{
                             ActiveCat == null
                                 ? "Pilih Kategori"
-                                : Categories.find((cat) => cat.id == ActiveCat)
-                                      ?.name
+                                : Categories.find(
+                                      (cat) => cat.name === ActiveCat
+                                  )?.name
                         }}
                     </option>
                     <option
@@ -56,26 +57,55 @@
                     </option>
                 </select>
             </div>
-            <div
-                class="flex flex-wrap justify-center gap-2 md:items-center md:gap-10"
-            >
-                <Link
-                    :href="'?cat=' + ActiveCat + '&sub=' + sub.id"
-                    v-for="(sub, index) in SubCategories"
-                    :key="index"
-                    preserve-scroll
+            <div class="relative w-full">
+                <!-- Tombol Navigasi -->
+                <button
+                    @click="prevSlide"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full"
                 >
-                    <div
-                        class="flex flex-col items-center hover:sepia cursor-pointer"
+                    ◀
+                </button>
+
+                <!-- Swiper Slider -->
+                <swiper
+                    ref="swiperRef"
+                    :modules="[Navigation]"
+                    :slides-per-view="slidesPerView"
+                    :space-between="10"
+                    class="w-full"
+                >
+                    <swiper-slide
+                        v-for="sub in SubCategories"
+                        :key="sub.id"
+                        class="w-32 md:w-48"
                     >
-                        <img
-                            class="mb-3 w-20 md:w-48 rounded-full"
-                            :src="helpers.imageUrl(sub.image)"
-                            alt=""
-                        />
-                        <h1 class="text-sm md:text-3xl">{{ sub.name }}</h1>
-                    </div>
-                </Link>
+                        <Link
+                            :href="'?cat=' + ActiveCat + '&sub=' + sub.id"
+                            preserve-scroll
+                        >
+                            <div
+                                class="flex flex-col items-center hover:sepia cursor-pointer"
+                            >
+                                <img
+                                    class="mb-3 w-24 h-24 md:w-48 md:h-48 object-cover rounded-full"
+                                    :src="helpers.imageUrl(sub.image)"
+                                    alt=""
+                                />
+                                <h1 class="text-sm md:text-xl text-center">
+                                    {{ sub.name }}
+                                </h1>
+                            </div>
+                        </Link>
+                    </swiper-slide>
+                </swiper>
+
+                <!-- Tombol Navigasi -->
+                <button
+                    @click="nextSlide"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full"
+                >
+                    ▶
+                </button>
             </div>
         </section>
     </div>
@@ -83,20 +113,42 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import { ref, watch } from "vue";
+import { ref, watch, inject, computed } from "vue";
 import { router } from "@inertiajs/vue3";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
 
+const swiperRef = ref(null);
+const ActiveCat = ref(null);
 defineProps({
     Categories: Object,
     SubCategories: Object,
     ActiveCat: String,
 });
 
-import { inject } from "vue";
 const helpers = inject("helpers");
 const catModel = ref("");
+const slidesPerView = computed(() => {
+    if (window.innerWidth >= 1024) return 4; // Desktop: 4 item
+    if (window.innerWidth >= 768) return 3; // Tablet: 3 item
+    return 3; // Mobile: 2 item
+});
+const prevSlide = () => {
+    swiperRef.value?.$el.swiper.slidePrev();
+};
 
+const nextSlide = () => {
+    swiperRef.value?.$el.swiper.slideNext();
+};
 watch(catModel, async () => {
     router.visit("?cat=" + catModel.value, { preserveScroll: true });
 });
 </script>
+<style scoped>
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</style>

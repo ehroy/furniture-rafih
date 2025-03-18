@@ -29,8 +29,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandLogo(asset('logofix.png'))
-            ->favicon(asset('logofix.png'))
+            ->brandLogo(asset('logofix.webp'))
+            ->favicon(asset('logofix.webp'))
             ->colors([
                 'primary' => '#1E90FF', 
             ])

@@ -29,7 +29,7 @@ class ProductResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $navigationGroup = 'Product & Category';
     protected static ?int $navigationSort = 1;
-
+    
     public static function form(Form $form): Form
     {
         return $form
@@ -37,25 +37,41 @@ class ProductResource extends Resource
             // Pilih Category
             Forms\Components\Section::make('Informasi Produk')
             ->schema([
-            Forms\Components\Grid::make(2) // Grid 2 kolom
+                Forms\Components\Grid::make(2) // Grid 2 kolom
+                
                 ->schema([
-                    // Pilihan Kategori dan Sub-Kategori
+                 
                     Forms\Components\Select::make('category_id')
                         ->label('Category')
                         ->options(Category::pluck('name', 'id'))
                         ->reactive()
                         ->required()
                         ->native(false)
-                        ->default(fn ($record) => $record?->category_id),
-
+                        ->default(fn ($record) => $record?->category_id)
+                        ->afterStateUpdated(function (callable $set, callable $get) {
+                            $categoryId = $get('category_id');
+                            $subCategoryId = $get('sub_category_id');
+                    
+                            // Jika sub_category_id tidak valid untuk kategori baru, reset
+                            $isValidSubCategory = SubCategory::where('category_id', $categoryId)
+                                ->where('id', $subCategoryId)
+                                ->exists();
+                    
+                            if (!$isValidSubCategory) {
+                                $set('sub_category_id', null);
+                            }
+                        }),
                     Forms\Components\Select::make('sub_category_id')
                         ->label('Sub Category')
                         ->options(fn (callable $get) => 
-                            SubCategory::where('category_id', $get('category_id'))->pluck('name', 'id')
+                            $get('category_id') 
+                                ? SubCategory::where('category_id', $get('category_id'))->pluck('name', 'id')
+                                : []
                         )
                         ->default(fn ($record) => $record?->sub_category_id)
                         ->required()
-                        ->native(false),
+                        ->native(false)
+                        ->reactive(),
                 ]),
 
             // Informasi Dasar Produk

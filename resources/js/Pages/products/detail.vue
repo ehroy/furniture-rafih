@@ -261,7 +261,12 @@
                                 @click="selectColor(group.color.name)"
                             >
                                 <div>
-                                    <p class="mt-8 text-xs font-semibold">
+                                    <p
+                                        v-if="
+                                            selectedColor === group.color.name
+                                        "
+                                        class="mt-8 text-xs font-semibold"
+                                    >
                                         {{ group.color.name }}
                                     </p>
                                 </div>
@@ -322,8 +327,8 @@
 
                     <!-- Action Buttons -->
                     <div class="space-y-3">
-                        <button
-                            class="w-full bg-gray-800 text-white font-medium py-3 rounded hover:bg-gray-700 transition-colors uppercase"
+                        <a
+                            class="w-full bg-gray-800 text-white font-medium py-3 rounded hover:bg-gray-700 transition-colors uppercase text-center block"
                             :href="
                                 helpers.WaButton(
                                     Global,
@@ -334,7 +339,7 @@
                         >
                             <i class="mdi mdi-whatsapp"></i>
                             {{ Global.Settings.action_button_text }}
-                        </button>
+                        </a>
 
                         <!-- Additional Options -->
                         <div class="flex flex-row gap-4 mt-4 text-center">
@@ -372,7 +377,7 @@
                                 <button
                                     v-for="(tab, index) in tabs"
                                     :key="index"
-                                    @click="showContent = !showContent"
+                                    @click="activeTab = index"
                                     :class="[
                                         activeTab === index
                                             ? 'border-b-2 border-black'
@@ -384,16 +389,16 @@
                                 </button>
                             </nav>
                         </div>
-
                         <div class="p-4">
                             <div v-if="activeTab === 0">
-                                <h2 class="text-lg font-semibold">
-                                    About this item
-                                </h2>
-                                <div
-                                    v-show="showContent"
-                                    v-html="product.content"
-                                ></div>
+                                <div v-html="product.content"></div>
+                            </div>
+                            <div v-if="activeTab === 1">
+                                <h1>
+                                    w : {{ product.width }} x d :
+                                    {{ product.depth }} x h :
+                                    {{ product.height }}
+                                </h1>
                             </div>
                             <!-- <div v-if="activeTab === 1">
                                 Additional information content...
@@ -532,7 +537,7 @@ onMounted(() => {
 });
 
 // Tabs Data
-const tabs = ref([{ name: "Description" }]);
+const tabs = ref([{ name: "Description" }, { name: "Dimension" }]);
 const activeTab = ref(0);
 
 // Fungsi Menambah dan Mengurangi Kuantitas

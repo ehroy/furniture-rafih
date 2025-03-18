@@ -15,83 +15,107 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 
 class ProductImport implements ToCollection
 {
+    protected $lastData = [
+        'category' => null,
+        'sub_category' => null,
+        'product' => null,
+        'wood' => null,
+        'color' => null,
+    ];
+
     public function collection(Collection $rows)
     {
-        // Lewati header
-        $rows->shift();
+        $rows->shift(); // Lewati header
 
         foreach ($rows as $row) {
             if (!$row[0]) continue; // Lewati jika tidak ada data
 
             Log::info('Processing Row:', [$row]);
 
+            // ✅ Gunakan data sebelumnya jika kosong
+            $categoryName = trim($row[1]) ?: $this->lastData['category']->name ?? null;
+            $subCategoryName = trim($row[2]) ?: $this->lastData['sub_category']->name ?? null;
+            $productName = trim($row[3]) ?: $this->lastData['product']->name ?? null;
+            $sku = trim($row[4]) ?: $this->lastData['product']->code_sku ?? null;
+            $width = $row[5] ?: $this->lastData['product']->width ?? 0;
+            $depth = $row[6] ?: $this->lastData['product']->depth ?? 0;
+            $height = $row[7] ?: $this->lastData['product']->height ?? 0;
+            $price = $row[8] ?: $this->lastData['product']->price ?? 0;
+            $content = $row[9] ?: $this->lastData['product']->content ?? null;
+            $image = $row[10] ?: $this->lastData['product']->image ?? 'default.png';
+            $active = $row[11] ?? 1;
+            $recommended = $row[12] ?? 0;
+
             // ✅ Cek kategori
-            $category = Category::firstOrCreate(['name' => trim($row[1])]);
+            $category = Category::firstOrCreate(['name' => $categoryName]);
+            $this->lastData['category'] = $category;
 
             // ✅ Cek subkategori
             $subCategory = SubCategory::firstOrCreate([
-                'name' => trim($row[2]),
+                'name' => $subCategoryName,
                 'category_id' => $category->id,
             ]);
+            $this->lastData['sub_category'] = $subCategory;
 
             // ✅ Cek produk berdasarkan SKU
             $product = Product::firstOrCreate(
-                ['code_sku' => trim($row[4])],
+                ['code_sku' => $sku],
                 [
                     'sub_category_id' => $subCategory->id,
-                    'name' => trim($row[3]),
-                    'slug' => Str::slug(trim($row[3])),
-                    'width' => $row[5],
-                    'depth' => $row[6],
-                    'height' => $row[7],
-                    'price' => $row[8],
-                    'content' => $row[9],
-                    'image' => $row[10] ?? 'default.png',
-                    'active' => $row[11] ?? 1,
-                    'recomended' => $row[12] ?? 0,
+                    'name' => $productName,
+                    'slug' => Str::slug($productName),
+                    'width' => $width,
+                    'depth' => $depth,
+                    'height' => $height,
+                    'price' => $price,
+                    'content' => $content,
+                    'image' => $image,
+                    'active' => $active,
+                    'recomended' => $recommended,
                 ]
             );
+            $this->lastData['product'] = $product;
 
             // ✅ Cek varian hanya jika Wood dan Color diisi
-            if (!empty($row[13]) && !empty($row[14])) {
-                // **Normalisasi Nama Kayu**
-                $woodName = strtolower(trim($row[13]));
-                $wood = Wood::whereRaw('LOWER(name) = ?', [$woodName])->first();
-                if (!$wood) {
-                    // Jika tidak ada yang cocok, buat wood baru
-                    $wood = Wood::create(['name' => ucfirst($woodName)]);
+            if (!empty($row[13]) || !empty($row[14])) {
+                $woodName = strtolower(trim($row[13]) ?: $this->lastData['wood']->name ?? null);
+                $colorName = strtolower(trim($row[14]) ?: $this->lastData['color']->name ?? null);
+
+                if ($woodName) {
+                    $wood = Wood::whereRaw('LOWER(name) = ?', [$woodName])->first();
+                    if (!$wood) {
+                        $wood = Wood::create(['name' => ucfirst($woodName)]);
+                    }
+                    $this->lastData['wood'] = $wood;
                 }
 
-                // **Normalisasi Nama Warna**
-                $colorName = strtolower(trim($row[14]));
-                $color = Color::whereRaw('LOWER(name) = ?', [$colorName])->first();
-
-                // Jika warna tidak ditemukan, coba cari yang mirip
-                if (!$color) {
-                    $color = Color::where('name', 'LIKE', "%{$colorName}%")->first();
+                if ($colorName) {
+                    $color = Color::whereRaw('LOWER(name) = ?', [$colorName])->first();
+                    if (!$color) {
+                        $color = Color::where('name', 'LIKE', "%{$colorName}%")->first();
+                    }
+                    if (!$color) {
+                        $color = Color::first();
+                    }
+                    $this->lastData['color'] = $color;
                 }
 
-                // Jika tetap tidak ada warna yang cocok, gunakan warna default
-                if (!$color) {
-                    $color = Color::first(); // Ambil warna pertama yang tersedia
-                }
-
-            
-                // ✅ Cek apakah varian sudah ada
-                $variantExists = ProductVariant::where([
-                    'product_id' => $product->id,
-                    'wood_id' => $wood->id,
-                    'color_id' => $color->id,
-                ])->exists();
-
-                if (!$variantExists) {
-                    ProductVariant::create([
+                if (isset($wood) && isset($color)) {
+                    $variantExists = ProductVariant::where([
                         'product_id' => $product->id,
                         'wood_id' => $wood->id,
                         'color_id' => $color->id,
-                        'price' => $row[15] ?? 0,
-                        'stock' => $row[16] ?? 100,
-                    ]);
+                    ])->exists();
+
+                    if (!$variantExists) {
+                        ProductVariant::create([
+                            'product_id' => $product->id,
+                            'wood_id' => $wood->id,
+                            'color_id' => $color->id,
+                            'price' => $row[15] ?? 0,
+                            'stock' => $row[16] ?? 100,
+                        ]);
+                    }
                 }
             }
         }

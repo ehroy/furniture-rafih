@@ -76,7 +76,7 @@ class JustOrangeController extends Controller
         ->whereNotNull('image') // Pastikan hanya mengambil produk dengan gambar
         ->groupBy('sub_category_id') // Ambil satu produk per subkategori
         ->with(['subcategory.category']) // Ambil data kategori dari subkategori
-        ->orderBy('id', 'desc')->limit(12)
+        ->orderBy('id', 'desc')
         ->get();
         $data['Pages'] = Post::where('active', true)->get();
         $data['Socmed'] = SocialMedia::all();

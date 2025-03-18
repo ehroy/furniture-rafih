@@ -47,7 +47,7 @@
                 >
                     <!-- Thumbnail Image -->
                     <img
-                        :src="helpers.imageUrl(image.products[0].image)"
+                        :src="helpers.imageUrl(image.image)"
                         :alt="image.name"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
@@ -60,10 +60,10 @@
                             class="p-4 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0"
                         >
                             <h2 class="text-white font-medium text-lg">
-                                {{ image.products[0].name }}
+                                {{ image.subcategory.name }}
                             </h2>
                             <p class="text-white text-sm opacity-80">
-                                {{ image.description }}
+                                {{ image.subcategory.category.name }}
                             </p>
                         </div>
                     </div>
@@ -111,9 +111,7 @@ const props = defineProps({
     Products: Object,
 });
 const filteredCategories = computed(() => {
-    return props.Categories.filter(
-        (category) => category.products && category.products.length > 0
-    );
+    return props.Gallery.filter((category) => category.subcategory);
 });
 </script>
 

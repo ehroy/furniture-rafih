@@ -32,10 +32,22 @@ class OrderItemsRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('quantity')
                     ->label('Quantity')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
+                    ->badge()
+                    ->color(fn ($state) => match ($state) {
+                        'pending' => 'warning',
+                        'confirmed' => 'info',
+                        'processing' => 'primary',
+                        'completed' => 'success',
+                        'cancelled' => 'danger',
+                        default => 'secondary',
+                    })
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('price')
                     ->label('Price')
-                    ->money('IDR') // Sesuaikan dengan mata uang
+                    ->money() // Sesuaikan dengan mata uang
                     ->sortable(),
             ])
             ->filters([
