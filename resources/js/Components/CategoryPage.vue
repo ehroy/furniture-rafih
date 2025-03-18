@@ -131,7 +131,7 @@ const catModel = ref("");
 const slidesPerView = computed(() => {
     if (window.innerWidth >= 1024) return 4; // Desktop: 4 item
     if (window.innerWidth >= 768) return 3; // Tablet: 3 item
-    return 3; // Mobile: 2 item
+    return 2; // Mobile: 2 item
 });
 const prevSlide = () => {
     swiperRef.value?.$el.swiper.slidePrev();

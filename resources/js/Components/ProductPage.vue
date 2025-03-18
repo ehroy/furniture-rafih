@@ -1,6 +1,6 @@
 <template>
     <div class="text-[#4A4A4A]">
-        <section class="py-10 px-5 md:px-20 lg:px-64 text-[#2E2E2E]">
+        <section class="py-24 px-5 md:px-20 lg:px-64 text-[#2E2E2E]">
             <div
                 class="flex flex-col md:flex-row justify-start mb-10 border-b-2 border-[#2E2E2E] md:w-4/12 md:text-sm"
             >
