@@ -48,7 +48,7 @@
                     <!-- Thumbnail Image -->
                     <img
                         :src="helpers.imageUrl(image.image)"
-                        :alt="image.name"
+                        :alt="image.subcategory.name"
                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
 
