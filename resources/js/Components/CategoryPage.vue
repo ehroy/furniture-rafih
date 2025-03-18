@@ -41,7 +41,7 @@
                 >
                     <option value="">
                         {{
-                            ActiveCat == null
+                            ActiveCat
                                 ? "Pilih Kategori"
                                 : Categories.find(
                                       (cat) => cat.name === ActiveCat
@@ -120,13 +120,12 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 
 const swiperRef = ref(null);
-const ActiveCat = ref(null);
-defineProps({
+
+const props = defineProps({
     Categories: Object,
     SubCategories: Object,
     ActiveCat: String,
 });
-
 const helpers = inject("helpers");
 const catModel = ref("");
 const slidesPerView = computed(() => {
