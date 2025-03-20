@@ -527,7 +527,7 @@ const props = defineProps({
     Socmed: Object,
     Pages: Object,
 });
-console.log(props.product);
+
 // Ambil `cart` dari localStorage saat komponen dimuat
 onMounted(() => {
     const savedCart = localStorage.getItem("cart");
@@ -555,15 +555,11 @@ const selectColor = (color) => {
         (item) => item.color.name === color
     );
     selectedWood.value = availableWood?.woods?.[0]?.name || null;
-
-    console.log("Warna dipilih:", selectedColor.value);
-    console.log("Kayu otomatis dipilih:", selectedWood.value);
 };
 
 // Fungsi Memilih Kayu
 const selectWood = (wood) => {
     selectedWood.value = wood;
-    console.log("Kayu dipilih:", selectedWood.value);
 };
 
 // Fungsi Menambahkan ke Keranjang
