@@ -4,47 +4,23 @@
     @php $setting = \App\Helpers\SettingsHelper::getSettings(); @endphp
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $setting['title'] ?? 'Website' }}</title>
+    <link rel="shortcut icon" href="{{ url('/storage/' . $setting['icon']) }}">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ url('/storage/' . $setting['icon']) }}" type="image/png">
+    <!-- Preconnect untuk meningkatkan kecepatan loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
-    <!-- Google Fonts (Optimasi: Preload + Display Swap) -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" crossorigin="anonymous">
+    <!-- Preload Fonts & Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" crossorigin>
 
-    <!-- Material Design Icons (Gunakan CDN untuk kecepatan) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
-
-    <!-- Vite Assets (Gunakan Defer untuk Menghindari Render Blocking) -->
-    @vite(['resources/css/app.css'], 'defer')
-    @vite(['resources/js/app.js'], 'defer')
-
-    <!-- CSS Tambahan (Font Poppins dioptimasi) -->
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-        .poppins {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 400;
-        }
-        .poppins-bold {
-            font-weight: 700;
-        }
-        .poppins-light {
-            font-weight: 300;
-        }
-    </style>
+    <!-- Vite Assets -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @inertiaHead
 </head>
-
 <body>
-    <!-- Kontainer utama Inertia -->
     @inertia
-
-    <!-- Optimasi: Gunakan defer untuk menghindari blocking -->
-    <script type="module" src="{{ Vite::asset('resources/js/app.js') }}" defer></script>
 </body>
 </html>
