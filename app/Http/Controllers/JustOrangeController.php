@@ -12,9 +12,12 @@ use App\Models\SubCategory;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Helpers\SettingsHelper;
+use App\Mail\OrderMail;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\ProductVariant;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 
 class JustOrangeController extends Controller
 {
@@ -219,6 +222,25 @@ class JustOrangeController extends Controller
                 'price' => $item['price']
             ]);
         }
+        $variant = ProductVariant::where('product_id', $item['id'])
+            ->whereHas('wood', function ($query) use ($item) {
+                $query->where('name', $item['selectedWoods']['name'] ?? null);
+            })
+            ->whereHas('color', function ($query) use ($item) {
+                $query->where('name', $item['selectedColor']['name'] ?? null);
+            })
+            ->first();
+
+        // Kurangi stok jika varian ditemukan
+        if ($variant) {
+            if ($variant->stock >= $item['quantity']) {
+                $variant->decrement('stock', $item['quantity']);
+            }
+        }
+        Mail::to($request->email)->send(new OrderMail($order, $request->cart));
+
+    // Kirim email ke admin
+        Mail::to(env('ADMIN_EMAIL'))->send(new OrderMail($order, $request->cart));
         return redirect()->route('cart.success', ['order_number' => $order->order_number]);
 
     }

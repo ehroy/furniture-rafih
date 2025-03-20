@@ -35,7 +35,7 @@ class OrderResource extends Resource
                     ])
                     ->required(),
                 Forms\Components\Textarea::make('shipping_address'),
-                Forms\Components\TextInput::make('total_price')->numeric()->required(),
+                Forms\Components\TextInput::make('total_price')->numeric()->required()->money(),
                 Forms\Components\DateTimePicker::make('confirmed_at'),
                 Forms\Components\DateTimePicker::make('processed_at'),
             ]);

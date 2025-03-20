@@ -232,7 +232,7 @@
                             <i class="mdi mdi-star text-xl text-yellow-300"></i>
                             <i class="mdi mdi-star text-xl text-yellow-300"></i>
                             <i class="mdi mdi-star text-xl text-yellow-300"></i>
-                            <i class="mdi mdi-star text-xl text-gray-300"></i>
+                            <i class="mdi mdi-star text-xl text-yellow-300"></i>
                             <i class="mdi mdi-star text-xl text-gray-300"></i>
                             <p class="font-bold">(10)</p>
                         </div>
@@ -527,7 +527,7 @@ const props = defineProps({
     Socmed: Object,
     Pages: Object,
 });
-
+console.log(props.product);
 // Ambil `cart` dari localStorage saat komponen dimuat
 onMounted(() => {
     const savedCart = localStorage.getItem("cart");
@@ -568,21 +568,19 @@ const selectWood = (wood) => {
 
 // Fungsi Menambahkan ke Keranjang
 const addToCart = (product) => {
-    if (!selectedColor.value) {
-        alert("Silakan pilih warna terlebih dahulu!");
+    if (!selectedColor.value || !selectedWood.value) {
+        alert("Silakan pilih warna dan jenis kayu terlebih dahulu!");
         return;
     }
 
     const selectedVariant = product.variants?.find(
-        (variant) => variant.color?.name === selectedColor.value
-    );
-
-    const selectedVariantWoods = product.variants?.find(
-        (variant) => variant.wood?.name === selectedWood.value
+        (variant) =>
+            variant.color?.name === selectedColor.value &&
+            variant.wood?.name === selectedWood.value
     );
 
     if (!selectedVariant) {
-        alert("Warna tidak ditemukan!");
+        alert("Varian tidak ditemukan!");
         return;
     }
 
@@ -592,21 +590,17 @@ const addToCart = (product) => {
             code_palete: selectedVariant.color.code_palete,
             name: selectedVariant.color.name,
         },
-        selectedWoods: selectedVariantWoods
-            ? { name: selectedVariantWoods.wood.name }
-            : null,
+        selectedWoods: { name: selectedVariant.wood.name },
         quantity: quantity.value,
+        price: selectedVariant.price, // Menyimpan harga berdasarkan varian yang dipilih
     });
 
     // Simpan ke localStorage
-    localStorage.setItem(
-        "cart",
-        JSON.stringify(JSON.parse(JSON.stringify(cart.value)))
-    );
+    localStorage.setItem("cart", JSON.stringify(cart.value));
 
     // Tampilkan notifikasi
     showNotification.value = true;
-    notificationMessage.value = `Produk ${product.name} dengan warna ${selectedVariant.color.name} telah ditambahkan ke keranjang!`;
+    notificationMessage.value = `Produk ${product.name} dengan warna ${selectedVariant.color.name} dan kayu ${selectedVariant.wood.name} telah ditambahkan ke keranjang!`;
     setTimeout(() => {
         showNotification.value = false;
     }, 3000);

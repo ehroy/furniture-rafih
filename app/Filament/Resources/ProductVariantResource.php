@@ -18,9 +18,12 @@ class ProductVariantResource extends Resource
     protected static ?string $model = ProductVariant::class;
 
     protected static ?string $navigationIcon = 'heroicon-m-chevron-right';
-    protected static ?string $navigationGroup = 'Product Variants';
+    protected static ?string $navigationGroup = 'Gudang Product';
     protected static ?int $navigationSort = 1;
-
+    public static function getNavigationLabel(): string
+    {
+        return 'Product Details'; // Ganti dengan nama yang diinginkan
+    }
     public static function form(Form $form): Form
     {
         return $form
