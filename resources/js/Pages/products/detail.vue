@@ -572,15 +572,17 @@ const addToCart = (product) => {
     const selectedVariant = product.variants?.find(
         (variant) =>
             variant.color?.name === selectedColor.value &&
-            variant.wood?.name === selectedWood.value &&
-            variant.stock > 0
+            variant.wood?.name === selectedWood.value
     );
 
     if (!selectedVariant) {
         alert("Varian yang dipilih tidak tersedia atau stok habis.");
         return;
     }
-
+    if (selectedVariant.stock <= 0) {
+        alert("Varian yang dipilih tidak tersedia atau stok habis.");
+        return;
+    }
     cart.value.push({
         ...product,
         selectedColor: {
