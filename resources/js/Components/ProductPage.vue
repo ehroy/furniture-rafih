@@ -231,7 +231,6 @@ const notificationMessage = ref("");
 
 const addToCart = (product) => {
     const existingProduct = cart.value.find((item) => item.id === product.id);
-
     if (existingProduct) {
         existingProduct.quantity += 1;
     } else {

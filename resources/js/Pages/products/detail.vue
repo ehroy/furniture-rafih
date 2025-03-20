@@ -576,11 +576,12 @@ const addToCart = (product) => {
     const selectedVariant = product.variants?.find(
         (variant) =>
             variant.color?.name === selectedColor.value &&
-            variant.wood?.name === selectedWood.value
+            variant.wood?.name === selectedWood.value &&
+            variant.stock > 0
     );
 
     if (!selectedVariant) {
-        alert("Varian tidak ditemukan!");
+        alert("Varian yang dipilih tidak tersedia atau stok habis.");
         return;
     }
 
@@ -605,7 +606,6 @@ const addToCart = (product) => {
         showNotification.value = false;
     }, 3000);
 };
-
 // Dapatkan daftar warna unik dan kayu yang sesuai
 const uniqueColors = computed(() => {
     if (!props.product?.variants) return [];
