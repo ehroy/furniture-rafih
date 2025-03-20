@@ -47,7 +47,7 @@
                                 <tr>
                                     <td style="padding: 10px; border-bottom: 1px solid #ddd;">
                                         <p><strong>Nama:</strong> {{ $item['name'] }}</p>
-                                        <p><strong>image:</strong> {{ $item['image']}}</p>
+                                        <p><strong>image:</strong> {{ $item['name']}}</p>
                                         <p><strong>Jumlah:</strong> {{ $item['quantity'] }}</p>
                                         @if(isset($item['selectedColor']['name']))
                                             <p><strong>Warna:</strong> {{ $item['selectedColor']['name'] }}</p>
