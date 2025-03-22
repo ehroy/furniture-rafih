@@ -60,7 +60,11 @@
                 </div>
             </div>
             <div class="flex w-full absolute bottom-0">
-                <img src="/assets/images/bg-testimonials.webp" alt="" />
+                <img
+                    src="/assets/images/bg-testimonials.webp"
+                    alt="Background Testimonials"
+                    class="w-full h-auto"
+                />
             </div>
         </section>
     </div>
