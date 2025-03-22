@@ -18,6 +18,13 @@ export default defineConfig({
         }),
     ],
     build: {
+        minify: "esbuild", // Gunakan Esbuild (lebih cepat dari Terser)
+        terserOptions: {
+            compress: {
+                drop_console: true, // Hapus console.log untuk produksi
+                drop_debugger: true,
+            },
+        },
         rollupOptions: {
             output: {
                 manualChunks(id) {
