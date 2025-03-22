@@ -21,7 +21,7 @@
                     TERATAI FURNITURE
                 </h1>
                     <main>
-                        <p class="text-lg md:text-xl mt-4 w-full md:w-3/4 mx-auto">
+                    <p class="text-lg md:text-xl mt-4 w-full md:w-3/4 mx-auto">
                         Kami menghadirkan desain interior minimalis dengan sentuhan
                         alami. Menggunakan material kayu berkualitas, setiap
                         furnitur dirancang fungsional, estetik, dan tahan lama.
