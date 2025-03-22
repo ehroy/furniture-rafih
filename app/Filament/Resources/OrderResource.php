@@ -58,7 +58,7 @@ class OrderResource extends Resource
                     'cancelled' => 'danger',
                     default => 'secondary',
                 }),
-                Tables\Columns\TextColumn::make('total_price')->sortable(),
+                Tables\Columns\TextColumn::make('total_price')->sortable()->money(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
 
                 // Menampilkan daftar produk dalam satu kolom
