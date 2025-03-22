@@ -1,6 +1,10 @@
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
+        ExpiresActive On
+        RewriteRule ^storage/.*$ - [F,L]
+        ExpiresByType application/javascript "access plus 1 year"
+        ExpiresByType text/javascript "access plus 1 year"
     </IfModule>
 
     RewriteEngine On
