@@ -20,12 +20,14 @@
                 <h1 class="text-5xl md:text-6xl font-bold animate-pulse">
                     TERATAI FURNITURE
                 </h1>
-                <p class="text-lg md:text-xl mt-4 w-full md:w-3/4 mx-auto">
-                    Kami menghadirkan desain interior minimalis dengan sentuhan
-                    alami. Menggunakan material kayu berkualitas, setiap
-                    furnitur dirancang fungsional, estetik, dan tahan lama.
-                    Sederhana, elegan, dan menyatu dengan kehidupan Anda.
-                </p>
+                    <main>
+                        <p class="text-lg md:text-xl mt-4 w-full md:w-3/4 mx-auto">
+                        Kami menghadirkan desain interior minimalis dengan sentuhan
+                        alami. Menggunakan material kayu berkualitas, setiap
+                        furnitur dirancang fungsional, estetik, dan tahan lama.
+                        Sederhana, elegan, dan menyatu dengan kehidupan Anda.
+                    </p>
+                </main>
 
                 <div class="mt-5">
                     <Link
