@@ -13,6 +13,10 @@
                 Order Number:
                 <span class="font-semibold">{{ order.order_number }}</span>
             </p>
+            <p class="mt-2 text-red-500 text-center text-sm">
+                📩 Jika Anda tidak menerima email konfirmasi, silakan periksa
+                folder spam Anda.
+            </p>
 
             <!-- Tracking Status (Sembunyikan jika status Cancelled) -->
             <div v-if="order.status !== 'cancelled'" class="mt-6">
