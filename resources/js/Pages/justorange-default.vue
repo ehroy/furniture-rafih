@@ -9,6 +9,7 @@
                 class="absolute inset-0 w-full h-full object-cover"
                 src="/assets/images/home.webp"
                 alt="Hero background"
+                type="image/webp"
                 loading="lazy"
                 >
                 <!-- Overlay -->
