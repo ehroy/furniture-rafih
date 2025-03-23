@@ -124,6 +124,8 @@
                         class="w-full h-48 md:h-80 object-cover rounded-sm"
                         :src="helpers.imageUrl(product.image)"
                         :alt="product.name"
+                        type="image/webp"
+                        loading="lazy"
                     />
 
                     <!-- Detail Produk -->
