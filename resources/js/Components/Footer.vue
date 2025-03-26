@@ -58,8 +58,8 @@
 
             <div class="flex justify-center gap-10 py-3 font-bold text-xs">
                 <span
-                    >NAME FURNITURE &copy; {{ new Date().getFullYear() }}. All
-                    rights reserved.
+                    >TERATAI FURNITURE &copy; {{ new Date().getFullYear() }}.
+                    All rights reserved.
                 </span>
             </div>
         </footer>
