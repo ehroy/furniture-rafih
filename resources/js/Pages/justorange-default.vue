@@ -97,11 +97,7 @@ const props = defineProps({
     Pages: Object,
     FilterQuery: String,
 });
-if (props.Products[0]?.variants?.length > 0) {
-    console.log("Variants tersedia:", props.Products[0].variants.length);
-} else {
-    console.log("Tidak ada variants.");
-}
+
 onMounted(() => {
     document.getElementById("app")?.removeAttribute("data-page");
 });

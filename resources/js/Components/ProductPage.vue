@@ -220,8 +220,6 @@ const helpers = inject("helpers");
 const props = defineProps({
     Products: Object,
     HeadTitle: String,
-    Action: String,
-    Categories: Object,
     Filter: String,
     Global: Object,
     FilterQuery: String,

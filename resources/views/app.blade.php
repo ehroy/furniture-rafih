@@ -3,6 +3,9 @@
 <head>
     @php $setting = \App\Helpers\SettingsHelper::getSettings(); @endphp
     <meta charset="utf-8" />
+    <meta name="description" content="{{$setting['meta_description']}}">
+    <meta name="keywords" content="{{$setting['meta_keywords']}}">
+    <meta name="author" content="{{$setting['name']}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="shortcut icon" href="{{url('/storage/'.$setting['icon'])}}"/>
     @vite(['resources/css/app.css', 'resources/js/app.js'])

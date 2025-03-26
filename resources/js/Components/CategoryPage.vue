@@ -40,13 +40,7 @@
                     v-model="catModel"
                 >
                     <option value="">
-                        {{
-                            ActiveCat == null
-                                ? "Pilih Kategori"
-                                : Categories.find(
-                                      (cat) => cat.name === ActiveCat
-                                  )?.name
-                        }}
+                        {{ "Pilih Kategori" }}
                     </option>
                     <option
                         v-for="(cat, index) in Categories"
@@ -118,7 +112,7 @@ import { router } from "@inertiajs/vue3";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
-
+const active = ref(null);
 const swiperRef = ref(null);
 
 const props = defineProps({
@@ -126,6 +120,7 @@ const props = defineProps({
     SubCategories: Object,
     ActiveCat: String,
 });
+
 const helpers = inject("helpers");
 const catModel = ref("");
 const slidesPerView = computed(() => {
