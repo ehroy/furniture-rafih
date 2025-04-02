@@ -23,7 +23,7 @@
                 </h1>
                     <main>
                     <p class="text-lg md:text-xl mt-4 w-full md:w-3/4 mx-auto">
-                       {{ $t("home") }}
+                       {{ $t("homepage.text") }}
                     </p>
                 </main>
 
@@ -32,7 +32,7 @@
                         href="/products"
                         class="bg-[#2E2E2E] p-3 rounded text-[#F5F5F5] hover:bg-[#424141] inline-block"
                     >
-                    {{ $t("button_home") }}
+                    {{ $t("button.order") }}
                     </Link>
                 </div>
             </div>

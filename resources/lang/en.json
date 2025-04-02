@@ -1,11 +1,34 @@
 {
-    "home": "We present minimalist interior design with a natural touch. Using high-quality wood materials, each piece of furniture is designed to be functional, aesthetic, and durable. Simple, elegant, and blends into your life.",
-    "button_home": "Shop now!",
-    "error_message": "Oops! Page not found.",
-    "beranda": "Back to Home",
-    "notice_message": "If you do not receive a confirmation email, please check your spam folder.",
-    "message_order": "Thank you! Your order was successful!",
-    "message_cancel": "Order Canceled",
-    "detail_order": "Order Details",
-    "product_serupa": "Similar Products"
+    "homepage": {
+        "text": "We present minimalist interior design with a natural touch. Using high-quality wood materials, each piece of furniture is designed to be functional, aesthetic, and durable. Simple, elegant, and blends into your life.",
+        "back_home": "Back to Home"
+    },
+    "button": {
+        "order": "Shop Now!",
+        "catalog": "Full Catalog",
+        "callme": "Contact Us"
+    },
+    "orderpage": {
+        "notice_message": "If you do not receive a confirmation email, please check your spam folder.",
+        "message_order": "Thank you! Your order was successful!",
+        "message_cancel": "Order Canceled",
+        "detail_order": "Order Details"
+    },
+    "errors": {
+        "text": "Oops! Page not found."
+    },
+    "gallery": {
+        "text": "Elegance in Every Detail",
+        "text1": "A premium furniture collection for meaningful spaces",
+        "text2": "Explore the Collection",
+        "text3": "Transform Your Space",
+        "text4": "Make your home more elegant with high-quality furniture. Consult with our designers for a personalized experience."
+    },
+    "product": {
+        "kami": "Our Products",
+        "all": "All Products",
+        "new": "Newest",
+        "populer": "Most Popular",
+        "price": "Price"
+    }
 }

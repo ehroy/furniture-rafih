@@ -1,11 +1,34 @@
 {
-    "home": "Kami menghadirkan desain interior minimalis dengan sentuhanalami. Menggunakan material kayu berkualitas, setiapfurnitur dirancang fungsional, estetik, dan tahan lama. Sederhana, elegan, dan menyatu dengan kehidupan Anda.",
-    "button_home": "Belanja sekarang!",
-    "error_message": "Oops! Halaman tidak ditemukan.",
-    "beranda": "Kembali ke Beranda",
-    "notice_message": "Jika Anda tidak menerima email konfirmasi, silakan periksafolder spam Anda.",
-    "message_order": "Terima kasih! Pesanan Anda berhasil!",
-    "message_cancel": "Pesanan Dibatalkan",
-    "detail_order": "Detail Pesanan",
-    "product_serupa": "Produk Serupa"
+    "homepage": {
+        "text": "Kami menghadirkan desain interior minimalis dengan sentuhanalami. Menggunakan material kayu berkualitas, setiapfurnitur dirancang fungsional, estetik, dan tahan lama. Sederhana, elegan, dan menyatu dengan kehidupan Anda.",
+        "back_home": "Kembali ke Beranda"
+    },
+    "button": {
+        "order": "Belanja sekarang!",
+        "catalog": "Katalog Lengkap",
+        "callme": "Hubungi Kami"
+    },
+    "orderpage": {
+        "notice_message": "Jika Anda tidak menerima email konfirmasi, silakan periksafolder spam Anda.",
+        "message_order": "Terima kasih! Pesanan Anda berhasil!",
+        "message_cancel": "Pesanan Dibatalkan",
+        "detail_order": "Detail Pesanan"
+    },
+    "errors": {
+        "text": "Oops! Halaman tidak ditemukan."
+    },
+    "gallery": {
+        "text": "Keanggunan dalam Setiap Detail",
+        "text1": "Koleksi furniture premium untuk ruang yang bermakna",
+        "text2": "Jelajahi Koleksi",
+        "text3": "Transformasi Ruangan Anda",
+        "text4": "Jadikan rumah Anda lebih elegan dengan furniture berkualitas tinggi. Konsultasi dengan desainer kami untuk mendapatkan pengalaman yang personal."
+    },
+    "product": {
+        "kami": "Produk Kami",
+        "all": "Semua Produk",
+        "new": "Terbaru",
+        "populer": "Terpopuler",
+        "price": "Harga"
+    }
 }

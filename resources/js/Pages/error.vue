@@ -11,7 +11,7 @@ import { Link } from "@inertiajs/vue3";
 
         <!-- Animasi Paragraf -->
         <p class="text-lg text-gray-600 mt-2 animate-fadeIn">
-            Oops! Halaman tidak ditemukan.
+            {{ $t("errors.text") }}
         </p>
 
         <!-- Animasi Tombol -->
@@ -20,7 +20,7 @@ import { Link } from "@inertiajs/vue3";
                 href="/"
                 class="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md transition duration-300 transform hover:scale-105 hover:shadow-lg"
             >
-                Kembali ke Beranda
+                {{ $t("homepage.back_home") }}
             </Link>
         </div>
     </div>

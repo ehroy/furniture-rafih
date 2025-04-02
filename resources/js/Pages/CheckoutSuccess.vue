@@ -5,7 +5,7 @@
     >
         <div class="bg-white rounded-2xl shadow-xl p-8 max-w-3xl w-full">
             <h1 class="text-2xl font-bold text-green-600 text-center">
-                🎉 Terima kasih! Pesanan Anda berhasil!
+                🎉 {{ $t("orderpage.message_order") }}
             </h1>
 
             <!-- Nomor Order -->
@@ -14,8 +14,7 @@
                 <span class="font-semibold">{{ order.order_number }}</span>
             </p>
             <p class="mt-2 text-red-500 text-center text-sm">
-                📩 Jika Anda tidak menerima email konfirmasi, silakan periksa
-                folder spam Anda.
+                📩 {{ $t("orderpage.notice_message") }}
             </p>
 
             <!-- Tracking Status (Sembunyikan jika status Cancelled) -->
@@ -67,7 +66,9 @@
                 >
                     ❌
                 </div>
-                <p class="text-lg font-semibold mt-2">Pesanan Dibatalkan</p>
+                <p class="text-lg font-semibold mt-2">
+                    {{ $t("orderpage.message_cancel") }}
+                </p>
             </div>
 
             <!-- Pesan berdasarkan Status -->
@@ -77,7 +78,9 @@
 
             <div class="border-t border-gray-300 my-6"></div>
 
-            <h2 class="text-lg font-semibold text-gray-700">Detail Pesanan</h2>
+            <h2 class="text-lg font-semibold text-gray-700">
+                {{ $t("orderpage.detail_order") }}
+            </h2>
             <ul class="mt-4 space-y-4">
                 <li
                     v-for="item in order.items"
@@ -105,7 +108,7 @@
                     href="/"
                     class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300"
                 >
-                    Kembali ke Beranda
+                    {{ $t("homepage.back_home") }}
                 </Link>
             </div>
         </div>

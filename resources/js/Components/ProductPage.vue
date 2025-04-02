@@ -7,7 +7,7 @@
                 <h2
                     class="text-secondary text-xl text-center md:text-left md:text-4xl mb-5 md:mb-0 poppins-bold uppercase"
                 >
-                    <i class="mdi mdi-sofa-single"></i> {{ HeadTitle }}
+                    <i class="mdi mdi-sofa-single"></i> {{ $t("product.kami") }}
                 </h2>
             </div>
             <div
@@ -19,21 +19,23 @@
                         class="hover:bg-gray-100 text-[#2E2E2E] font-bold py-2 px-4 rounded-full"
                         preserve-scroll
                     >
-                        <i class="mdi mdi-view-list"></i> Semua Produk
+                        <i class="mdi mdi-view-list"></i>
+                        {{ $t("product.all") }}
                     </Link>
                     <Link
                         href="?filter=new"
                         class="hover:bg-gray-100 text-[#2E2E2E] font-bold py-2 px-4 rounded-full"
                         preserve-scroll
                     >
-                        <i class="mdi mdi-moon-new"></i> Terbaru
+                        <i class="mdi mdi-moon-new"></i>{{ $t("product.new") }}
                     </Link>
                     <Link
                         href="?filter=populer"
                         class="hover:bg-gray-100 text-[#2E2E2E] font-bold py-2 px-4 rounded-full"
                         preserve-scroll
                     >
-                        <i class="mdi mdi-star-box"></i> Terpopuler
+                        <i class="mdi mdi-star-box"></i>
+                        {{ $t("product.populer") }}
                     </Link>
                 </div>
                 <div class="flex justify-end">
@@ -43,7 +45,8 @@
                         class="hover:bg-gray-100 text-[#2E2E2E] font-bold py-2 px-4 rounded-full"
                         preserve-scroll
                     >
-                        <i class="mdi mdi-sort-descending"></i> Harga
+                        <i class="mdi mdi-sort-descending"></i>
+                        {{ $t("product.price") }}
                     </Link>
                     <Link
                         v-show="Filter == 'asc_harga'"
@@ -51,7 +54,8 @@
                         class="hover:bg-gray-100 text-[#2E2E2E] font-bold py-2 px-4 rounded-full"
                         preserve-scroll
                     >
-                        <i class="mdi mdi-sort-ascending"></i> Harga
+                        <i class="mdi mdi-sort-ascending"></i>
+                        {{ $t("product.price") }}
                     </Link>
                     <Link
                         v-show="
@@ -61,7 +65,7 @@
                         class="hover:bg-gray-100 text-[#2E2E2E] font-bold py-2 px-4 rounded-full"
                         preserve-scroll
                     >
-                        <i class="mdi mdi-sort"></i> Harga
+                        <i class="mdi mdi-sort"></i> {{ $t("product.price") }}
                     </Link>
                 </div>
             </div>
@@ -72,14 +76,14 @@
             >
                 <div v-if="Filter != 'search'">
                     <span class="font-thin underline">Filter </span> :
-                    <span class="font-bold" v-if="Filter == 'all'"
-                        >Semua Produk</span
-                    >
+                    <span class="font-bold" v-if="Filter == 'all'">{{
+                        $t("product.all")
+                    }}</span>
                     <span class="font-bold" v-if="Filter == 'new'"
-                        >Produk Terbaru</span
+                        >Produk {{ $t("product.new") }}</span
                     >
                     <span class="font-bold" v-if="Filter == 'populer'"
-                        >Produk Terpopuler</span
+                        >Produk {{ $t("product.populer") }}</span
                     >
                     <span class="font-bold" v-if="Filter == 'asc_harga'"
                         >Harga Termurah</span
