@@ -7,7 +7,7 @@
             <h2
                 class="text-2xl font-bold text-gray-800 mb-5 border-b pb-6 mt-5"
             >
-                Keranjang Belanja
+                {{ $t("cart.text") }}
             </h2>
 
             <!-- Jika Keranjang Kosong -->
@@ -16,12 +16,12 @@
                 class="text-center py-10 text-gray-600"
             >
                 <i class="mdi mdi-cart-off text-5xl"></i>
-                <p class="mt-3">Keranjang belanja kosong.</p>
+                <p class="mt-3">{{ $t("cart.text") }} kosong.</p>
                 <Link
                     href="/"
                     class="mt-5 inline-block bg-[#424242] text-white px-5 py-2 rounded-lg"
                 >
-                    Kembali Belanja
+                    {{ $t("cart.back") }}
                 </Link>
             </div>
 
@@ -47,7 +47,7 @@
                                 @click="removeFromCart(index)"
                                 class="text-red-500 mt-2 text-sm hover:underline"
                             >
-                                <i class="mdi mdi-trash-can-outline"></i> Hapus
+                                <i class="mdi mdi-trash-can-outline"></i> clear
                             </button>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         <section
                             class="flex flex-row bg-center text-center items-center"
                         >
-                            Warna :
+                            Colors :
 
                             <section
                                 :style="{
@@ -68,7 +68,7 @@
                         </section>
 
                         <section>
-                            Jenis Kayu:
+                            Wood:
                             {{ item.selectedWoods.name || "Tidak ada" }}
                         </section>
                     </div>
@@ -134,8 +134,8 @@
             v-if="showToast"
             class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg text-center z-50"
         >
-            ✅ Checkout berhasil! <br />
-            Tunggu admin menghubungi lewat email 😁😁
+            ✅ {{ $t("checkout.message") }} <br />
+            {{ $t("checkout.message_text") }}
         </div>
     </transition>
 </template>

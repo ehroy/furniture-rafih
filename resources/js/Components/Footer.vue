@@ -7,22 +7,24 @@
                 class="flex justify-between gap-10 py-20 px-64 bg-primary bg-[url('/public/assets/images/dots.png')] bg-cover"
             >
                 <nav>
-                    <h1 class="font-bold text-2xl mb-8">Produk Kami</h1>
+                    <h1 class="font-bold text-2xl mb-8">
+                        {{ $t("product.kami") }}
+                    </h1>
                     <ul class="flex flex-col gap-3">
                         <li>
-                            <Link href="/products?filter=all"
-                                >Semua Produk</Link
+                            <Link href="/products?filter=all">
+                                {{ $t("product.all") }}</Link
                             >
                         </li>
                         <li>
-                            <Link href="/products?filter=populer"
-                                >Produk Terlaris</Link
-                            >
+                            <Link href="/products?filter=populer">{{
+                                $t("product.laris")
+                            }}</Link>
                         </li>
                         <li>
-                            <Link href="/products?filter=new"
-                                >Produk Terbaru</Link
-                            >
+                            <Link href="/products?filter=new">{{
+                                $t("product.new1")
+                            }}</Link>
                         </li>
                     </ul>
                 </nav>
@@ -30,8 +32,8 @@
                 <nav>
                     <h1 class="font-bold text-2xl mb-8">HALAMAN</h1>
                     <ul class="flex flex-col gap-3">
-                        <li><Link href="/about-us">Tentang Kami</Link></li>
-                        <li><Link href="/linker">Hubungi Kami</Link></li>
+                        <li><Link href="/about-us">About Us</Link></li>
+                        <li><Link href="/linker">Call Me</Link></li>
                     </ul>
                 </nav>
 
@@ -50,8 +52,7 @@
                         </Link>
                     </div>
                     <p class="text-lg max-w-sm">
-                        Jangan ragu untuk berkonsultasi dan tanya kami! Kami
-                        siap melayani kebutuhan anda!
+                        {{ $t("footer.text") }}
                     </p>
                 </nav>
             </div>

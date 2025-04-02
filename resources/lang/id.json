@@ -1,27 +1,11 @@
 {
     "home": "Kami menghadirkan desain interior minimalis dengan sentuhanalami. Menggunakan material kayu berkualitas, setiapfurnitur dirancang fungsional, estetik, dan tahan lama. Sederhana, elegan, dan menyatu dengan kehidupan Anda.",
     "button_home": "Belanja sekarang!",
-    "button": {
-        "product": "Produk Kami",
-        "product_serupa": "Produk Serupa",
-        "product_all": "Semua Product",
-        "product_terbaru": "Terbaru",
-        "product_populer": "Terpopuler",
-        "product_price": "Harga",
-        "all_views": "Tampilkan semua",
-        "katalog": "Katalog Lengkap",
-        "hubungi": "Hubungi Kami"
-    },
-    "galery": {
-        "text1": "Transformasi Ruangan Anda",
-        "text2": "Jadikan rumah Anda lebih elegan dengan furniture berkualitas tinggi. Konsultasi dengan desainer kami untuk mendapatkan pengalaman yang personal."
-    },
-    "order": {
-        "error_message": "Oops! Halaman tidak ditemukan.",
-        "beranda": "Kembali ke Beranda",
-        "notice_message": "Jika Anda tidak menerima email konfirmasi, silakan periksafolder spam Anda.",
-        "message_order": "Terima kasih! Pesanan Anda berhasil!",
-        "message_cancel": "Pesanan Dibatalkan",
-        "detail_order": "Detail Pesanan"
-    }
+    "error_message": "Oops! Halaman tidak ditemukan.",
+    "beranda": "Kembali ke Beranda",
+    "notice_message": "Jika Anda tidak menerima email konfirmasi, silakan periksafolder spam Anda.",
+    "message_order": "Terima kasih! Pesanan Anda berhasil!",
+    "message_cancel": "Pesanan Dibatalkan",
+    "detail_order": "Detail Pesanan",
+    "product_serupa": "Produk Serupa"
 }

@@ -44,7 +44,7 @@
                 <p class="text-sm font-bold">
                     {{ randomProduct.name }}
                 </p>
-                <p class="text-xs text-gray-500">Baru saja dibeli!</p>
+                <p class="text-xs text-gray-500">{{ $t("popup") }}</p>
             </div>
         </div>
     </transition>

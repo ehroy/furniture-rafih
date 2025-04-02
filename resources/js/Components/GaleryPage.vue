@@ -10,15 +10,15 @@
             class="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
         >
             <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
-                Elegance in Every Detail
+                {{ $t("gallery.text") }}
             </h1>
             <p class="text-xl text-white max-w-xl mb-8">
-                Koleksi furniture premium untuk ruang yang bermakna
+                {{ $t("gallery.text1") }}
             </p>
             <button
                 class="bg-white text-gray-900 px-8 py-3 rounded-md font-medium hover:bg-gray-100 transition"
             >
-                Jelajahi Koleksi
+                {{ $t("gallery.text2") }}
             </button>
         </div>
     </section>
@@ -75,24 +75,21 @@
     <section class="bg-gray-50 py-16 px-4">
         <div class="max-w-5xl mx-auto text-center">
             <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                Transformasi Ruangan Anda
+                {{ $t("gallery.text3") }}
             </h2>
             <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
-                Jadikan rumah Anda lebih elegan dengan furniture berkualitas
-                tinggi. Konsultasi dengan desainer kami untuk mendapatkan
-                pengalaman yang personal.
+                {{ $t("gallery.text4") }}
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-4">
                 <Link
                     href="/products"
                     class="bg-gray-900 text-white px-8 py-3 rounded-md font-medium hover:bg-gray-800 transition"
-                >
-                    Katalog Lengkap
+                    >{{ $t("button.catalog") }}
                 </Link>
                 <button
                     class="bg-white border border-gray-300 text-gray-700 px-8 py-3 rounded-md font-medium hover:bg-gray-50 transition"
                 >
-                    Hubungi Kami
+                    {{ $t("button.callme") }}
                 </button>
             </div>
         </div>
