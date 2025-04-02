@@ -94,7 +94,7 @@
                             {{ item.product.name }}
                         </p>
                         <p class="text-gray-600">
-                            Kuantitas: {{ item.quantity }}
+                            Quantity: {{ item.quantity }}
                         </p>
                     </div>
                 </li>

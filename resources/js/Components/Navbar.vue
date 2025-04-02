@@ -113,6 +113,10 @@
                 </ul>
             </nav>
             <div class="flex items-center space-x-3">
+                <div class="flex space-x-3">
+                    <button @click="changeLang('en')">Eng</button>
+                    <button @click="changeLang('id')">Id</button>
+                </div>
                 <!-- Tombol Cart -->
                 <Link
                     aria-label="Cart"
@@ -236,7 +240,6 @@
                 TERATAI <span class="text-red-600">FURNITURE</span>
             </span>
         </div>
-
         <!-- Cart & Search -->
         <div class="flex items-center space-x-4">
             <!-- Cart -->
@@ -369,4 +372,11 @@ onMounted(() => {
 onBeforeUnmount(() => {
     window.removeEventListener("click", closeDropdown);
 });
+import { useI18n } from "vue-i18n";
+
+const { locale } = useI18n();
+const changeLang = (lang) => {
+    locale.value = lang;
+    localStorage.setItem("lang", lang);
+};
 </script>

@@ -17,7 +17,7 @@ Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));
 })->name('login');
 
-Route::get('/', [JustOrangeController::class, 'index'])->name('justorange-default');;
+Route::get('/', [JustOrangeController::class, 'index'])->name('justorange-default');
 Route::get('/p/{page}', [JustOrangeController::class, 'getPage'])->name('page');
 Route::get('/category', [JustOrangeController::class, 'getCategory'])->name('category');
 Route::get('/products', [JustOrangeController::class, 'getProducts'])->name('products');

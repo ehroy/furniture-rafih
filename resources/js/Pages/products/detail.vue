@@ -240,8 +240,8 @@
                     <div v-if="product.variants" class="mt-4">
                         <!-- PILIH WARNA -->
                         <label class="block text-gray-700 font-bold mb-2"
-                            >Pilih Warna:</label
-                        >
+                            >colors :
+                        </label>
 
                         <div class="flex space-x-2">
                             <button
@@ -276,8 +276,8 @@
                         <!-- PILIH KAYU -->
                         <div v-if="selectedColor" class="mt-6">
                             <label class="block text-gray-700 font-bold mb-2"
-                                >Pilih Kayu:</label
-                            >
+                                >wood :
+                            </label>
                             <div class="flex space-x-2 w-full overflow-auto">
                                 <button
                                     v-for="(wood, index) in uniqueColors.find(
@@ -347,7 +347,7 @@
                                 ><i class="mdi mdi-eye-outline p-2"></i>
 
                                 <strong>
-                                    {{ product.views }} x dilihat
+                                    {{ product.views }} x views
                                 </strong></span
                             >
                             <span

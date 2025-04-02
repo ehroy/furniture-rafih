@@ -23,10 +23,7 @@
                 </h1>
                     <main>
                     <p class="text-lg md:text-xl mt-4 w-full md:w-3/4 mx-auto">
-                        Kami menghadirkan desain interior minimalis dengan sentuhan
-                        alami. Menggunakan material kayu berkualitas, setiap
-                        furnitur dirancang fungsional, estetik, dan tahan lama.
-                        Sederhana, elegan, dan menyatu dengan kehidupan Anda.
+                       {{ $t("home") }}
                     </p>
                 </main>
 
@@ -35,7 +32,7 @@
                         href="/products"
                         class="bg-[#2E2E2E] p-3 rounded text-[#F5F5F5] hover:bg-[#424141] inline-block"
                     >
-                        Belanja sekarang!
+                    {{ $t("button_home") }}
                     </Link>
                 </div>
             </div>
@@ -101,6 +98,14 @@ const props = defineProps({
 onMounted(() => {
     document.getElementById("app")?.removeAttribute("data-page");
 });
+import { useI18n } from 'vue-i18n';
+
+const { locale } = useI18n();
+
+const changeLang = (lang) => {
+  locale.value = lang;
+  localStorage.setItem('lang', lang);
+};
 const HeadTitle = "Produk Kami";
 const Action = "all";
 </script>
