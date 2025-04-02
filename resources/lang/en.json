@@ -28,7 +28,29 @@
         "kami": "Our Products",
         "all": "All Products",
         "new": "Newest",
+        "new1": "New Arrivals",
         "populer": "Most Popular",
-        "price": "Price"
+        "laris": "Bestsellers",
+        "price": "Price",
+        "murah": "Lowest Price",
+        "mahal": "Highest Price",
+        "rekomendasi": "Recommended Products"
+    },
+    "popup": "Just purchased!",
+    "all": "Show All",
+    "cart": {
+        "text": "Shopping Cart",
+        "back": "Back to Shopping"
+    },
+    "checkout": {
+        "message": "Checkout Successful!",
+        "message_text": "Please wait for the admin to contact you via email 😁😁"
+    },
+    "offerpage": {
+        "text": "Don't miss out on our latest and exclusive offers by entering your WhatsApp number.",
+        "text1": "Interested in our products?"
+    },
+    "footer": {
+        "text": "Don't hesitate to consult and ask us! We are ready to meet your needs!"
     }
 }

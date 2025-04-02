@@ -85,14 +85,14 @@
                     <span class="font-bold" v-if="Filter == 'populer'"
                         >Produk {{ $t("product.populer") }}</span
                     >
-                    <span class="font-bold" v-if="Filter == 'asc_harga'"
-                        >Harga Termurah</span
+                    <span class="font-bold" v-if="Filter == 'asc_harga'">
+                        {{ $t("product.murah") }}</span
                     >
-                    <span class="font-bold" v-if="Filter == 'desc_harga'"
-                        >Harga Termahal</span
+                    <span class="font-bold" v-if="Filter == 'desc_harga'">
+                        {{ $t("product.mahal") }}</span
                     >
                     <span class="font-bold" v-if="Filter == 'recommended'"
-                        >Rekomendasi Produk</span
+                        >Re {{ $t("product.rekomendasi") }}</span
                     >
                 </div>
                 <div v-else>
@@ -208,7 +208,7 @@
                 <Link
                     href="/products?filter=all"
                     class="bg-white border-2 p-2 rounded-full text-[#2E2E2E] hover:border-[#2E2E2E]"
-                    ><i class="mdi mdi-view-list"></i> Tampilkan Semua</Link
+                    ><i class="mdi mdi-view-list"></i> ${{ $t("all") }}</Link
                 >
             </div>
         </section>

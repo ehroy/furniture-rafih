@@ -28,7 +28,29 @@
         "kami": "Produk Kami",
         "all": "Semua Produk",
         "new": "Terbaru",
+        "new1": "Produk Terbaru",
         "populer": "Terpopuler",
-        "price": "Harga"
+        "laris": "Produk terlaris",
+        "price": "Harga",
+        "murah": "Harga Termurah",
+        "mahal": "Harga Termahal",
+        "rekomendasi": "Rekomendasi Produk"
+    },
+    "popup": "Baru saja dibeli!",
+    "all": "Tampilkan Semua",
+    "cart": {
+        "text": "Keranjang Belanja",
+        "back": " Kembali Belanja"
+    },
+    "checkout": {
+        "message": "Checkout berhasil!",
+        "message_text": " Tunggu admin menghubungi lewat email 😁😁"
+    },
+    "offerpage": {
+        "text": "Jangan lewatkan penawaran menarik dan terbaru dari kami, dengan memasukan nomer whatsapp anda. ",
+        "text1": "Tertarik dengan produk kami?"
+    },
+    "footer": {
+        "text": " Jangan ragu untuk berkonsultasi dan tanya kami! Kami siap melayani kebutuhan anda!"
     }
 }
