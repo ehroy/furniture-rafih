@@ -7,5 +7,59 @@
     "message_order": "Terima kasih! Pesanan Anda berhasil!",
     "message_cancel": "Pesanan Dibatalkan",
     "detail_order": "Detail Pesanan",
-    "product_serupa": "Produk Serupa"
+    "product_serupa": "Produk Serupa",
+    "homepage": {
+        "text": "Kami menghadirkan desain interior minimalis dengan sentuhanalami. Menggunakan material kayu berkualitas, setiapfurnitur dirancang fungsional, estetik, dan tahan lama. Sederhana, elegan, dan menyatu dengan kehidupan Anda.",
+        "back_home": "Kembali ke Beranda"
+    },
+    "button": {
+        "order": "Belanja sekarang!",
+        "catalog": "Katalog Lengkap",
+        "callme": "Hubungi Kami"
+    },
+    "orderpage": {
+        "notice_message": "Jika Anda tidak menerima email konfirmasi, silakan periksafolder spam Anda.",
+        "message_order": "Terima kasih! Pesanan Anda berhasil!",
+        "message_cancel": "Pesanan Dibatalkan",
+        "detail_order": "Detail Pesanan"
+    },
+    "errors": {
+        "text": "Oops! Halaman tidak ditemukan."
+    },
+    "gallery": {
+        "text": "Keanggunan dalam Setiap Detail",
+        "text1": "Koleksi furniture premium untuk ruang yang bermakna",
+        "text2": "Jelajahi Koleksi",
+        "text3": "Transformasi Ruangan Anda",
+        "text4": "Jadikan rumah Anda lebih elegan dengan furniture berkualitas tinggi. Konsultasi dengan desainer kami untuk mendapatkan pengalaman yang personal."
+    },
+    "product": {
+        "kami": "Produk Kami",
+        "all": "Semua Produk",
+        "new": "Terbaru",
+        "new1": "Produk Terbaru",
+        "populer": "Terpopuler",
+        "price": "Harga",
+        "laris": "Produk terlaris",
+        "murah": "Harga Termurah",
+        "mahal": "Harga Termahal",
+        "rekomendasi": "Rekomendasi Produk"
+    },
+    "popup": "Baru saja dibeli!",
+    "all": "Tampilkan Semua",
+    "cart": {
+        "text": "Keranjang Belanja",
+        "back": " Kembali Belanja"
+    },
+    "checkout": {
+        "message": "Checkout berhasil!",
+        "message_text": " Tunggu admin menghubungi lewat email 😁😁"
+    },
+    "offerpage": {
+        "text": "Jangan lewatkan penawaran menarik dan terbaru dari kami, dengan memasukan nomer whatsapp anda. ",
+        "text1": "Tertarik dengan produk kami?"
+    },
+    "footer": {
+        "text": " Jangan ragu untuk berkonsultasi dan tanya kami! Kami siap melayani kebutuhan anda!"
+    }
 }
