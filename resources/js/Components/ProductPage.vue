@@ -91,9 +91,9 @@
                     <span class="font-bold" v-if="Filter == 'desc_harga'">
                         {{ $t("product.mahal") }}</span
                     >
-                    <span class="font-bold" v-if="Filter == 'recommended'"
-                        >Re {{ $t("product.rekomendasi") }}</span
-                    >
+                    <span class="font-bold" v-if="Filter == 'recommended'">{{
+                        $t("product.rekomendasi")
+                    }}</span>
                 </div>
                 <div v-else>
                     <span class="font-thin underline">Search </span> :
@@ -208,7 +208,7 @@
                 <Link
                     href="/products?filter=all"
                     class="bg-white border-2 p-2 rounded-full text-[#2E2E2E] hover:border-[#2E2E2E]"
-                    ><i class="mdi mdi-view-list"></i> ${{ $t("all") }}</Link
+                    ><i class="mdi mdi-view-list"></i> {{ $t("all") }}</Link
                 >
             </div>
         </section>
