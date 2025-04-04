@@ -1,9 +1,9 @@
 <template>
     <JustHead :Global="Global" />
     <div
-        class="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-400 to-blue-500 p-6"
+        class="min-h-screen flex items-center justify-center bg-gradient-to-r p-6 bg-gray-50"
     >
-        <div class="bg-white rounded-2xl shadow-xl p-8 max-w-3xl w-full">
+        <div class="bg-white rounded-2xl p-8 max-w-3xl w-full">
             <h1 class="text-2xl font-bold text-green-600 text-center">
                 🎉 {{ $t("orderpage.message_order") }}
             </h1>
@@ -75,7 +75,20 @@
             <p class="mt-4 text-gray-700 text-lg font-medium text-center">
                 {{ statusMessage(order.status) }}
             </p>
-
+            <div class="mt-6 text-center">
+                <a
+                    :href="
+                        helpers.WaButton(
+                            Global,
+                            '/cart/success/' + order.order_number
+                        )
+                    "
+                    target="_blank"
+                    class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300"
+                >
+                    Click For Confirmation Whatsapp
+                </a>
+            </div>
             <div class="border-t border-gray-300 my-6"></div>
 
             <h2 class="text-lg font-semibold text-gray-700">
@@ -167,17 +180,17 @@ const lineClass = (index) => {
 const statusMessage = (status) => {
     switch (status) {
         case "pending":
-            return "⏳ Pesanan Anda sedang menunggu konfirmasi.";
+            return "⏳ Your order is waiting for confirmation.";
         case "confirmed":
-            return "✅ Pesanan Anda telah dikonfirmasi oleh admin.";
+            return "✅ Your order has been confirmed by the admin.";
         case "processing":
-            return "🚛 Pesanan sedang dikirim. Mohon tunggu.";
+            return "🚛 Your order is being processed. Please wait.";
         case "completed":
-            return "🎉 Pesanan Anda telah selesai! Terima kasih telah berbelanja.";
+            return "🎉 Your order is complete! Thank you for shopping.";
         case "cancelled":
-            return "❌ Pesanan Anda dibatalkan. Hubungi admin jika ada pertanyaan.";
+            return "❌ Your order has been cancelled. Contact support if you have any questions.";
         default:
-            return "🔄 Status pesanan tidak dikenali.";
+            return "🔄 Unknown order status.";
     }
 };
 </script>

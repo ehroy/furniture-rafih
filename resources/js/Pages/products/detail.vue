@@ -367,7 +367,7 @@
                                     ></path>
                                     p
                                 </svg>
-                                Estimated Delivery : Up to 4 business days
+                                Estimated Delivery : Up to 7-21 business days
                             </span>
                         </div>
                     </div>

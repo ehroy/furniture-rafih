@@ -10,7 +10,7 @@
     },
     "orderpage": {
         "notice_message": "If you do not receive a confirmation email, please check your spam folder.",
-        "message_order": "Thank you! Your order was successful!",
+        "message_order": "Thank you! Your order was successful. Please wait for our admin to contact you!",
         "message_cancel": "Order Canceled",
         "detail_order": "Order Details"
     },

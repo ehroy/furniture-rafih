@@ -157,72 +157,64 @@
             class="relative flex items-center justify-between rounded-lg px-6 py-2 w-full md:hidden text-[#424242]"
         >
             <!-- Menu Kiri -->
-            <div class="flex gap-6">
-                <Link
-                    aria-label="Product"
-                    href="/products"
-                    class="flex flex-col items-center hover:text-black"
+
+            <Link
+                aria-label="Product"
+                href="/"
+                class="flex flex-col items-center hover:text-black"
+            >
+                <i class="mdi mdi-home-outline text-xl"></i>
+                <span class="text-xs">Home</span>
+            </Link>
+            <Link
+                aria-label="Product"
+                href="/products"
+                class="flex flex-col items-center hover:text-black"
+            >
+                <i class="mdi mdi-cube-outline text-xl"></i>
+                <span class="text-xs">Product</span>
+            </Link>
+            <div class="relative" @click="toggleDropdown">
+                <button class="flex flex-col items-center hover:text-black">
+                    <i class="mdi mdi-tag-multiple text-xl"></i>
+                    <span class="text-xs">Category</span>
+                </button>
+                <div
+                    v-if="isOpen"
+                    class="absolute bottom-12 w-40 bg-white rounded-lg shadow-md"
                 >
-                    <i class="mdi mdi-cube-outline text-xl"></i>
-                    <span class="text-xs">Product</span>
-                </Link>
-                <div class="relative" @click="toggleDropdown">
-                    <button class="flex flex-col items-center hover:text-black">
-                        <i class="mdi mdi-tag-multiple text-xl"></i>
-                        <span class="text-xs">Category</span>
-                    </button>
-                    <div
-                        v-if="isOpen"
-                        class="absolute bottom-12 w-40 bg-white rounded-lg shadow-md"
-                    >
-                        <ul class="flex flex-col p-3">
-                            <li
-                                v-for="(category, index) in Categories"
-                                :key="index"
-                                class="py-1"
+                    <ul class="flex flex-col p-3">
+                        <li
+                            v-for="(category, index) in Categories"
+                            :key="index"
+                            class="py-1"
+                        >
+                            <Link
+                                :href="`/category/${category.id}`"
+                                class="text-black hover:text-[#212121]"
                             >
-                                <Link
-                                    :href="`/category/${category.id}`"
-                                    class="text-black hover:text-[#212121]"
-                                >
-                                    {{ category.name }}
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+                                {{ category.name }}
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-            <!-- Tombol Home (Oracle Style) -->
-            <div class="absolute top-0 left-1/2 transform -translate-x-1/2">
-                <Link
-                    aria-label="Home"
-                    href="/"
-                    class="bg-gradient-to-r bg-[#565656] text-gray-100 p-4 rounded-full shadow-lg hover:scale-110 transition duration-300 border-2 border-gray-100"
-                >
-                    <i class="mdi mdi-home-outline text-xl"></i>
-                </Link>
-            </div>
-
-            <!-- Menu Kanan -->
-            <div class="flex gap-6">
-                <Link
-                    aria-label="Linker"
-                    href="/linker"
-                    class="flex flex-col items-center hover:text-black"
-                >
-                    <i class="mdi mdi-phone-outline text-xl"></i>
-                    <span class="text-xs">Contact</span>
-                </Link>
-                <Link
-                    aria-label="Galery"
-                    href="/galery"
-                    class="flex flex-col items-center hover:text-black"
-                >
-                    <i class="mdi mdi-image text-xl"></i>
-                    <span class="text-xs">Gallery</span>
-                </Link>
-            </div>
+            <Link
+                aria-label="Linker"
+                href="/linker"
+                class="flex flex-col items-center hover:text-black"
+            >
+                <i class="mdi mdi-phone-outline text-xl"></i>
+                <span class="text-xs">Contact</span>
+            </Link>
+            <Link
+                aria-label="Galery"
+                href="/galery"
+                class="flex flex-col items-center hover:text-black"
+            >
+                <i class="mdi mdi-image text-xl"></i>
+                <span class="text-xs">Gallery</span>
+            </Link>
         </div>
     </div>
 
