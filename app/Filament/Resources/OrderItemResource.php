@@ -7,10 +7,12 @@ use App\Models\OrderItem;
 use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Resources\Resource;
 use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Support\Facades\Log;
 
 class OrderItemResource extends Resource
 {
@@ -26,6 +28,24 @@ class OrderItemResource extends Resource
     {
         return $form
             ->schema([
+                Select::make('product_id')
+                    ->relationship('product', 'name')
+                    ->required()
+                    ->columnSpanFull()
+                    ->native(false),
+                Select::make('order_id')
+                    ->relationship('order', 'order_number')
+                    ->required()
+                    ->columnSpanFull()
+                    ->native(false),
+                TextInput::make('price')
+                    ->label('Price')
+                    ->required()
+                    ->columnSpanFull(),
+                TextInput::make('quantity')
+                    ->label('Price')
+                    ->required()
+                    ->columnSpanFull(),
                 Select::make('status')
                     ->options([
                         'pending'    => 'Pending',
@@ -34,7 +54,13 @@ class OrderItemResource extends Resource
                         'completed'  => 'Completed',
                         'cancelled'  => 'Cancelled',
                     ])
-                    ->afterStateUpdated(fn ($state, $record) => $record->updateStatus($state))
+                    ->afterStateUpdated(function ($state, $record) {
+                        if ($record) { // Pastikan record tidak null
+                            $record->updateStatus($state);
+                        } else {
+                            Log::error('Record not found in afterStateUpdated');
+                        }
+                    })
                     ->required(),
             ]);
     }

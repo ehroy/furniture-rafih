@@ -7,6 +7,9 @@ use App\Models\Order;
 use Carbon\Carbon;
 use Filament\Resources\Resource;
 use Filament\Forms;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables;
 use Filament\Tables\Filters\SelectFilter;
 
@@ -38,6 +41,41 @@ class OrderResource extends Resource
                 Forms\Components\TextInput::make('total_price')->numeric()->required(),
                 Forms\Components\DateTimePicker::make('confirmed_at'),
                 Forms\Components\DateTimePicker::make('processed_at'),
+                Repeater::make('items')
+                ->relationship('items') // Menghubungkan dengan relasi `items` di Order
+                ->schema([
+                    Select::make('product_id')
+                        ->relationship('product', 'name')
+                        ->label('Product')
+                        ->required(),
+
+                    TextInput::make('quantity')
+                        ->label('Quantity')
+                        ->numeric()
+                        ->minValue(1)
+                        ->required(),
+
+                    TextInput::make('price')
+                        ->label('Price')
+                        ->numeric()
+                        ->minValue(0)
+                        ->required(),
+
+                    Select::make('status')
+                        ->options([
+                            'pending'    => 'Pending',
+                            'confirmed'  => 'Confirmed',
+                            'processing' => 'Processing',
+                            'completed'  => 'Completed',
+                            'cancelled'  => 'Cancelled',
+                        ])
+                        ->label('Status')
+                        ->default('pending')
+                        ->required(),
+    ])
+    ->columns(2) // Agar lebih rapi dalam tampilan
+    ->collapsible(), // Bisa dilipat untuk lebih ringkas
+                
             ]);
     }
 
@@ -59,7 +97,10 @@ class OrderResource extends Resource
                     default => 'secondary',
                 }),
                 Tables\Columns\TextColumn::make('total_price')->sortable()->money(),
-                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->label("pesanan dibuat"),
+                Tables\Columns\TextColumn::make('confirmed_at')->dateTime()->sortable()->label("pesanan dikonfirmasi"),
+                Tables\Columns\TextColumn::make('processed_at')->dateTime()->sortable()->label("pesanan diproses"),
+
 
                 // Menampilkan daftar produk dalam satu kolom
                 Tables\Columns\TextColumn::make('items.product.name')
@@ -96,7 +137,6 @@ class OrderResource extends Resource
                     }),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -109,7 +149,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            \App\Filament\Resources\OrderItemsResource\RelationManagers\OrderItemsRelationManager::class,
+            // \App\Filament\Resources\OrderItemsResource\RelationManagers\OrderItemsRelationManager::class,
         ];
     }
 
