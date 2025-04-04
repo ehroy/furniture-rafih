@@ -104,7 +104,11 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Top Quality</p>
+                                    <p
+                                        class="text-lg font-semibold text-gray-800"
+                                    >
+                                        Top Quality
+                                    </p>
                                 </div>
                             </div>
                             <div class="flex items-center justify-center p-3">
@@ -130,7 +134,11 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Fast Delivery</p>
+                                    <p
+                                        class="text-lg font-semibold text-gray-800"
+                                    >
+                                        Fast Delivery
+                                    </p>
                                 </div>
                             </div>
                         </div>
