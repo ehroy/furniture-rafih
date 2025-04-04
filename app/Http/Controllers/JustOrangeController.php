@@ -197,6 +197,7 @@ class JustOrangeController extends Controller
         // dd($request);
         $request->validate([
             'email' => 'required|email',
+            'address' => 'required|string',
             'cart' => 'required|array',
             'cart.*.name' => 'required|string',
             'cart.*.price' => 'required|numeric',
@@ -210,7 +211,7 @@ class JustOrangeController extends Controller
             'order_number' => 'ORD-' . strtoupper(uniqid()),
             'buyer_email' => $request->email,
             'total_price' => collect($request->cart)->sum(fn($item) => $item['price'] * $item['quantity']),
-            'shipping_address' => "jln cuy",
+            'shipping_address' => $request->address,
         ]);
 
         // Simpan item order

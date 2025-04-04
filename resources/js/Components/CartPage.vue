@@ -2,7 +2,7 @@
     <!-- Container Utama -->
     <div class="py-10 px-5 md:px-20 lg:px-64">
         <div
-            class="w-full max-w-6xl bg-white p-6 overflow-auto max-h-[calc(100vh-120px)] md:pb-32 pb-48"
+            class="w-full max-w-6xl p-6 overflow-auto max-h-[calc(100vh-120px)] md:pb-32 pb-96"
         >
             <h2
                 class="text-2xl font-bold text-gray-800 mb-5 border-b pb-6 mt-5"
@@ -100,35 +100,62 @@
     <!-- ✅ Form & Checkout Hanya Ditampilkan Jika Keranjang Tidak Kosong -->
     <div
         v-if="cart.length > 0"
-        class="fixed bottom-0 left-0 right-0 flex justify-center items-center px-4 pb-[env(safe-area-inset-bottom)] mb-16 md:mb-0 pt-4"
+        class="fixed bottom-0 left-0 right-0 flex justify-center items-center px-4 pb-[env(safe-area-inset-bottom)] mb-10 md:mb-0 pt-4"
     >
-        <div class="w-full max-w-6xl bg-white p-6">
-            <div class="mt-5">
-                <label class="block text-gray-700 font-medium mb-2"
-                    >Email:</label
-                >
-                <input
-                    v-model="form.email"
-                    type="email"
-                    placeholder="Masukkan email Anda"
-                    class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-amber-300"
-                />
-                <p v-if="emailError" class="text-red-500 text-sm mt-1">
-                    Email harus diisi sebelum checkout.
-                </p>
+        <div class="w-full max-w-6xl bg-white p-6 shadow-lg rounded-t-lg">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Email -->
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2"
+                        >Email:</label
+                    >
+                    <input
+                        v-model="form.email"
+                        type="email"
+                        placeholder="Enter your email"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-amber-300"
+                    />
+                    <p v-if="emailError" class="text-red-500 text-sm mt-1">
+                        Email is required before checkout.
+                    </p>
+                </div>
+
+                <!-- WhatsApp -->
+                <!-- <div>
+                    <label class="block text-gray-700 font-medium mb-2"
+                        >WhatsApp:</label
+                    >
+                    <input
+                        v-model="form.whatsapp"
+                        type="tel"
+                        placeholder="e.g. +628123456789"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-green-300"
+                    />
+                </div> -->
+
+                <!-- Address -->
+                <div class="mt-5">
+                    <label class="block text-gray-700 font-medium mb-2"
+                        >Address :</label
+                    >
+                    <textarea
+                        v-model="form.address"
+                        placeholder="Masukkan alamat lengkap Anda"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-amber-300"
+                        rows="2"
+                    ></textarea>
+                </div>
             </div>
 
             <!-- Tombol Checkout -->
             <button
                 @click="checkout"
-                class="w-full mt-5 bg-[#424242] text-white py-3 rounded-lg text-center font-bold"
+                class="w-full mt-5 bg-[#424242] text-white py-3 rounded-lg text-center font-bold hover:bg-[#333]"
             >
-                Checkout
+                Order
             </button>
         </div>
     </div>
-
-    <!-- ✅ Toast Notification (POSISI TENGAH LAYAR) -->
     <transition name="fade">
         <div
             v-if="showToast"
@@ -210,6 +237,7 @@ const isValidEmail = (email) => {
 // Gunakan useForm dari Inertia.js
 const form = useForm({
     email: "",
+    address: "",
     cart: [],
 });
 
@@ -236,6 +264,7 @@ const checkout = () => {
             localStorage.removeItem("cart");
             cart.value = [];
             form.email = "";
+            form.address = "";
         },
         onError: (errors) => {
             console.error("Checkout failed:", errors);

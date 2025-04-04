@@ -40,7 +40,7 @@
                     v-model="catModel"
                 >
                     <option value="">
-                        {{ "Pilih Kategori" }}
+                        {{ "Pick a Category" }}
                     </option>
                     <option
                         v-for="(cat, index) in Categories"
