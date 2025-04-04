@@ -1,17 +1,26 @@
 {
+    "home": "We bring minimalist interior designs with a natural touch. Using high-quality wood materials, every piece of furniture is designed to be functional, aesthetic, and durable. Simple, elegant, and seamlessly integrated into your life.",
+    "button_home": "Shop now!",
+    "error_message": "Oops! Page not found.",
+    "beranda": "Back to Home",
+    "notice_message": "If you did not receive the confirmation email, please check your spam folder.",
+    "message_order": "Thank you! Your order was successful!",
+    "message_cancel": "Order Cancelled",
+    "detail_order": "Order Details",
+    "product_serupa": "Similar Products",
     "homepage": {
-        "text": "We present minimalist interior design with a natural touch. Using high-quality wood materials, each piece of furniture is designed to be functional, aesthetic, and durable. Simple, elegant, and blends into your life.",
+        "text": "We bring minimalist interior designs with a natural touch. Using high-quality wood materials, every piece of furniture is designed to be functional, aesthetic, and durable. Simple, elegant, and seamlessly integrated into your life.",
         "back_home": "Back to Home"
     },
     "button": {
-        "order": "Shop Now!",
+        "order": "Shop now!",
         "catalog": "Full Catalog",
         "callme": "Contact Us"
     },
     "orderpage": {
-        "notice_message": "If you do not receive a confirmation email, please check your spam folder.",
+        "notice_message": "If you did not receive the confirmation email, please check your spam folder.",
         "message_order": "Thank you! Your order was successful. Please wait for our admin to contact you!",
-        "message_cancel": "Order Canceled",
+        "message_cancel": "Order Cancelled",
         "detail_order": "Order Details"
     },
     "errors": {
@@ -22,16 +31,16 @@
         "text1": "A premium furniture collection for meaningful spaces",
         "text2": "Explore the Collection",
         "text3": "Transform Your Space",
-        "text4": "Make your home more elegant with high-quality furniture. Consult with our designers for a personalized experience."
+        "text4": "Make your home more elegant with high-quality furniture. Consult with our designer for a personalized experience."
     },
     "product": {
         "kami": "Our Products",
         "all": "All Products",
         "new": "Newest",
-        "new1": "New Arrivals",
+        "new1": "Latest Products",
         "populer": "Most Popular",
-        "laris": "Bestsellers",
         "price": "Price",
+        "laris": "Best Sellers",
         "murah": "Lowest Price",
         "mahal": "Highest Price",
         "rekomendasi": "Recommended Products"
@@ -40,17 +49,17 @@
     "all": "Show All",
     "cart": {
         "text": "Shopping Cart",
-        "back": "Back to Shopping"
+        "back": "Back to Shop"
     },
     "checkout": {
-        "message": "Checkout Successful!",
+        "message": "Checkout successful!",
         "message_text": "Please wait for the admin to contact you via email 😁😁"
     },
     "offerpage": {
-        "text": "Don't miss out on our latest and exclusive offers by entering your WhatsApp number.",
+        "text": "Don't miss our exciting and latest offers! Just enter your WhatsApp number.",
         "text1": "Interested in our products?"
     },
     "footer": {
-        "text": "Don't hesitate to consult and ask us! We are ready to meet your needs!"
+        "text": "Don't hesitate to consult and ask us anything! We're ready to meet your needs!"
     }
 }

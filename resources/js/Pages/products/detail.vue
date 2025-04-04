@@ -415,7 +415,7 @@
                     <div class="block md:hidden">
                         <h3 class="text-2xl poppins-bold mt-5 mb-3">
                             <i class="mdi mdi-table-furniture"></i
-                            >{{ $t(product_serupa) }}
+                            >{{ $t("product_serupa") }}
                         </h3>
                         <div
                             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mb-10 mt-5 mx-10 text-center"
@@ -502,7 +502,9 @@ import { Link } from "@inertiajs/vue3";
 import { inject, ref, computed, onMounted } from "vue";
 import Footer from "../../Components/Footer.vue";
 import JustHead from "../../Components/JustHead.vue";
+import { useI18n } from "vue-i18n";
 
+const { locale } = useI18n();
 // State
 const showContent = ref(false);
 const helpers = inject("helpers");
