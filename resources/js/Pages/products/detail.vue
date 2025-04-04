@@ -55,7 +55,7 @@
                             <hr />
                         </div>
                         <div
-                            class="grid grid-cols-3 text-xs md:text-lg gap-4 mt-8 border bg-[#e7f5fb] rounded-md"
+                            class="grid grid-cols-3 gap-4 mt-8 border bg-[#e7f5fb] rounded-md text-lg md:text-sm"
                         >
                             <div class="flex items-center space-x-3 p-3">
                                 <!-- Ikon -->
@@ -79,12 +79,14 @@
                                 </div>
 
                                 <!-- Teks -->
-                                <p class="text-lg font-semibold text-gray-800">
+                                <p class="font-semibold text-gray-800">
                                     100% Original
                                 </p>
                             </div>
 
-                            <div class="flex items-center justify-center p-3">
+                            <div
+                                class="flex items-center justify-center p-3 text-lg md:text-sm"
+                            >
                                 <div
                                     class="h-10 w-10 flex items-center justify-center mr-4"
                                 >
@@ -104,14 +106,14 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p
-                                        class="text-lg font-semibold text-gray-800"
-                                    >
+                                    <p class="font-semibold text-gray-800">
                                         Top Quality
                                     </p>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-center p-3">
+                            <div
+                                class="flex items-center justify-center p-3 text-lg md:text-sm"
+                            >
                                 <div
                                     class="h-10 w-10 flex items-center justify-center mr-4"
                                 >
@@ -134,9 +136,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p
-                                        class="text-lg font-semibold text-gray-800"
-                                    >
+                                    <p class="font-semibold text-gray-800">
                                         Fast Delivery
                                     </p>
                                 </div>
