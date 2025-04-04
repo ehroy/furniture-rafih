@@ -20,7 +20,15 @@ class OrderResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart'; // Icon di sidebar
     protected static ?string $navigationGroup = 'E-Commerce'; // Bisa disesuaikan
     protected static ?int $navigationSort = 1;
-    
+    public static function getNavigationBadge(): ?string
+    {
+        return \App\Models\Order::where('status', 'pending')->count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'danger'; // warna badge (merah)
+    }
 
     public static function form(Forms\Form $form): Forms\Form
     {

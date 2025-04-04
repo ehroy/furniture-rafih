@@ -20,6 +20,16 @@ class ProductVariantResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-m-chevron-right';
     protected static ?string $navigationGroup = 'Gudang Product';
     protected static ?int $navigationSort = 1;
+    public static function getNavigationBadge(): ?string
+    {
+        return \App\Models\ProductVariant::where('stock', '<', 1)->count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'danger'; // warna badge (merah)
+    }
+
     public static function getNavigationLabel(): string
     {
         return 'Product Details'; // Ganti dengan nama yang diinginkan
