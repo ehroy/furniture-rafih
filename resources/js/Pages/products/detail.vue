@@ -80,7 +80,7 @@
 
                                 <!-- Teks -->
                                 <p class="text-lg font-semibold text-gray-800">
-                                    101% Original
+                                    100% Original
                                 </p>
                             </div>
 
@@ -104,7 +104,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Lowest Price</p>
+                                    <p class="font-medium">Top Quality</p>
                                 </div>
                             </div>
                             <div class="flex items-center justify-center p-3">
@@ -130,14 +130,14 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="font-medium">Free Shipping</p>
+                                    <p class="font-medium">Fast Delivery</p>
                                 </div>
                             </div>
                         </div>
                         <div class="hidden md:block text-[#2E2E2E]">
                             <h3 class="text-2xl poppins-bold mt-5 mb-3">
-                                <i class="mdi mdi-table-furniture"></i> Produk
-                                Serupa
+                                <i class="mdi mdi-table-furniture"></i>
+                                {{ $t("product_serupa") }}
                             </h3>
                             <div class="grid grid-cols-2 gap-1">
                                 <div
@@ -414,8 +414,8 @@
 
                     <div class="block md:hidden">
                         <h3 class="text-2xl poppins-bold mt-5 mb-3">
-                            <i class="mdi mdi-table-furniture"></i> Produk
-                            Serupa
+                            <i class="mdi mdi-table-furniture"></i
+                            >{{ $t(product_serupa) }}
                         </h3>
                         <div
                             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mb-10 mt-5 mx-10 text-center"
