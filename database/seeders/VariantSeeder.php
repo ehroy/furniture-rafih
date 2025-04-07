@@ -8,27 +8,26 @@ use App\Models\Color;
 class VariantSeeder extends Seeder
 {
     public function run()
-    {
-        // Data untuk tabel wood
-        $woods = [
-            ['name' => 'Jati'],
-            ['name' => 'Mahoni'],
-            ['name' => 'Sonokeling'],
-            ['name' => 'Pinus'],
-            ['name' => 'Mindi'],
-        ];
+{
+    // Data untuk tabel wood
+    $woods = [
+        ['name' => 'Tiger'],
+        ['name' => 'Teak'],
+        ['name' => 'Old Teak'],
+    ];
 
-        // Data untuk tabel color
-        $colors = [
-            ['name' => 'Merah', 'code_palete' => 'bg-[#FF0000]'],
-            ['name' => 'Biru', 'code_palete' => 'bg-[#0000FF]'],
-            ['name' => 'Hijau', 'code_palete' => 'bg-[#008000]'],
-            ['name' => 'Kuning', 'code_palete' => 'bg-[#FFFF00]'],
-            ['name' => 'Hitam', 'code_palete' => 'bg-[#000000]'],
-        ];
+    // Data untuk tabel color
+    $colors = [
+        ['name' => 'Default', 'code_palete' => '#F5F5F5'],  // Light Gray
+        ['name' => 'Dbgsb', 'code_palete' => '#EED9B6'],     // Beige tone
+        ['name' => 'Grey', 'code_palete' => '#808080'],      // Standard Gray
+        ['name' => 'Silk', 'code_palete' => '#C8BFB5'],      // Soft silk tone
+        ['name' => 'Teak', 'code_palete' => '#996633'],      // Teak wood color
+        ['name' => 'Ort', 'code_palete' => '#D0F0C0'],       // Light greenish tone
+    ];
 
-        // Insert data ke database
-        Wood::insert($woods);
-        Color::insert($colors);
-    }
+    // Insert data ke database
+    Wood::insert($woods);
+    Color::insert($colors);
+}
 }

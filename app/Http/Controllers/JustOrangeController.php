@@ -51,6 +51,11 @@ class JustOrangeController extends Controller
             }else if($filter == 'recommended')
             {
                 $data['Products'] = Product::where('recomended' , true)->with->with(['subcategory','variants.wood','variants.color','variants'])->orderBy('id','desc')->get();
+            }else{
+                $data['Products'] = Product::whereHas('subcategory.category', function ($query) use ($filter) {
+                    $query->where('name', $filter);
+                })->with(['subcategory.category','variants.wood','variants.color','variants'])->get();
+
             }
         }
         $data['Gallery'] = Product::selectRaw('MIN(id) as id, sub_category_id, MIN(image) as image')
@@ -124,7 +129,8 @@ class JustOrangeController extends Controller
             }else if($filter == 'recommended')
             {
                 $data['Products'] = Product::where('recomended' , true)->with(['subcategory','variants.wood','variants.color','variants'])->orderBy('id','desc')->get();
-            }else if($filter == 'search')
+            }
+            else if($filter == 'search')
             {
                 $query = $request->get('q');
                 $data['Products'] =  Product::where('name', 'like', '%' . $query . '%')
@@ -132,6 +138,10 @@ class JustOrangeController extends Controller
                 ->with(['subcategory','variants.wood','variants.color','variants'])
                 ->get();
                 $data['FilterQuery'] = $query;
+            }else{
+                $data['Products'] = Product::whereHas('subcategory.category', function ($query) use ($filter) {
+                    $query->where('name', $filter);
+                })->with(['subcategory.category','variants.wood','variants.color','variants'])->get();
             }
         }
         $data['SubCategories'] = $sub;

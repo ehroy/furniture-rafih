@@ -55,6 +55,9 @@
             :Filter="Filter"
             :Global="Global"
             :FilterQuery="FilterQuery"
+            :ActiveCat="ActiveCat"
+            :Categories="Categories"
+            :SubCategories="SubCategories"
         />
         <GaleryPage
             :Gallery="Gallery"

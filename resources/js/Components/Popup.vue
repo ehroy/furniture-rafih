@@ -2,7 +2,7 @@
     <div class="fixed right-4 z-50 bottom-20">
         <div class="flex flex-row justify-center items-center gap-2">
             <span
-                class="flex items-center gap-2 bg-gray-50 p-3 rounded-3xl shadow-sm"
+                class="flex items-center gap-2 bg-gray-50 p-2 rounded-3xl shadow-sm"
             >
                 Chat with us
                 <img
@@ -16,7 +16,7 @@
                 aria-label="whatsapp"
                 :href="helpers.WaButton(Global, '/')"
                 target="_blank"
-                class="flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition"
+                class="flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

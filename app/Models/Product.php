@@ -11,6 +11,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'category_id',
         'sub_category_id',
         'name',
         'code_sku',
@@ -33,6 +34,10 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
     public function subcategory(): BelongsTo
     {
         return $this->belongsTo(SubCategory::class , 'sub_category_id' , 'id');

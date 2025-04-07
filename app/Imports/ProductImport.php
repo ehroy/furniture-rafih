@@ -62,6 +62,7 @@ class ProductImport implements ToCollection
                 ['code_sku' => $sku],
                 [
                     'sub_category_id' => $subCategory->id,
+                    'category_id' => $category->id,
                     'name' => $productName,
                     'slug' => Str::slug($productName),
                     'width' => $width,

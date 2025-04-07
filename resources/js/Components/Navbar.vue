@@ -69,7 +69,7 @@
                             >Product</Link
                         >
                     </li>
-                    <li class="relative hover:text-[#212121]">
+                    <!-- <li class="relative hover:text-[#212121]">
                         <button
                             id="dropdownButton"
                             @click="toggleDropdown"
@@ -101,7 +101,7 @@
                                 >
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="hover:text-[#212121] hover:underline">
                         <Link aria-label="Contact Us" href="/linker"
                             >Contact Us</Link
@@ -174,7 +174,7 @@
                 <i class="mdi mdi-cube-outline text-xl"></i>
                 <span class="text-xs">Product</span>
             </Link>
-            <div class="relative" @click="toggleDropdown">
+            <!-- <div class="relative" @click="toggleDropdown">
                 <button class="flex flex-col items-center hover:text-black">
                     <i class="mdi mdi-tag-multiple text-xl"></i>
                     <span class="text-xs">Category</span>
@@ -198,7 +198,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
             <Link
                 aria-label="Linker"
                 href="/linker"

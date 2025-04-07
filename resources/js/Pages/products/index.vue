@@ -11,6 +11,8 @@
             :Filter="Filter"
             :Global="Global"
             :FilterQuery="FilterQuery"
+            :ActiveCat="ActiveCat"
+            :SubCategories="SubCategories"
         />
     </div>
     <Footer :Global="Global" :Socmed="Socmed" :Pages="Pages" />

@@ -38,35 +38,33 @@
                         {{ $t("product.populer") }}
                     </Link>
                 </div>
-                <div class="flex justify-end">
-                    <Link
-                        v-show="Filter == 'desc_harga'"
-                        href="?filter=asc_harga"
-                        class="hover:bg-gray-100 text-[#2E2E2E] font-bold py-2 px-4 rounded-full"
-                        preserve-scroll
+
+                <div class="flex justify-end relative" @click="toggleDropdown">
+                    <button class="flex flex-col items-center hover:text-black">
+                        <span
+                            class="hover:bg-gray-100 text-[#2E2E2E] font-bold py-2 px-4 rounded-full"
+                            >Category</span
+                        >
+                    </button>
+                    <div
+                        v-if="isOpen"
+                        class="absolute top-12 w-40 bg-white rounded-lg shadow-md"
                     >
-                        <i class="mdi mdi-sort-descending"></i>
-                        {{ $t("product.price") }}
-                    </Link>
-                    <Link
-                        v-show="Filter == 'asc_harga'"
-                        href="?filter=desc_harga"
-                        class="hover:bg-gray-100 text-[#2E2E2E] font-bold py-2 px-4 rounded-full"
-                        preserve-scroll
-                    >
-                        <i class="mdi mdi-sort-ascending"></i>
-                        {{ $t("product.price") }}
-                    </Link>
-                    <Link
-                        v-show="
-                            Filter !== 'asc_harga' && Filter !== 'desc_harga'
-                        "
-                        href="?filter=desc_harga"
-                        class="hover:bg-gray-100 text-[#2E2E2E] font-bold py-2 px-4 rounded-full"
-                        preserve-scroll
-                    >
-                        <i class="mdi mdi-sort"></i> {{ $t("product.price") }}
-                    </Link>
+                        <ul class="flex flex-col p-3">
+                            <li
+                                v-for="(cat, index) in Categories"
+                                :key="index"
+                                class="py-1"
+                            >
+                                <Link
+                                    :href="'?filter=' + cat.name"
+                                    class="text-black hover:text-[#212121]"
+                                >
+                                    {{ cat.name }}
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -216,18 +214,30 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, inject } from "vue";
+import { ref, onMounted, watch, inject, onBeforeUnmount } from "vue";
 import { Link } from "@inertiajs/vue3";
 
 const helpers = inject("helpers");
-
+const isOpen = ref(false);
 const props = defineProps({
     Products: Object,
     HeadTitle: String,
     Filter: String,
     Global: Object,
     FilterQuery: String,
+    ActiveCat: String,
+    Categories: Object,
+    SubCategories: Object,
 });
+const toggleDropdown = () => {
+    isOpen.value = !isOpen.value;
+    console.log(isOpen.value);
+};
+const closeDropdown = (event) => {
+    if (!event.target.closest(".relative")) {
+        isOpen.value = false;
+    }
+};
 
 const cart = ref([]);
 const showNotification = ref(false);
@@ -254,11 +264,14 @@ const saveCart = () => {
 };
 
 onMounted(() => {
+    window.addEventListener("click", closeDropdown);
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
         cart.value = JSON.parse(savedCart);
     }
 });
-
+onBeforeUnmount(() => {
+    window.removeEventListener("click", closeDropdown);
+});
 watch(cart, saveCart, { deep: true });
 </script>
