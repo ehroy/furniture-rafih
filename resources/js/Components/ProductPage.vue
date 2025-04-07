@@ -80,10 +80,10 @@
                         $t("product.all")
                     }}</span>
                     <span class="font-bold" v-if="Filter == 'new'"
-                        >Produk {{ $t("product.new") }}</span
+                        >Product {{ $t("product.new") }}</span
                     >
                     <span class="font-bold" v-if="Filter == 'populer'"
-                        >Produk {{ $t("product.populer") }}</span
+                        >Product {{ $t("product.populer") }}</span
                     >
                     <span class="font-bold" v-if="Filter == 'asc_harga'">
                         {{ $t("product.murah") }}</span

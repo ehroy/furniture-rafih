@@ -26,8 +26,8 @@ class ColorResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name')->required()->unique(Color::class),
-                TextInput::make('code_palete')->required()->unique(Color::class),
+                TextInput::make('name')->required(),
+                TextInput::make('code_palete')->required(),
             ]);
     }
 
