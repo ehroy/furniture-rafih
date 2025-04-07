@@ -242,7 +242,7 @@
                             <i class="mdi mdi-star text-xl text-yellow-300"></i>
                             <i class="mdi mdi-star text-xl text-yellow-300"></i>
                             <i class="mdi mdi-star text-xl text-gray-300"></i>
-                            <p class="font-bold">(10)</p>
+                            <p class="font-bold">(89)</p>
                         </div>
                     </div>
                     <div v-if="product.variants" class="mt-4">
