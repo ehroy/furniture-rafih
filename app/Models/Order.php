@@ -12,7 +12,7 @@ class Order extends Model
 
     protected $fillable = [
         'order_number', 'buyer_email', 'status',
-        'confirmed_at', 'processed_at', 'total_price',
+        'confirmed_at', 'processed_at','completed_at','canceled_at', 'total_price',
         'shipping_address'
     ];
 
@@ -24,6 +24,9 @@ class Order extends Model
     protected $casts = [
         'confirmed_at' => 'datetime',
         'processed_at' => 'datetime',
+        'completed_at' =>  'datetime',
+        'canceled_at' =>  'datetime',
+
     ];
     protected static function boot()
     {
@@ -38,6 +41,13 @@ class Order extends Model
                 }
                 
                 if ($order->status === 'processing' && is_null($order->processed_at)) {
+                    $order->processed_at = now();
+                }
+                if ($order->status === 'completed' && is_null($order->confirmed_at)) {
+                    $order->confirmed_at = now();
+                }
+                
+                if ($order->status === 'cancelled' && is_null($order->processed_at)) {
                     $order->processed_at = now();
                 }
                 

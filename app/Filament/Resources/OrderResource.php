@@ -47,8 +47,7 @@ class OrderResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('shipping_address'),
                 Forms\Components\TextInput::make('total_price')->numeric()->required(),
-                Forms\Components\DateTimePicker::make('confirmed_at'),
-                Forms\Components\DateTimePicker::make('processed_at'),
+ 
                 Repeater::make('items')
                 ->relationship('items') // Menghubungkan dengan relasi `items` di Order
                 ->schema([
@@ -108,6 +107,8 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->label("pesanan dibuat"),
                 Tables\Columns\TextColumn::make('confirmed_at')->dateTime()->sortable()->label("pesanan dikonfirmasi"),
                 Tables\Columns\TextColumn::make('processed_at')->dateTime()->sortable()->label("pesanan diproses"),
+                Tables\Columns\TextColumn::make('completed_at')->dateTime()->sortable()->label("pesanan selesai"),
+                Tables\Columns\TextColumn::make('canceled_at')->dateTime()->sortable()->label("pesanan dibatalkan"),
 
 
                 // Menampilkan daftar produk dalam satu kolom
