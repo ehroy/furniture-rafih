@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\JustOrangeController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
+use Carbon\Carbon;
 use Inertia\Inertia;
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,27 @@ use Inertia\Inertia;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+Route::get('/sitemap.xml', function () {
+    $sitemap = Sitemap::create();
+
+    // Halaman statis
+    $sitemap->add(Url::create('/')->setLastModificationDate(Carbon::now()));
+    $sitemap->add(Url::create('/kontak')->setLastModificationDate(Carbon::now()));
+
+    // Produk (misalnya ambil dari database)
+    foreach (\App\Models\Product::all() as $produk) {
+        $sitemap->add(
+            Url::create('/produk/' . $produk->slug)
+                ->setLastModificationDate($produk->updated_at)
+                ->setPriority(0.9)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+        );
+    }
+
+
+});
 Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));
 })->name('login');

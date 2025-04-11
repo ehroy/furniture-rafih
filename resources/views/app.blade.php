@@ -7,7 +7,9 @@
     <meta name="keywords" content="{{$setting['meta_keywords']}}">
     <meta name="author" content="{{$setting['name']}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="shortcut icon" href="{{url('/storage/'.$setting['icon'])}}"/>
+    <link rel="shortcut icon" href="{{url('/storage/'.$setting['icon'])}}"/>
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css"></noscript>

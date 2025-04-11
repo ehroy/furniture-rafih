@@ -8,6 +8,9 @@ use Illuminate\Support\Str;
 use App\Helpers\SettingsHelper;
 use Filament\Notifications\Notification;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Filament\Pages\Actions\Action as PageAction;
+use Illuminate\Support\Facades\Artisan; // jangan lupa ini juga
+
 
 class SettingsPage extends Page implements Forms\Contracts\HasForms
 {
@@ -75,4 +78,21 @@ class SettingsPage extends Page implements Forms\Contracts\HasForms
     {
         return 'settings';
     }
+    protected function getHeaderActions(): array
+    {
+        return [
+            PageAction::make('Generate Sitemap')
+                ->action(function () {
+                    Artisan::call('generate:sitemap'); // pastikan command ini tersedia
+                    Notification::make()
+                        ->title('Sitemap berhasil dibuat!')
+                        ->success()
+                        ->send();
+                })
+                ->icon('heroicon-o-document-text')
+                ->color('primary')
+                ->label('Generate Sitemap (Last updated: ' . now()->format('d M Y H:i') . ')'),
+        ];
+    }
+
 }

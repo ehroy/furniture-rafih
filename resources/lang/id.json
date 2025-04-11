@@ -48,7 +48,7 @@
     "popup": "Baru saja dibeli!",
     "all": "Tampilkan Semua",
     "cart": {
-        "text": "Keranjang Belanja",
+        "text": "Keranjang Belanja kosong",
         "back": " Kembali Belanja"
     },
     "checkout": {
@@ -61,5 +61,7 @@
     },
     "footer": {
         "text": " Jangan ragu untuk berkonsultasi dan tanya kami! Kami siap melayani kebutuhan anda!"
-    }
+    },
+    "error": { "text": "Oops,Halaman tidak ditemukan" },
+    "halaman": "halaman"
 }

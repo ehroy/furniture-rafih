@@ -48,7 +48,7 @@
     "popup": "Just purchased!",
     "all": "Show All",
     "cart": {
-        "text": "Shopping Cart",
+        "text": "Shopping Cart Not Found",
         "back": "Back to Shop"
     },
     "checkout": {
@@ -61,5 +61,7 @@
     },
     "footer": {
         "text": "Don't hesitate to consult and ask us anything! We're ready to meet your needs!"
-    }
+    },
+    "error": { "text": "Oops Page Not found" },
+    "halaman": "page"
 }

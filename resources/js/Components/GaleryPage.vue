@@ -60,12 +60,22 @@
                         <div
                             class="p-4 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0"
                         >
-                            <h2 class="text-white font-medium text-lg">
-                                {{ image.subcategory.name }}
-                            </h2>
-                            <p class="text-white text-sm opacity-80">
-                                {{ image.subcategory.category.name }}
-                            </p>
+                            <Link
+                                :href="
+                                    '?cat=' +
+                                    image.subcategory.category.id +
+                                    '&sub=' +
+                                    image.subcategory.id
+                                "
+                                preserve-scroll
+                            >
+                                <h2 class="text-white font-medium text-lg">
+                                    {{ image.subcategory.name }}
+                                </h2>
+                                <p class="text-white text-sm opacity-80">
+                                    {{ image.subcategory.category.name }}
+                                </p>
+                            </Link>
                         </div>
                     </div>
                 </div>

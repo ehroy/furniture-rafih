@@ -1,5 +1,7 @@
 User-agent: *
 Disallow: /admin/
+Disallow: /login
+Disallow: /register
 
 User-agent: AhrefsBot
 Disallow: /
@@ -12,3 +14,5 @@ Disallow: /
 
 User-agent: PetalBot
 Disallow: /
+
+Sitemap: https://teratai-home.com/sitemap.xml

@@ -30,7 +30,7 @@
                 </nav>
 
                 <nav>
-                    <h1 class="font-bold text-2xl mb-8">HALAMAN</h1>
+                    <h1 class="font-bold text-2xl mb-8">{{ $t("halaman") }}</h1>
                     <ul class="flex flex-col gap-3">
                         <li><Link href="/about-us">About Us</Link></li>
                         <li><Link href="/linker">Call Me</Link></li>
@@ -46,7 +46,7 @@
                             :href="sos.link"
                             :target="'_blank'"
                             :class="classNames[sos.type]"
-                            :aria-label="`Kunjungi ${sos.type}`"
+                            :aria-label="`visit ${sos.type}`"
                         >
                             <i :class="icons[sos.type]"></i>
                         </Link>
