@@ -31,7 +31,7 @@ class GenerateSitemap extends Command
         // Sama seperti sebelumnya, ambil produk & blog
         foreach (\App\Models\Product::all() as $produk) {
             $sitemap->add(
-                Url::create('/produk/' . $produk->slug)
+                Url::create('/product/' . $produk->slug)
                     ->setLastModificationDate($produk->updated_at)
             );
         }
