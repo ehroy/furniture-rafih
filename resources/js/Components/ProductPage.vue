@@ -48,7 +48,7 @@
                     </button>
                     <div
                         v-if="isOpen"
-                        class="absolute top-12 w-40 bg-white rounded-lg shadow-md"
+                        class="absolute top-12 w-40 bg-white rounded-lg shadow-md z-50"
                     >
                         <ul class="flex flex-col p-3">
                             <li
@@ -57,7 +57,7 @@
                                 class="py-1"
                             >
                                 <Link
-                                    :href="'?filter=' + cat.name"
+                                    :href="'?filter=' + cat.slug"
                                     class="text-black hover:text-[#212121]"
                                 >
                                     {{ cat.name }}
@@ -103,7 +103,6 @@
                     >
                 </div>
             </div>
-
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
                 <div
                     class="hover:border border-gray-300 p-2 text-white hover:text-[#2E2E2E] relative"

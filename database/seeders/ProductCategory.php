@@ -172,6 +172,7 @@ class ProductCategory extends Seeder
         foreach ($furniture as $category => $subcategories) {
             $makeCategory = new \App\Models\Category();
             $makeCategory->name = $category;
+            $makeCategory->slug = Str::slug($category);
             $makeCategory->description = $category;
             $makeCategory->active = true;
             $makeCategory->save();
@@ -182,6 +183,7 @@ class ProductCategory extends Seeder
             {
                 $subCat = new \App\Models\SubCategory();
                 $subCat->name = $sub;
+                $subCat->slug = $sub;
                 $subCat->image = 'https://placehold.jp/3d4070/ffffff/200x200.png?css=%7B%22border-radius%22%3A%22100%%22%7D';
                 $subCat->active = true;
                 $subCat->category_id = $makeCategory->id;
@@ -192,6 +194,7 @@ class ProductCategory extends Seeder
                     echo "{$p} {$sub} ................................... OK \n";
                 $product = new \App\Models\Product();
                 $product->sub_category_id = $subCat->id;
+                $product->category_id = $makeCategory->id;
                 $product->name = $p;
                 $product->code_sku =  "TW-" . Str::upper(Str::random(6));
                 $product->width = rand(10,100);

@@ -29,7 +29,7 @@
             <h1
                 class="text-secondary text-xl text-center md:text-left md:text-4xl mb-5 md:mb-0 poppins-bold uppercase"
             >
-                <i class="mdi mdi-image-multiple"></i> KOLEKSI
+                <i class="mdi mdi-image-multiple"></i> collection
             </h1>
         </div>
         <section class="py-16 px-4 max-w-7xl mx-auto">
@@ -63,9 +63,9 @@
                             <Link
                                 :href="
                                     '?cat=' +
-                                    image.subcategory.category.id +
+                                    image.subcategory.slug +
                                     '&sub=' +
-                                    image.subcategory.id
+                                    image.subcategory.slug
                                 "
                                 preserve-scroll
                             >

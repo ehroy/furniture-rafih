@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Illuminate\Support\Str;
 class SubCategory extends Model
 {
     use HasFactory;
@@ -30,4 +30,15 @@ class SubCategory extends Model
     {
         return $this->hasMany(Product::class);
     }
+    protected static function booted()
+    {
+        static::creating(function ($subcategory) {
+            $subcategory->slug = Str::slug($subcategory->name);
+        });
+
+        static::updating(function ($subcategory) {
+            $subcategory->slug = Str::slug($subcategory->name);
+        });
+    }
+    
 }

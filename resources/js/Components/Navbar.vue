@@ -103,7 +103,7 @@
                         </div>
                     </li> -->
                     <li class="hover:text-[#212121] hover:underline">
-                        <Link aria-label="Contact Us" href="/linker"
+                        <Link aria-label="Contact Us" href="/contact"
                             >Contact Us</Link
                         >
                     </li>

@@ -22,13 +22,10 @@ Route::get('/sitemap.xml', function () {
     $sitemap = Sitemap::create();
 
     // Halaman statis
-    $sitemap->add(Url::create('/')->setLastModificationDate(Carbon::now()));
-    $sitemap->add(Url::create('/kontak')->setLastModificationDate(Carbon::now()));
-
     // Produk (misalnya ambil dari database)
     foreach (\App\Models\Product::all() as $produk) {
         $sitemap->add(
-            Url::create('/produk/' . $produk->slug)
+            Url::create('/product/' . $produk->slug)
                 ->setLastModificationDate($produk->updated_at)
                 ->setPriority(0.9)
                 ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
@@ -46,8 +43,7 @@ Route::get('/p/{page}', [JustOrangeController::class, 'getPage'])->name('page');
 Route::get('/category', [JustOrangeController::class, 'getCategory'])->name('category');
 Route::get('/products', [JustOrangeController::class, 'getProducts'])->name('products');
 Route::get('/product/{slug}', [JustOrangeController::class, 'detailProduct'])->name('detail.product');
-Route::get('/category/{id}', [JustOrangeController::class, 'getProductByCategory'])->name('products.category');
-Route::get('/linker', [JustOrangeController::class, 'linker']);
+Route::get('/contact', [JustOrangeController::class, 'linker']);
 Route::get('/rdr/{label}',[JustOrangeController::class , 'redirector']);
 Route::get('/cart', [JustOrangeController::class , 'cart']);
 Route::post('/cart', [JustOrangeController::class, 'checkout']);

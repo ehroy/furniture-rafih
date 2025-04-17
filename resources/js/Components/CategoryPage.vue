@@ -15,9 +15,9 @@
                             :key="index"
                         >
                             <Link
-                                :href="'?cat=' + cat.id"
+                                :href="'?category=' + cat.slug"
                                 :class="
-                                    ActiveCat == cat.id
+                                    ActiveCat == cat.slug
                                         ? 'inline-block p-4 border-2 border-transparent  bg-[#2E2E2E] text-gray-100'
                                         : 'inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#2E2E2E] hover:border-gray-300 dark:hover:text-gray-300'
                                 "
@@ -44,7 +44,7 @@
                     </option>
                     <option
                         v-for="(cat, index) in Categories"
-                        :value="cat.id"
+                        :value="cat.slug"
                         :key="index"
                     >
                         {{ cat.name }}
@@ -59,7 +59,6 @@
                 >
                     ◀
                 </button>
-
                 <!-- Swiper Slider -->
                 <swiper
                     ref="swiperRef"
@@ -74,7 +73,14 @@
                         class="w-32 md:w-48"
                     >
                         <Link
-                            :href="'?cat=' + ActiveCat + '&sub=' + sub.id"
+                            :href="
+                                ActiveCat
+                                    ? '?category=' +
+                                      ActiveCat +
+                                      '&subcategory=' +
+                                      sub.slug
+                                    : '/'
+                            "
                             preserve-scroll
                         >
                             <div
@@ -136,7 +142,7 @@ const nextSlide = () => {
     swiperRef.value?.$el.swiper.slideNext();
 };
 watch(catModel, async () => {
-    router.visit("?cat=" + catModel.value, { preserveScroll: true });
+    router.visit("?category=" + catModel.value, { preserveScroll: true });
 });
 </script>
 <style scoped>

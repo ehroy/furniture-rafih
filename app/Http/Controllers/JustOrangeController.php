@@ -30,14 +30,58 @@ class JustOrangeController extends Controller
 
     public function index(Request $request)
     {
-        $cat = empty($request->get('cat')) ? null : $request->get('cat');
-        $subGet = empty($request->get('sub')) ? null : $request->get('sub');
-        $sub = ($cat == null) ? SubCategory::orderBy('id', 'desc')->limit(5)->get() : SubCategory::where('category_id', (int) $cat)->get();
-        $filter = empty($request->get('filter')) ? null : $request->get('filter');
+            $cat = $request->get('category'); // slug
+            $subSlug = $request->get('subcategory'); // slug
+            $filter = $request->get('filter');
+            
+            $selectedSubCategory = null;
+            $category = null;
+            $data['SubCategories'] = collect();
+            
+            if ($cat) {
+                $category = Category::where('slug', $cat)->first();
+            
+                if ($category) {
+                    // Ambil semua subcategory dari category tersebut
+                    $data['SubCategories'] = SubCategory::where('category_id', $category->id)->get();
+            
+                    if ($subSlug) {
+                        $selectedSubCategory = SubCategory::where('slug', $subSlug)
+                            ->where('category_id', $category->id)
+                            ->first();
+                    }
+                }
+            } else {
+                // ✅ Jika tidak ada category, tetap ambil semua subcategory untuk ditampilkan
+                $data['SubCategories'] = SubCategory::with('category')->latest()->limit(10)->get();
+            }
 
-        if ($filter == null) {
-            $data['Products'] = ($subGet == null) ? Product::orderBy('id', 'desc')->limit(8)->with(['subcategory','variants.wood','variants.color','variants'])->get() : Product::where('sub_category_id', (int)$subGet)->orderBy('id', 'desc')->limit(8)->with(['subcategory','variants.wood','variants.color','variants'])->get();
-        } else {
+            if ($filter === null) {
+                if ($selectedSubCategory) {
+                    // Jika ada subcategory, ambil produk berdasarkan subcategory
+                    $data['Products'] = Product::where('sub_category_id', $selectedSubCategory->id)
+                        ->orderBy('id', 'desc')
+                        ->limit(8)
+                        ->with(['subcategory', 'variants.wood', 'variants.color', 'variants'])
+                        ->get();
+                } elseif ($category) {
+                    // Jika hanya ada category, ambil produk dari semua subcategory dalam category itu
+                    $subIds = $data['SubCategories']->pluck('id');
+
+                    $data['Products'] = Product::whereIn('sub_category_id', $subIds)
+                        ->orderBy('id', 'desc')
+                        ->limit(8)
+                        ->with(['subcategory', 'variants.wood', 'variants.color', 'variants'])
+                        ->get();
+                } else {
+                    // Tanpa kategori atau subkategori, ambil default
+                    $data['Products'] = Product::orderBy('id', 'desc')
+                        ->limit(8)
+                        ->with(['subcategory', 'variants.wood', 'variants.color', 'variants'])
+                        ->get();
+                }
+            }
+    else {
             if ($filter == 'all') {
                 $data['Products'] = Product::with(['subcategory','variants.wood','variants.color','variants'])->get();
             } elseif ($filter == 'new') {
@@ -53,7 +97,7 @@ class JustOrangeController extends Controller
                 $data['Products'] = Product::where('recomended' , true)->with->with(['subcategory','variants.wood','variants.color','variants'])->orderBy('id','desc')->get();
             }else{
                 $data['Products'] = Product::whereHas('subcategory.category', function ($query) use ($filter) {
-                    $query->where('name', $filter);
+                    $query->where('slug', $filter);
                 })->with(['subcategory.category','variants.wood','variants.color','variants'])->get();
 
             }
@@ -64,7 +108,6 @@ class JustOrangeController extends Controller
         ->with(['subcategory.category']) // Ambil data kategori dari subkategori
         ->orderBy('id', 'desc')->limit(12)
         ->get();
-        $data['SubCategories'] = $sub;
         $data['Categories'] = Category::with('products')->get();
         $data['ActiveCat'] = $cat;
         $data['Filter'] = $filter;
@@ -108,9 +151,18 @@ class JustOrangeController extends Controller
 
     public function getProducts(Request $request)
     {
-        $cat = empty($request->get('cat')) ? null : $request->get('cat');
-        $subGet = empty($request->get('sub')) ? null : $request->get('sub');
-        $sub = ($cat == null) ? SubCategory::orderBy('id', 'desc')->limit(5)->get() : SubCategory::where('category_id', (int) $cat)->get();
+        $cat = $request->get('category'); // string atau null
+        $subGet = $request->get('subcategory');
+        
+        if ($cat === null) {
+            $sub = SubCategory::orderBy('id', 'desc')->limit(5)->get();
+        } else {
+            $category = Category::where('slug', $cat)->first();
+        
+            $sub = $category
+                ? SubCategory::where('category_id', $category->id)->get()
+                : collect(); // return empty collection kalau slug tidak ditemukan
+        }
         $filter = empty($request->get('filter')) ? null : $request->get('filter');
 
         if ($filter == null) {
@@ -140,7 +192,7 @@ class JustOrangeController extends Controller
                 $data['FilterQuery'] = $query;
             }else{
                 $data['Products'] = Product::whereHas('subcategory.category', function ($query) use ($filter) {
-                    $query->where('name', $filter);
+                    $query->where('slug', $filter);
                 })->with(['subcategory.category','variants.wood','variants.color','variants'])->get();
             }
         }

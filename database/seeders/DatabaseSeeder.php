@@ -57,8 +57,10 @@ class DatabaseSeeder extends Seeder
         $this->call(VariantSeeder::class);
         $this->call(ProductCategory::class);
         $this->call(Testimoni::class);
-        $this->call(ProductRecommend::class);
+        // $this->call(ProductRecommend::class);
         $this->call(OrderSeeder::class);
+        $this->call(ShieldSeeder::class);
+        $this->call(ShieldRoleSeeder::class);
 
         // $this->call(ShieldSeeder::class);
         // \App\Models\User::factory()->create([
