@@ -228,98 +228,65 @@ class JustOrangeController extends Controller
         }
     }
 
-    public function getProductByCategory(Request $request)
-    {
-        try {
-        $category = Category::find($request->id);
-        $subCat = SubCategory::where('category_id' , $category->id);
-        $subGet = empty($request->get('sub')) ? null : $request->get('sub');
-        $data['Products'] = ($subGet == null) ? Product::where('sub_category_id',$subCat->first()->id)->orderBy('id', 'desc')->with(['subcategory','variants.wood','variants.color','variants'])->get() : Product::where('sub_category_id', (int)$subGet)->orderBy('id', 'desc')->with(['subcategory','variants.wood','variants.color','variants'])->get();
-        $data['Categories'] = Category::all();
-        $data['SubCategories'] = SubCategory::where('category_id' , $category->id)->get();
-        $data['ActiveCat'] = $subGet;
-        $data['Category'] = $category;
-        $data['Socmed'] = SocialMedia::all();
-        $data['Pages'] = Post::where('active',true)->get();
-        $data['subCategory'] = ($subCat==null) ? SubCategory::all() : SubCategory::find($subGet);
-        $data['Global'] = $this->Global;
-
-        if ($data['Products']) {
-            return Inertia::render('products/category', $data);
-        } else {
-            return Inertia::location(url('/'));
-        }
-
-        } catch (\Throwable $th) {
-            return Inertia::location(url('/'));
-        }
-    }
     public function checkout(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
             'address' => 'required|string',
             'cart' => 'required|array',
+            'cart.*.id' => 'required|integer', // product_id
             'cart.*.name' => 'required|string',
             'cart.*.price' => 'required|numeric',
             'cart.*.quantity' => 'required|integer|min:1',
-            'cart.*.selectedColor.name' => 'nullable|string',
-            'cart.*.selectedWoods.name' => 'nullable|string',
+            'cart.*.selectedColor.name' => 'required|string',
+            'cart.*.selectedWoods.name' => 'required|string',
         ]);
     
         $isPreOrder = false;
+        $variants = [];
     
-        foreach ($request->cart as $item) {
+        // Cek stok
+        foreach ($request->cart as $index => $item) {
             $variant = ProductVariant::where('product_id', $item['id'])
-                ->whereHas('wood', function ($query) use ($item) {
-                    $query->where('name', $item['selectedWoods']['name'] ?? null);
-                })
-                ->whereHas('color', function ($query) use ($item) {
-                    $query->where('name', $item['selectedColor']['name'] ?? null);
-                })
+                ->whereHas('wood', fn($q) => $q->where('name', $item['selectedWoods']['name']))
+                ->whereHas('color', fn($q) => $q->where('name', $item['selectedColor']['name']))
                 ->first();
     
-            // Kalau variant tidak ditemukan atau stok kurang, tandai preorder
+            // Simpan varian ke array supaya nggak query ulang
+            $variants[$index] = $variant;
+    
             if (!$variant || $variant->stock < $item['quantity']) {
                 $isPreOrder = true;
-                break;
             }
         }
     
-        // Simpan order dengan order_type berdasarkan stok
+        // Buat order
         $order = Order::create([
             'order_number' => 'ORD-' . strtoupper(uniqid()),
             'buyer_email' => $request->email,
             'total_price' => collect($request->cart)->sum(fn($item) => $item['price'] * $item['quantity']),
             'shipping_address' => $request->address,
-           
         ]);
     
-        // Simpan item dan kurangi stok
-        foreach ($request->cart as $item) {
+        // Simpan item + kurangi stok
+        foreach ($request->cart as $index => $item) {
+            $variant = $variants[$index];
+    
             OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $item['id'],
+                'product_variant_id' => $variant?->id,
                 'quantity' => $item['quantity'],
                 'price' => $item['price'],
                 'order_type' => $isPreOrder ? 'preorder' : 'ready',
             ]);
-    
-            $variant = ProductVariant::where('product_id', $item['id'])
-                ->whereHas('wood', function ($query) use ($item) {
-                    $query->where('name', $item['selectedWoods']['name'] ?? null);
-                })
-                ->whereHas('color', function ($query) use ($item) {
-                    $query->where('name', $item['selectedColor']['name'] ?? null);
-                })
-                ->first();
     
             if ($variant && $variant->stock >= $item['quantity']) {
                 $variant->decrement('stock', $item['quantity']);
             }
         }
     
-        // Kirim email ke pembeli dan admin
+        // Kirim email ke pembeli & admin
         Mail::to($request->email)->send(new OrderMail($order, $request->cart));
         Mail::to(env('ADMIN_EMAIL'))->send(new OrderMail($order, $request->cart));
     
