@@ -267,44 +267,15 @@ class JustOrangeController extends Controller
             'cart.*.selectedWoods.name' => 'nullable|string',
         ]);
     
-        $isPreOrder = false;
-    
-        foreach ($request->cart as $item) {
-            $variant = ProductVariant::where('product_id', $item['id'])
-                ->whereHas('wood', function ($query) use ($item) {
-                    $query->where('name', $item['selectedWoods']['name'] ?? null);
-                })
-                ->whereHas('color', function ($query) use ($item) {
-                    $query->where('name', $item['selectedColor']['name'] ?? null);
-                })
-                ->first();
-    
-            // Kalau variant tidak ditemukan atau stok kurang, tandai preorder
-            if (!$variant || $variant->stock < $item['quantity']) {
-                $isPreOrder = true;
-                break;
-            }
-        }
-    
-        // Simpan order dengan order_type berdasarkan stok
+        // Simpan order
         $order = Order::create([
             'order_number' => 'ORD-' . strtoupper(uniqid()),
             'buyer_email' => $request->email,
             'total_price' => collect($request->cart)->sum(fn($item) => $item['price'] * $item['quantity']),
             'shipping_address' => $request->address,
-           
         ]);
     
-        // Simpan item dan kurangi stok
         foreach ($request->cart as $item) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item['id'],
-                'quantity' => $item['quantity'],
-                'price' => $item['price'],
-                'order_type' => $isPreOrder ? 'preorder' : 'ready',
-            ]);
-    
             $variant = ProductVariant::where('product_id', $item['id'])
                 ->whereHas('wood', function ($query) use ($item) {
                     $query->where('name', $item['selectedWoods']['name'] ?? null);
@@ -314,17 +285,29 @@ class JustOrangeController extends Controller
                 })
                 ->first();
     
+            $orderType = 'preorder';
+    
             if ($variant && $variant->stock >= $item['quantity']) {
+                $orderType = 'ready';
                 $variant->decrement('stock', $item['quantity']);
             }
+    
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $item['id'],
+                'quantity' => $item['quantity'],
+                'price' => $item['price'],
+                'order_type' => $orderType,
+            ]);
         }
     
-        // Kirim email ke pembeli dan admin
+        // Kirim email
         Mail::to($request->email)->send(new OrderMail($order, $request->cart));
         Mail::to(env('ADMIN_EMAIL'))->send(new OrderMail($order, $request->cart));
     
         return redirect()->route('cart.success', ['order_number' => $order->order_number]);
     }
+    
     
     public function checkoutSuccess($order_number)
     {

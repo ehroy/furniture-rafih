@@ -80,6 +80,17 @@ class OrderItemResource extends Resource
                     ->sortable()
                     ->searchable(),
                     
+                TextColumn::make('productVariant.color.name')
+                    ->label('Color')
+                    ->sortable()
+                    ->badge()
+                    ->color('info'),
+                
+                TextColumn::make('productVariant.wood.name')
+                    ->label('Wood')
+                    ->sortable()
+                    ->badge()
+                    ->color('warning'),
                 Tables\Columns\TextColumn::make('order_type')
                     ->sortable()
                     ->searchable()

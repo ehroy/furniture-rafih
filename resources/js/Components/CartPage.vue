@@ -7,7 +7,7 @@
             <h2
                 class="text-2xl font-bold text-gray-800 mb-5 border-b pb-6 mt-5"
             >
-                {{ $t("cart.text") }}
+                {{ $t("cart.text_1") }}
             </h2>
 
             <!-- Jika Keranjang Kosong -->

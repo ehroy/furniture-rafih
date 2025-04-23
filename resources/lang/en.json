@@ -49,6 +49,7 @@
     "all": "Show All",
     "cart": {
         "text": "Shopping Cart Not Found",
+        "text_1": "Shopping Cart",
         "back": "Back to Shop"
     },
     "checkout": {

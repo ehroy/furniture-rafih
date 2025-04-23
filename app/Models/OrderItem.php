@@ -20,6 +20,7 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    
     protected $casts = [
         'confirmed_at' => 'datetime',
         'processing_at' => 'datetime',

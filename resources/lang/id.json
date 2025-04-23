@@ -49,6 +49,7 @@
     "all": "Tampilkan Semua",
     "cart": {
         "text": "Keranjang Belanja kosong",
+        "text_1": "Keranjang Belanja",
         "back": " Kembali Belanja"
     },
     "checkout": {
