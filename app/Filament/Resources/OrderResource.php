@@ -6,6 +6,7 @@ use App\Filament\Resources\OrderResource\Pages;
 use App\Models\Order;
 use Carbon\Carbon;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Forms;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
@@ -151,6 +152,31 @@ class OrderResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
+                
+                BulkAction::make('bulkUpdateStatus')
+                ->label('Ubah Status Massal')
+                ->icon('heroicon-o-pencil-square') // Ikon opsional
+                ->form([
+                    Forms\Components\Select::make('status')
+                        ->label('Status Baru')
+                        ->options([
+                            'pending' => 'Pending',
+                            'confirmed' => 'Confirmed',
+                            'processing' => 'Processing',
+                            'completed' => 'Completed',
+                            'cancelled' => 'Cancelled',
+                        ])
+                        ->required(),
+                ])
+                ->action(function (\Illuminate\Support\Collection $records, array $data) {
+                    foreach ($records as $record) {
+                        $record->update([
+                            'status' => $data['status'],
+                        ]);
+                    }
+                })
+                ->deselectRecordsAfterCompletion(true)
+                ->requiresConfirmation()
             ]);
     }
 

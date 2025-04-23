@@ -8,7 +8,9 @@ use App\Models\Category;
 use App\Models\Color;
 use App\Models\SubCategory;
 use App\Models\ProductVariant;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Wood;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -91,13 +93,28 @@ class ProductImport implements ToCollection
                 }
 
                 if ($colorName) {
-                    $color = Color::whereRaw('LOWER(name) = ?', [$colorName])->first();
+                    if (!Schema::hasTable('colors')) {
+                        Schema::create('colors', function (Blueprint $table) {
+                            $table->id();
+                            $table->string('name')->unique();
+                            $table->string('image')->nullable();
+                            $table->timestamps();
+                        });
+                    }
+                
+                    $color = Color::whereRaw('LOWER(name) = ?', [strtolower($colorName)])->first();
+                
                     if (!$color) {
                         $color = Color::where('name', 'LIKE', "%{$colorName}%")->first();
                     }
+                
                     if (!$color) {
-                        $color = Color::first();
+                        $color = Color::create([
+                            'name' => $colorName,
+                            'image' => 'https://example.com/default-image.png', // Ganti URL sesuai kebutuhan
+                        ]);
                     }
+                
                     $this->lastData['color'] = $color;
                 }
 

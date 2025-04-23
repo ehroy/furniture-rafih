@@ -79,6 +79,17 @@ class OrderItemResource extends Resource
                     ->label('Product Name')
                     ->sortable()
                     ->searchable(),
+                    
+                Tables\Columns\TextColumn::make('order_type')
+                    ->sortable()
+                    ->searchable()
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'ready' => 'success',   // Hijau
+                        'preorder' => 'warning', // Kuning/oranye
+                        default => 'gray',
+                    })
+                    ->label('Order Type'),
                 TextColumn::make('price')->sortable()->money(),
                 TextColumn::make('quantity')->sortable(),
                 TextColumn::make('status')->sortable()->badge()

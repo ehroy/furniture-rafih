@@ -24,6 +24,25 @@
                 </div>
             </transition>
             <br />
+            <transition
+                enter-active-class="transform transition duration-500 ease-out"
+                enter-from-class="translate-y-10 opacity-0"
+                enter-to-class="translate-y-0 opacity-100"
+                leave-active-class="transform transition duration-500 ease-in"
+                leave-from-class="translate-y-0 opacity-100"
+                leave-to-class="translate-y-10 opacity-0"
+            >
+                <div
+                    v-if="showNotificationalert"
+                    class="fixed top-[10%] left-1/2 -translate-x-1/2 bg-red-400 text-white px-6 py-3 rounded-lg flex items-center gap-3 z-[999]"
+                >
+                    <i class="mdi mdi-check-circle text-xl"></i>
+                    <span class="text-sm font-semibold">{{
+                        notificationMessage
+                    }}</span>
+                </div>
+            </transition>
+            <br />
             <div class="border-b-2 border-black mt-12 m-5">
                 <nav class="flex items-center space-x-2 text-gray-700 py-4">
                     <Link href="/" class="hover:text-gray-900"
@@ -522,6 +541,8 @@ const selectedColor = ref(null);
 const selectedWood = ref(null);
 const quantity = ref(1);
 const showNotification = ref(false);
+const showNotificationalert = ref(false);
+
 const notificationMessage = ref(null);
 const extractColor = (color) => {
     if (!color) return "#FFFFFF"; // Default warna jika kosong
@@ -587,13 +608,21 @@ const addToCart = (product) => {
     );
 
     if (!selectedVariant) {
-        alert("Varian yang dipilih tidak tersedia atau stok habis.");
+        showNotificationalert.value = true;
+        notificationMessage.value = `select the variant first`;
+        setTimeout(() => {
+            showNotificationalert.value = false;
+        }, 3000);
         return;
     }
-    if (selectedVariant.stock <= 0) {
-        alert("Varian yang dipilih tidak tersedia atau stok habis.");
-        return;
-    }
+    // if (selectedVariant.stock <= 0) {
+    //     showNotificationalert.value = true;
+    //     notificationMessage.value = `Oops! This variant is not available right now. Feel free to contact us on WhatsApp to check stock or pre-order options.`;
+    //     setTimeout(() => {
+    //         showNotificationalert.value = false;
+    //     }, 3000);
+    //     return;
+    // }
     cart.value.push({
         ...product,
         selectedColor: {
