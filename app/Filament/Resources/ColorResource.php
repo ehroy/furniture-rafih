@@ -6,10 +6,12 @@ use App\Filament\Resources\ColorResource\Pages;
 use App\Filament\Resources\ColorResource\RelationManagers;
 use App\Models\Color;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,7 +29,7 @@ class ColorResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required(),
-                TextInput::make('code_palete')->required(),
+                FileUpload::make('image')->required(),
             ]);
     }
 
@@ -36,7 +38,7 @@ class ColorResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
-                TextColumn::make('code_palete')->sortable()->searchable(),
+                Tables\Columns\ImageColumn::make('image'),
             ])
             ->filters([
                 //

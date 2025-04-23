@@ -263,21 +263,22 @@
                                 ]"
                                 :style="{
                                     backgroundColor: extractColor(
-                                        group.color.code_palete
+                                        group.color.image
                                     ),
                                 }"
                                 @click="selectColor(group.color.name)"
                             >
-                                <div>
-                                    <p
-                                        v-if="
-                                            selectedColor === group.color.name
-                                        "
-                                        class="mt-8 text-xs font-semibold"
-                                    >
-                                        {{ group.color.name }}
-                                    </p>
-                                </div>
+                                <img
+                                    :src="helpers.imageUrl(group.color.image)"
+                                    class="w-full h-full object-cover rounded-full"
+                                />
+
+                                <span
+                                    v-if="selectedColor === group.color.name"
+                                    class="text-xs font-semibold"
+                                >
+                                    {{ group.color.name }}
+                                </span>
                             </button>
                         </div>
 
@@ -596,7 +597,7 @@ const addToCart = (product) => {
     cart.value.push({
         ...product,
         selectedColor: {
-            code_palete: selectedVariant.color.code_palete,
+            code_palete: selectedVariant.color.image,
             name: selectedVariant.color.name,
         },
         selectedWoods: { name: selectedVariant.wood.name },

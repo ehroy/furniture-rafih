@@ -51,20 +51,20 @@
                             </button>
                         </div>
                     </div>
+
                     <div v-if="item.selectedColor" class="text-sm">
                         <section
                             class="flex flex-row bg-center text-center items-center"
                         >
                             Colors :
-
-                            <section
-                                :style="{
-                                    backgroundColor: extractColor(
+                            <img
+                                :src="
+                                    helpers.imageUrl(
                                         item.selectedColor.code_palete
-                                    ),
-                                }"
-                                class="w-4 h-4 rounded-full border-2 mt-1 inline-block mx-2"
-                            ></section>
+                                    )
+                                "
+                                class="w-5 h-5 object-cover rounded-full"
+                            />
                         </section>
 
                         <section>

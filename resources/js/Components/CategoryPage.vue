@@ -40,14 +40,20 @@
                     v-model="catModel"
                 >
                     <option value="">
-                        {{ "Pick a Category" }}
+                        {{ active }}
                     </option>
                     <option
                         v-for="(cat, index) in Categories"
                         :value="cat.slug"
                         :key="index"
                     >
-                        {{ cat.name }}
+                        <Link
+                            :href="'?category=' + cat.slug"
+                            preserve-scroll
+                            preserve-state
+                        >
+                            {{ cat.name }}
+                        </Link>
                     </option>
                 </select>
             </div>
@@ -118,13 +124,17 @@ import { router } from "@inertiajs/vue3";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
-const active = ref(null);
+// const active = ref("Pick a Category");
 const swiperRef = ref(null);
 
 const props = defineProps({
     Categories: Object,
     SubCategories: Object,
     ActiveCat: String,
+});
+const active = computed(() => {
+    const found = props.Categories.find((cat) => cat.slug === catModel.value);
+    return found ? found.name : "Select Category";
 });
 
 const helpers = inject("helpers");
@@ -142,7 +152,10 @@ const nextSlide = () => {
     swiperRef.value?.$el.swiper.slideNext();
 };
 watch(catModel, async () => {
-    router.visit("?category=" + catModel.value, { preserveScroll: true });
+    router.visit("?category=" + catModel.value, {
+        preserveScroll: true,
+        preserveState: true,
+    });
 });
 </script>
 <style scoped>
