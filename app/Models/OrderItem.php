@@ -10,7 +10,7 @@ class OrderItem extends Model
 
     protected $fillable = [
     'order_id','order_type', 'product_id', 'price', 'quantity', 'status',
-    'confirmed_at', 'processing_at', 'completed_at', 'cancelled_at'
+    'confirmed_at', 'processing_at', 'completed_at', 'cancelled_at','product_variant_id'
     ];
     public function order()
     {
@@ -19,6 +19,10 @@ class OrderItem extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+    public function productVariant()
+    {
+        return $this->belongsTo(ProductVariant::class);
     }
     protected $casts = [
         'confirmed_at' => 'datetime',

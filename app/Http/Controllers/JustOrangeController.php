@@ -234,41 +234,29 @@ class JustOrangeController extends Controller
             'email' => 'required|email',
             'address' => 'required|string',
             'cart' => 'required|array',
-            'cart.*.id' => 'required|integer', // product_id
+            'cart.*.id' => 'required|integer',
             'cart.*.name' => 'required|string',
             'cart.*.price' => 'required|numeric',
             'cart.*.quantity' => 'required|integer|min:1',
             'cart.*.selectedColor.name' => 'required|string',
             'cart.*.selectedWoods.name' => 'required|string',
         ]);
-    
-        $isPreOrder = false;
-    
-        // Cek stok
-        foreach ($request->cart as $index => $item) {
-            $variant = ProductVariant::where('product_id', $item['id'])
-                ->whereHas('wood', fn($q) => $q->where('name', $item['selectedWoods']['name']))
-                ->whereHas('color', fn($q) => $q->where('name', $item['selectedColor']['name']))
-                ->first();
-    
-            // Kalau variant tidak ditemukan atau stok kurang, tandai preorder
-            if (!$variant || $variant->stock < $item['quantity']) {
-                $isPreOrder = true;
-                break;
-            }
-        }
-    
-        // Simpan order dengan order_type berdasarkan stok
+
         $order = Order::create([
             'order_number' => 'ORD-' . strtoupper(uniqid()),
             'buyer_email' => $request->email,
             'total_price' => collect($request->cart)->sum(fn($item) => $item['price'] * $item['quantity']),
             'shipping_address' => $request->address,
-           
         ]);
-    
-        // Simpan item dan kurangi stok
+
         foreach ($request->cart as $item) {
+            $variant = ProductVariant::where('product_id', $item['id'])
+                ->whereHas('wood', fn($q) => $q->where('name', $item['selectedWoods']['name']))
+                ->whereHas('color', fn($q) => $q->where('name', $item['selectedColor']['name']))
+                ->first();
+
+            $isPreOrder = !$variant || $variant->stock < $item['quantity'];
+
             OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $item['id'],
@@ -277,29 +265,18 @@ class JustOrangeController extends Controller
                 'price' => $item['price'],
                 'order_type' => $isPreOrder ? 'preorder' : 'ready',
             ]);
-    
-            $variant = ProductVariant::where('product_id', $item['id'])
-                ->whereHas('wood', function ($query) use ($item) {
-                    $query->where('name', $item['selectedWoods']['name'] ?? null);
-                })
-                ->whereHas('color', function ($query) use ($item) {
-                    $query->where('name', $item['selectedColor']['name'] ?? null);
-                })
-                ->first();
-    
-            if ($variant && $variant->stock >= $item['quantity']) {
+
+            if (!$isPreOrder && $variant) {
                 $variant->decrement('stock', $item['quantity']);
             }
         }
-    
-        // Kirim email ke pembeli dan admin
+
+        // Kirim email
         Mail::to($request->email)->send(new OrderMail($order, $request->cart));
         Mail::to(env('ADMIN_EMAIL'))->send(new OrderMail($order, $request->cart));
-    
+
         return redirect()->route('cart.success', ['order_number' => $order->order_number]);
     }
-    
-    
     public function checkoutSuccess($order_number)
     {
         try{
