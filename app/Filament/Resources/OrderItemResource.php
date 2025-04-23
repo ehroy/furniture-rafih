@@ -6,6 +6,7 @@ use App\Filament\Resources\OrderItemResource\Pages;
 use App\Models\OrderItem;
 use Carbon\Carbon;
 use Filament\Forms;
+use Filament\Forms\Components\BelongsToSelect;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables;
@@ -38,12 +39,40 @@ class OrderItemResource extends Resource
                     ->required()
                     ->columnSpanFull()
                     ->native(false),
+                Select::make('product_variant_id')
+                    ->options(function ($state) {
+                        // Ambil nilai product_id dan color_id dari state form
+                        $productId = $state['product_id'] ?? null; // Pastikan ini sudah ada di state
+                        $colorId = $state['color_id'] ?? null; // Pastikan ini sudah ada di state
+                
+                        // Filter berdasarkan product_id dan color_id, jika ada
+                        $variants = \App\Models\ProductVariant::with('wood', 'color')
+                            ->when($productId, function ($query) use ($productId) {
+                                return $query->where('product_id', $productId);
+                            })
+                            ->when($colorId, function ($query) use ($colorId) {
+                                return $query->whereHas('color', function ($q) use ($colorId) {
+                                    $q->where('id', $colorId);
+                                });
+                            })
+                            ->get()
+                            ->mapWithKeys(function ($item) {
+                                return [
+                                    $item->id => $item->wood->name . ' - ' . $item->color->name, // Menampilkan nama wood dan color
+                                ];
+                            });
+                
+                        return $variants;
+                    })
+                    ->required()
+                    ->columnSpanFull()
+                    ->native(false),
                 TextInput::make('price')
                     ->label('Price')
                     ->required()
                     ->columnSpanFull(),
                 TextInput::make('quantity')
-                    ->label('Price')
+                    ->label('Qty')
                     ->required()
                     ->columnSpanFull(),
                 Select::make('status')
@@ -144,9 +173,34 @@ class OrderItemResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\BulkAction::make('bulkUpdateStatus')
+                ->label('Ubah Status Massal')
+                ->icon('heroicon-o-pencil-square') // Ikon opsional
+                ->form([
+                    Forms\Components\Select::make('status')
+                        ->label('Status Baru')
+                        ->options([
+                            'pending' => 'Pending',
+                            'confirmed' => 'Confirmed',
+                            'processing' => 'Processing',
+                            'completed' => 'Completed',
+                            'cancelled' => 'Cancelled',
+                        ])
+                        ->required(),
+                ])
+                ->action(function (\Illuminate\Support\Collection $records, array $data) {
+                    foreach ($records as $record) {
+                        $record->update([
+                            'status' => $data['status'],
+                        ]);
+                    }
+                })
+                ->deselectRecordsAfterCompletion(true)
+                ->requiresConfirmation()
             ]);
     }
 
