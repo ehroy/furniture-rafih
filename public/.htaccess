@@ -7,10 +7,10 @@
 
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
-        ExpiresActive On
-        RewriteRule ^storage/.*$ - [F,L]
-        ExpiresByType application/javascript "access plus 1 year"
-        ExpiresByType text/javascript "access plus 1 year"
+        # ExpiresActive On
+        # RewriteRule ^storage/.*$ - [F,L]
+        # ExpiresByType application/javascript "access plus 1 year"
+        # ExpiresByType text/javascript "access plus 1 year"
     </IfModule>
 
     # Handle Authorization Header

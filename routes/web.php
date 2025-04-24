@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JustOrangeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use Carbon\Carbon;
@@ -19,20 +20,16 @@ use Inertia\Inertia;
 
 
 Route::get('/sitemap.xml', function () {
-    $sitemap = Sitemap::create();
+    $path = public_path('sitemap.xml');
 
-    // Halaman statis
-    // Produk (misalnya ambil dari database)
-    foreach (\App\Models\Product::all() as $produk) {
-        $sitemap->add(
-            Url::create('/product/' . $produk->slug)
-                ->setLastModificationDate($produk->updated_at)
-                ->setPriority(0.9)
-                ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-        );
+    if (!file_exists($path)) {
+        abort(404, 'Sitemap tidak ditemukan');
     }
 
-
+    return Response::file($path, [
+        'Content-Type' => 'application/xml',
+        'Cache-Control' => 'public, max-age=3600', // Optional: Set cache headers
+    ]);
 });
 Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));

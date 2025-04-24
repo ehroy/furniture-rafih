@@ -201,7 +201,7 @@
             </div> -->
             <Link
                 aria-label="Linker"
-                href="/linker"
+                href="/contact"
                 class="flex flex-col items-center hover:text-black"
             >
                 <i class="mdi mdi-phone-outline text-xl"></i>
