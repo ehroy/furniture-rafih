@@ -1,433 +1,238 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
-        <loc>http://127.0.0.1:8000/product/sofa</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/cumi-dn-table-o-5-ft</loc>
+        <lastmod>2025-04-28T16:09:31+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/recliner-chair</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/cumi-dn-table-o-6-ft</loc>
+        <lastmod>2025-04-28T16:41:09+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/accent-chair</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/rect-dining-table-6-ft</loc>
+        <lastmod>2025-04-28T16:08:33+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/loveseat</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/archipelago-counter</loc>
+        <lastmod>2025-04-28T16:08:33+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/sectional-sofa</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/archipelago-bar</loc>
+        <lastmod>2025-04-28T16:08:33+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/bean-bag</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/xx-side-chair</loc>
+        <lastmod>2025-04-28T16:08:33+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/rocking-chair</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/tropical-bed-king</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/armchair</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/tropical-bed-queen</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/chaise-lounge</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/bed-slat-king</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/coffee-table</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/hbflat-woven-queen</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/end-table</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/aqua-glass-2-door-cabinet</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/console-table</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/aqua-glass-4-door</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/lift-top-coffee-table</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/wayoex-glass-2-door</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/bookshelf</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/desk-xx</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/tv-stand</loc>
-        <lastmod>2025-04-23T13:13:37+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/sea-mist-desk</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/nightstand</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/piano-desk</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/storage-bench</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/tropical-dresser</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/ladder-shelf</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/dresser-slat-9-dw</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/ottoman</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/medalion-dresser</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/room-divider</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/tropical-mirror</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/gaming-chair</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/rapika-mirror</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/lounge-chair</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/bata-miror</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/dining-table</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/tropical-chest-5-dwr</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/dining-set</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/crosby-chest-small</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/dining-bench</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/crosby-chest-large</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/bar-stool</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/tropical-end-table</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/high-chair</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/bedside-slat-2-dw-2-dr</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/sideboard</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/end-table</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/buffet-table</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/narrow-1-shelf-console</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/dining-buffet</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/console-ulir-tbl-3dwr</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/dining-hutch</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/satay-console-with-shelf</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/wine-rack</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/stool-ulir</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/bed-frame</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/rectbench-6-ft</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/murphy-bed</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/scalop-lamp-tbl</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/bunk-bed</loc>
-        <lastmod>2025-04-23T13:13:38+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/modern-end-table</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/futon</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/occasional-tbl</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/wardrobe</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/kuba-buffet-3-door-teak</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/chest-of-drawers</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/whitney-buffet-cab-4door</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/dresser</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/crozz-lexingtong-buffet</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/toy-chest</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/open-selves-2-dw</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/changing-table</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/open-bookcase-1dwr-2-dr</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/vanity-table</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/asian-open-bookcase</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/vanity-stool</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/arsya-coffee-tbl</loc>
+        <lastmod>2025-04-28T16:08:34+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/office-chair</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/arsya-side-tbl</loc>
+        <lastmod>2025-04-28T16:08:35+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/swivel-chair</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/rayya-coffee-tbl-2-dw</loc>
+        <lastmod>2025-04-28T16:08:35+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/desk-chair</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/pyramid-sketsel</loc>
+        <lastmod>2025-04-28T16:08:35+00:00</lastmod>
 
             </url>
     <url>
-        <loc>http://127.0.0.1:8000/product/desk</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/standing-desk</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/file-cabinet</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/filing-cabinet</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/patio-chair</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/garden-bench</loc>
-        <lastmod>2025-04-23T13:13:39+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/deck-chair</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-sofa</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-lounge-chair</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-swing</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-bench</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-bar-stool</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-loveseat</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-ottoman</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/patio-table</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-dining-set</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-coffee-table</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-bistro-set</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/outdoor-bar-table</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/shoe-rack</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/shoe-cabinet</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/cupboard</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/cabinet</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/entryway-table</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/hall-tree</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/curio-cabinet</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/corner-shelf</loc>
-        <lastmod>2025-04-23T13:13:40+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/console-cabinet</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/wall-shelf</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/utility-cart</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/entry-bench</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/hall-bench</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/plant-stand</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/mirror</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/room-screen</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/foldable-chair</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/kids-table</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/hammock</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/massage-chair</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
-
-            </url>
-    <url>
-        <loc>http://127.0.0.1:8000/product/bar-cart</loc>
-        <lastmod>2025-04-23T13:13:41+00:00</lastmod>
+        <loc>http://127.0.0.1:8000/products/sketsel-carving</loc>
+        <lastmod>2025-04-28T16:08:35+00:00</lastmod>
 
             </url>
 </urlset>

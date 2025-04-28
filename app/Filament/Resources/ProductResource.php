@@ -121,7 +121,15 @@ class ProductResource extends Resource
                 ->optimize('png')
                 ->resize(50)
                 ->required()
-                ->columnSpanFull(),
+                ->columnSpanFull()
+                ->multiple() // Untuk multiple image
+                ->label('Images') // Label untuk input
+                ->helperText('Upload multiple images')
+                ->image() // Optional, jika ingin menampilkan preview image
+                ->afterStateHydrated(function ($component, $state) {
+                    // Pastikan kita hanya melakukan json_decode jika $state adalah string
+                    return is_string($state) ? json_decode($state, true) : $state;
+                }),
 
             // Deskripsi Produk
             Forms\Components\RichEditor::make('content')
@@ -203,7 +211,7 @@ class ProductResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('height')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image'),  
                 Tables\Columns\TextColumn::make('views')
                     ->numeric()
                     ->sortable(),

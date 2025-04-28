@@ -107,7 +107,10 @@
                 <div
                     class="hover:border border-gray-300 p-2 text-white hover:text-[#2E2E2E] relative"
                     v-for="(product, index) in Products.filter(
-                        (product) => product.variants.length > 0
+                        (product) =>
+                            product.variants.length > 0 &&
+                            product.image &&
+                            product.image.length > 0
                     )"
                     :key="index"
                 >
@@ -123,7 +126,7 @@
                     <!-- Gambar Produk -->
                     <img
                         class="w-full h-48 md:h-80 object-cover rounded-sm"
-                        :src="helpers.imageUrl(product.image)"
+                        :src="helpers.imageUrl(product.image[0])"
                         :alt="product.name"
                         type="image/webp"
                         loading="lazy"
@@ -228,6 +231,7 @@ const props = defineProps({
     Categories: Object,
     SubCategories: Object,
 });
+console.log(props.Products);
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
     console.log(isOpen.value);

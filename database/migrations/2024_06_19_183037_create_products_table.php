@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('width');
             $table->integer('depth');
             $table->integer('height');
-            $table->string('image')->default('https://placehold.co/600x400?text=No+image');
+            $table->json('image')->default(json_encode([]));
             $table->longText('content');
             $table->integer('price')->default(0);
             $table->integer('views')->default(0);

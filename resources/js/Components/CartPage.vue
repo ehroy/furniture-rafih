@@ -34,7 +34,7 @@
                 >
                     <div class="flex items-center space-x-4">
                         <img
-                            :src="helpers.imageUrl(item.image)"
+                            :src="helpers.imageUrl(item.image[0])"
                             :alt="item.name"
                             class="w-14 h-14 object-cover rounded-sm"
                         />

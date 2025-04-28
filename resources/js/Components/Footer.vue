@@ -32,8 +32,8 @@
                 <nav>
                     <h1 class="font-bold text-2xl mb-8">{{ $t("halaman") }}</h1>
                     <ul class="flex flex-col gap-3">
-                        <li><Link href="/about-us">About Us</Link></li>
-                        <li><Link href="/linker">Call Me</Link></li>
+                        <li><Link href="/galery">Gallery</Link></li>
+                        <li><Link href="/contact">Call Me</Link></li>
                     </ul>
                 </nav>
 

@@ -49,7 +49,16 @@ class Product extends Model
     public static function boot()
     {
         parent::boot();
-
+    
+        // Event: Saat model disimpan
+        static::saving(function ($model) {
+            if (is_array($model->image)) {
+                // Jika gambar dalam bentuk array, ubah menjadi string JSON
+                $model->image = json_encode($model->image);
+            }
+        });
+    
+        // Event: Saat model diupdate
         static::updating(function ($order) {
             if ($order->isDirty('status')) {
                 switch ($order->status) {
@@ -62,6 +71,13 @@ class Product extends Model
                 }
             }
         });
+    }
+
+    // Menangani data image ketika dibaca dari database
+    public function getImageAttribute($value)
+    {
+        // Pastikan bahwa kita hanya memanggil json_decode jika nilai adalah string JSON
+        return is_string($value) ? json_decode($value, true) : $value;
     }
     
 

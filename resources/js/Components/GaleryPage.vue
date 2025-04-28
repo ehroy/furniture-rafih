@@ -15,11 +15,13 @@
             <p class="text-xl text-white max-w-xl mb-8">
                 {{ $t("gallery.text1") }}
             </p>
-            <button
-                class="bg-white text-gray-900 px-8 py-3 rounded-md font-medium hover:bg-gray-100 transition"
-            >
-                {{ $t("gallery.text2") }}
-            </button>
+            <Link href="/products">
+                <button
+                    class="bg-white text-gray-900 px-8 py-3 rounded-md font-medium hover:bg-gray-100 transition"
+                >
+                    {{ $t("gallery.text2") }}
+                </button>
+            </Link>
         </div>
     </section>
     <div class="py-24 px-5 md:px-20 lg:px-64 text-[#4A4A4A]">
@@ -96,11 +98,13 @@
                     class="bg-gray-900 text-white px-8 py-3 rounded-md font-medium hover:bg-gray-800 transition"
                     >{{ $t("button.catalog") }}
                 </Link>
-                <button
-                    class="bg-white border border-gray-300 text-gray-700 px-8 py-3 rounded-md font-medium hover:bg-gray-50 transition"
-                >
-                    {{ $t("button.callme") }}
-                </button>
+                <Link href="/contact">
+                    <button
+                        class="bg-white border border-gray-300 text-gray-700 px-8 py-3 rounded-md font-medium hover:bg-gray-50 transition"
+                    >
+                        {{ $t("button.callme") }}
+                    </button>
+                </Link>
             </div>
         </div>
         <Popup :Global="Global" :Products="Products" />
@@ -119,7 +123,9 @@ const props = defineProps({
     Products: Object,
 });
 const filteredCategories = computed(() => {
-    return props.Gallery.filter((category) => category.subcategory);
+    return props.Gallery.filter(
+        (category) => category.subcategory && category.image.length > 0
+    );
 });
 </script>
 

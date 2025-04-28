@@ -50,11 +50,13 @@
                         class="w-10 h-10 object-cover rounded-full"
                     />
                 </Link>
-                <span
-                    class="font-bold text-xl text-[#424242] poppins-bold inline"
-                >
-                    TERATAI <span class="text-red-600">FURNITURE</span>
-                </span>
+                <Link href="/">
+                    <span
+                        class="font-bold text-xl text-[#424242] poppins-bold inline"
+                    >
+                        TERATAI <span class="text-red-600">FURNITURE</span>
+                    </span>
+                </Link>
             </div>
 
             <nav class="flex-1 mx-10">
@@ -69,39 +71,7 @@
                             >Product</Link
                         >
                     </li>
-                    <!-- <li class="relative hover:text-[#212121]">
-                        <button
-                            id="dropdownButton"
-                            @click="toggleDropdown"
-                            type="button"
-                            aria-expanded="true"
-                            aria-haspopup="true"
-                            class="hover:underline"
-                        >
-                            CATEGORY
-                            <i class="mdi mdi-chevron-down"></i>
-                        </button>
-                        <div
-                            v-if="isOpen"
-                            class="origin-top-right absolute mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-white ring-opacity-5"
-                        >
-                            <div
-                                class="py-1"
-                                role="menu"
-                                aria-orientation="vertical"
-                                aria-labelledby="options-menu"
-                            >
-                                <Link
-                                    aria-label="Category"
-                                    class="block px-4 py-2 text-sm text-[#424242] hover:bg-[#424242] hover:text-[#F5F5F5]"
-                                    role="menuitem"
-                                    v-for="(cat, index) in Categories"
-                                    :href="'/category/' + cat.id"
-                                    >{{ cat.name }}</Link
-                                >
-                            </div>
-                        </div>
-                    </li> -->
+
                     <li class="hover:text-[#212121] hover:underline">
                         <Link aria-label="Contact Us" href="/contact"
                             >Contact Us</Link
@@ -174,31 +144,7 @@
                 <i class="mdi mdi-cube-outline text-xl"></i>
                 <span class="text-xs">Product</span>
             </Link>
-            <!-- <div class="relative" @click="toggleDropdown">
-                <button class="flex flex-col items-center hover:text-black">
-                    <i class="mdi mdi-tag-multiple text-xl"></i>
-                    <span class="text-xs">Category</span>
-                </button>
-                <div
-                    v-if="isOpen"
-                    class="absolute bottom-12 w-40 bg-white rounded-lg shadow-md"
-                >
-                    <ul class="flex flex-col p-3">
-                        <li
-                            v-for="(category, index) in Categories"
-                            :key="index"
-                            class="py-1"
-                        >
-                            <Link
-                                :href="`/category/${category.id}`"
-                                class="text-black hover:text-[#212121]"
-                            >
-                                {{ category.name }}
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            </div> -->
+
             <Link
                 aria-label="Linker"
                 href="/contact"
@@ -228,9 +174,13 @@
                 alt="teratai furniture"
                 class="w-10 h-10 object-cover rounded-full"
             />
-            <span class="font-bold text-l text-[#424242] poppins-bold inline">
-                TERATAI <span class="text-red-600">FURNITURE</span>
-            </span>
+            <Link href="/"
+                ><span
+                    class="font-bold text-l text-[#424242] poppins-bold inline"
+                >
+                    TERATAI <span class="text-red-600">FURNITURE</span>
+                </span>
+            </Link>
         </div>
         <!-- Cart & Search -->
         <div class="flex items-center space-x-4">

@@ -72,7 +72,7 @@ class ProductImport implements ToCollection
                     'height' => $height,
                     'price' => $price,
                     'content' => $content,
-                    'image' => $image,
+                    'image' => [],
                     'active' => $active,
                     'recomended' => $recommended,
                 ]
@@ -97,7 +97,7 @@ class ProductImport implements ToCollection
                         Schema::create('colors', function (Blueprint $table) {
                             $table->id();
                             $table->string('name')->unique();
-                            $table->json('image')->nullable();
+                            $table->string('image')->nullable();
                             $table->timestamps();
                         });
                     }
@@ -111,7 +111,7 @@ class ProductImport implements ToCollection
                     if (!$color) {
                         $color = Color::create([
                             'name' => $colorName,
-                            'image' => null, // Ganti URL sesuai kebutuhan
+                            'image' => 'https://placehold.co/600x400?text=No+Image', // Ganti URL sesuai kebutuhan
                         ]);
                     }
                 

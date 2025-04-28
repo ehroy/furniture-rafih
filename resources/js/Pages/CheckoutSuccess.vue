@@ -101,7 +101,7 @@
                     class="flex items-center bg-gray-100 rounded-lg p-4 shadow-sm"
                 >
                     <img
-                        :src="helpers.imageUrl(item.product.image)"
+                        :src="helpers.imageUrl(item.product.image[0])"
                         alt="Produk"
                         class="w-20 h-20 object-cover rounded-lg border border-gray-300"
                     />
