@@ -18,12 +18,12 @@ class VariantSeeder extends Seeder
 
     // Data untuk tabel color
     $colors = [
-        ['name' => 'Default', 'image' => ''],  // Light Gray
-        ['name' => 'Dbgsb', 'image' => ''],     // Beige tone
-        ['name' => 'Grey', 'image' => ''],      // Standard Gray
-        ['name' => 'Silk', 'image' => ''],      // Soft silk tone
-        ['name' => 'Teak', 'image' => ''],      // Teak wood color
-        ['name' => 'Ort', 'image' => ''],       // Light greenish tone
+        ['name' => 'Default', 'image' => ['']],  // Light Gray
+        ['name' => 'Dbgsb', 'image' => ['']],     // Beige tone
+        ['name' => 'Grey', 'image' => ['']],      // Standard Gray
+        ['name' => 'Silk', 'image' => ['']],      // Soft silk tone
+        ['name' => 'Teak', 'image' => ['']],      // Teak wood color
+        ['name' => 'Ort', 'image' => ['']],       // Light greenish tone
     ];
 
     // Insert data ke database

@@ -288,7 +288,7 @@
                             >
                                 <img
                                     :src="
-                                        helpers.imageUrl(group.color.image[0])
+                                        helpers.imageUrl(group.color.image[1])
                                     "
                                     class="w-full h-full object-cover rounded-full"
                                 />
@@ -663,8 +663,6 @@ const uniqueColors = computed(() => {
             grouped[variant.color.id].woods.push(variant.wood);
         }
     });
-
-    console.log("Warna & Kayu:", grouped);
     return Object.values(grouped);
 });
 </script>
