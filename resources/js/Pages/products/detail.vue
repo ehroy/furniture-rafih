@@ -3,7 +3,6 @@
         <JustHead :Global="Global" :title="product.name" />
         <Navbar :Categories="Categories" />
         <div class="container mx-auto mt-10">
-            {{ Dataimage() }}
             <transition
                 enter-active-class="transform transition duration-500 ease-out"
                 enter-from-class="translate-y-10 opacity-0"
@@ -62,12 +61,34 @@
             <div class="flex flex-col md:flex-row mt-10">
                 <div class="md:w-1/2">
                     <div class="p-5">
-                        <div class="flex flex-col md:flex-row items-center">
+                        <div
+                            class="relative flex flex-col md:flex-row items-center"
+                        >
                             <img
-                                :src="helpers.imageUrl(product.image)"
-                                :alt="product.name"
-                                class="w-full rounded-lg transition-transform duration-500 ease-in-out transform hover:scale-105 hover:cursor-zoom-in max-h-96 object-cover"
+                                :src="
+                                    helpers.imageUrl(
+                                        images[activeIndex].images[0].image
+                                    )
+                                "
+                                :alt="images[activeIndex].name"
+                                class="w-full h-64 object-cover rounded-lg"
                             />
+                            <div
+                                class="absolute inset-0 flex justify-between items-center p-2"
+                            >
+                                <button
+                                    @click="prevImage"
+                                    class="bg-white p-1 rounded-full shadow"
+                                >
+                                    ‹
+                                </button>
+                                <button
+                                    @click="nextImage"
+                                    class="bg-white p-1 rounded-full shadow"
+                                >
+                                    ›
+                                </button>
+                            </div>
 
                             <br />
                             <hr />
