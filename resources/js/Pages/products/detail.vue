@@ -63,38 +63,44 @@
             <div class="flex flex-col md:flex-row mt-10">
                 <div class="md:w-1/2">
                     <div class="p-5">
-                        <div class="flex items-center">
-                            <button
-                                @click="prevImage"
-                                class="bg-black bg-opacity-50 text-white rounded-full p-2 shadow-md hover:bg-opacity-75 mr-4"
-                            >
-                                &#8249;
-                            </button>
+                        <div class="p-5 flex flex-col items-center">
+                            <div class="relative w-full">
+                                <img
+                                    :src="
+                                        helpers.imageUrl(
+                                            product.image[currentIndex]
+                                        )
+                                    "
+                                    :alt="product.name"
+                                    class="w-full rounded-lg transition-transform duration-500 ease-in-out transform hover:scale-105 hover:cursor-zoom-in max-h-96 object-cover"
+                                />
 
-                            <img
-                                :src="
-                                    helpers.imageUrl(
-                                        product.image[currentIndex]
-                                    )
-                                "
-                                :alt="product.name"
-                                class="w-full rounded-lg transition-transform duration-500 ease-in-out transform hover:scale-105 hover:cursor-zoom-in max-h-96 object-cover"
-                            />
+                                <!-- Tombol Kiri -->
+                                <button
+                                    @click="prevImage"
+                                    class="absolute top-1/2 left-4 transform -translate-y-1/2 backdrop-blur-sm bg-black/40 text-white rounded-full p-3 md:p-4 shadow-lg hover:scale-110 transition-all duration-300 border border-white/20"
+                                >
+                                    &#8249;
+                                </button>
 
-                            <button
-                                @click="nextImage"
-                                class="bg-black bg-opacity-50 text-white rounded-full p-2 shadow-md hover:bg-opacity-75 ml-4"
-                            >
-                                &#8250;
-                            </button>
+                                <!-- Tombol Kanan -->
+                                <button
+                                    @click="nextImage"
+                                    class="absolute top-1/2 right-4 transform -translate-y-1/2 backdrop-blur-sm bg-black/40 text-white rounded-full p-3 md:p-4 shadow-lg hover:scale-110 transition-all duration-300 border border-white/20"
+                                >
+                                    &#8250;
+                                </button>
+                            </div>
                         </div>
                         <div
-                            class="grid grid-cols-3 gap-4 mt-8 border bg-[#e7f5fb] rounded-md text-lg md:text-sm"
+                            class="grid grid-cols-3 gap-6 mt-8 border bg-[#e7f5fb] rounded-md p-5 text-gray-800"
                         >
-                            <div class="flex items-center space-x-3 p-3">
-                                <!-- Ikon -->
+                            <!-- Item 1 -->
+                            <div
+                                class="flex items-center justify-center space-x-4 p-4"
+                            >
                                 <div
-                                    class="flex items-center justify-center w-12 h-12 rounded-full"
+                                    class="flex items-center justify-center w-12 h-12 rounded-full bg-white"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -111,22 +117,23 @@
                                         />
                                     </svg>
                                 </div>
-
-                                <!-- Teks -->
-                                <p class="font-semibold text-gray-800">
+                                <p
+                                    class="font-semibold text-sm sm:text-base md:text-lg lg:text-xl"
+                                >
                                     100% Original
                                 </p>
                             </div>
 
+                            <!-- Item 2 -->
                             <div
-                                class="flex items-center justify-center p-3 text-lg md:text-sm"
+                                class="flex items-center justify-center space-x-4 p-4"
                             >
                                 <div
-                                    class="h-10 w-10 flex items-center justify-center mr-4"
+                                    class="flex items-center justify-center w-12 h-12 rounded-full bg-white"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        class="h-8 w-8 text-gray-700"
+                                        class="w-8 h-8 text-gray-700"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -139,21 +146,23 @@
                                         />
                                     </svg>
                                 </div>
-                                <div>
-                                    <p class="font-semibold text-gray-800">
-                                        Top Quality
-                                    </p>
-                                </div>
+                                <p
+                                    class="font-semibold text-sm sm:text-base md:text-lg lg:text-xl"
+                                >
+                                    Top Quality
+                                </p>
                             </div>
+
+                            <!-- Item 3 -->
                             <div
-                                class="flex items-center justify-center p-3 text-lg md:text-sm"
+                                class="flex items-center justify-center space-x-4 p-4"
                             >
                                 <div
-                                    class="h-10 w-10 flex items-center justify-center mr-4"
+                                    class="flex items-center justify-center w-12 h-12 rounded-full bg-white"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        class="h-8 w-8 text-gray-700"
+                                        class="w-8 h-8 text-gray-700"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -169,13 +178,14 @@
                                         />
                                     </svg>
                                 </div>
-                                <div>
-                                    <p class="font-semibold text-gray-800">
-                                        Fast Delivery
-                                    </p>
-                                </div>
+                                <p
+                                    class="font-semibold text-sm sm:text-base md:text-lg lg:text-xl"
+                                >
+                                    Fast Delivery
+                                </p>
                             </div>
                         </div>
+
                         <div class="hidden md:block text-[#2E2E2E]">
                             <h3 class="text-2xl poppins-bold mt-5 mb-3">
                                 <i class="mdi mdi-table-furniture"></i>
