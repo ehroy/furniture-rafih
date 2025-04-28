@@ -111,7 +111,7 @@ class ProductImport implements ToCollection
                     if (!$color) {
                         $color = Color::create([
                             'name' => $colorName,
-                            'image' => ['https://example.com/default-image.png'], // Ganti URL sesuai kebutuhan
+                            'image' => null, // Ganti URL sesuai kebutuhan
                         ]);
                     }
                 
