@@ -269,7 +269,6 @@
                         <label class="block text-gray-700 font-bold mb-2"
                             >colors :
                         </label>
-
                         <div class="flex space-x-2">
                             <button
                                 v-for="(group, index) in uniqueColors"
@@ -282,13 +281,15 @@
                                 ]"
                                 :style="{
                                     backgroundColor: extractColor(
-                                        group.color.image
+                                        group.color.image[0]
                                     ),
                                 }"
                                 @click="selectColor(group.color.name)"
                             >
                                 <img
-                                    :src="helpers.imageUrl(group.color.image)"
+                                    :src="
+                                        helpers.imageUrl(group.color.image[0])
+                                    "
                                     class="w-full h-full object-cover rounded-full"
                                 />
 
@@ -545,6 +546,7 @@ const showNotificationalert = ref(false);
 
 const notificationMessage = ref(null);
 const extractColor = (color) => {
+    console.log(color);
     if (!color) return "#FFFFFF"; // Default warna jika kosong
     const hexMatch = color.match(/#([0-9A-Fa-f]{6})/); // Cari warna HEX dalam string
     return hexMatch ? `#${hexMatch[1]}` : color; // Jika ada HEX, ambil HEX, jika tidak, gunakan as-is
@@ -559,6 +561,7 @@ const props = defineProps({
     Socmed: Object,
     Pages: Object,
 });
+console.log(props.Products.image);
 
 // Ambil `cart` dari localStorage saat komponen dimuat
 onMounted(() => {

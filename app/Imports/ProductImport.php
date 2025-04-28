@@ -97,7 +97,7 @@ class ProductImport implements ToCollection
                         Schema::create('colors', function (Blueprint $table) {
                             $table->id();
                             $table->string('name')->unique();
-                            $table->string('image')->nullable();
+                            $table->json('image')->nullable();
                             $table->timestamps();
                         });
                     }
@@ -111,7 +111,7 @@ class ProductImport implements ToCollection
                     if (!$color) {
                         $color = Color::create([
                             'name' => $colorName,
-                            'image' => 'https://example.com/default-image.png', // Ganti URL sesuai kebutuhan
+                            'image' => ['https://example.com/default-image.png'], // Ganti URL sesuai kebutuhan
                         ]);
                     }
                 
