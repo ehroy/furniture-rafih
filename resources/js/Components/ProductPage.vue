@@ -231,10 +231,8 @@ const props = defineProps({
     Categories: Object,
     SubCategories: Object,
 });
-console.log(props.Products);
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
-    console.log(isOpen.value);
 };
 const closeDropdown = (event) => {
     if (!event.target.closest(".relative")) {

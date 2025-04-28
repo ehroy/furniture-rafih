@@ -32,6 +32,12 @@
         </div>
     </div>
     <transition
+        v-if="
+            showOrderPopup &&
+            randomProduct &&
+            randomProduct.image &&
+            randomProduct.name
+        "
         enter-active-class="transition-opacity duration-500"
         enter-from-class="opacity-0 translate-y-5"
         enter-to-class="opacity-100 translate-y-0"
@@ -40,17 +46,14 @@
         leave-to-class="opacity-0 translate-y-5"
     >
         <div
-            v-if="
-                showOrderPopup &&
-                randomProduct &&
-                randomProduct.image &&
-                randomProduct.name
-            "
             class="fixed bottom-5 left-5 bg-white border border-gray-300 p-2 shadow-lg rounded-lg flex items-center gap-3 px-10 mb-16"
         >
+            {{ randomProduct }}
             <img
                 class="w-12 h-12 object-cover rounded-sm"
-                :src="helpers.imageUrl(randomProduct.image)"
+                :src="
+                    hasValidImage ? helpers.imageUrl(randomProduct.image) : ''
+                "
                 :alt="randomProduct.name"
             />
             <div>
@@ -73,11 +76,20 @@ const props = defineProps({
 const helpers = inject("helpers");
 const showOrderPopup = ref(false);
 const randomProduct = ref({});
-
 const startOrderPopup = () => {
     const showRandomPopup = () => {
-        const data = props.Products || [];
-        if (data.length === 0) return; // Pastikan produk ada
+        let data = props.Products || [];
+        if (data.length === 0) return; // Tidak ada produk
+
+        // Filter produk yang punya image valid
+        const validProducts = data.filter(
+            (product) =>
+                product.image && // ada field image
+                Array.isArray(product.image) && // image adalah array
+                product.image.length > 0 // ada isinya
+        );
+
+        if (validProducts.length === 0) return; // Tidak ada produk valid
 
         const lastPopupTime = localStorage.getItem("lastPopupTime");
         const now = Date.now();
@@ -85,8 +97,10 @@ const startOrderPopup = () => {
         const maxWaitTime = 12 * 60 * 60 * 1000; // 12 jam
 
         if (!lastPopupTime || now - lastPopupTime > minWaitTime) {
-            const randomIndex = Math.floor(Math.random() * data.length);
-            randomProduct.value = data[randomIndex];
+            const randomIndex = Math.floor(
+                Math.random() * validProducts.length
+            );
+            randomProduct.value = validProducts[randomIndex];
             showOrderPopup.value = true;
 
             setTimeout(() => {
@@ -94,15 +108,14 @@ const startOrderPopup = () => {
             }, 3000);
 
             localStorage.setItem("lastPopupTime", now);
+            localStorage.setItem("cek", JSON.stringify(randomProduct));
         }
 
         const randomTime = Math.floor(
             Math.random() * (maxWaitTime - minWaitTime) + minWaitTime
         );
 
-        if (data.length > 0) {
-            setTimeout(showRandomPopup, randomTime); // Pastikan tetap berjalan jika produk ada
-        }
+        setTimeout(showRandomPopup, randomTime); // Tetap jalan selama produk valid ada
     };
 
     showRandomPopup();
